@@ -3,20 +3,38 @@ import { NextResponse } from "next/server";
 
 export const getProgress = async  (
     userId : string,
-    chapterId : string
+    courseId : string
 ): Promise<any> => {
     try {
 
-        const progress = await db.userProgress.findUnique({
+        const publishedChapters = await db.chapter.findMany({
             where : {
-                id : userId,
-                chapterId : chapterId,
+                courseId : courseId,
+                isPublished : true
+            }, select : {
+                id : true
             }
         })
+
+        const publishedChaptersIds = publishedChapters.map((chapter) => chapter.id);
+
+        const validCompletedChapters = await db.userProgress.count({
+            where : {
+                userId : userId,
+                chapterId : {
+                    in : publishedChaptersIds
+                },
+                isCompleted : true
+            }
+        });
+
+        const progressPercentage = (validCompletedChapters / publishedChaptersIds.length) * 100;
+
+        return progressPercentage
 
 
     } catch (error) {
         console.log("Fehler beim Abrufen des Fortschritts");
-        return new NextResponse("Etwas ist schief gelaufen, " , { status : 500})
+        return null;
     }
 }
