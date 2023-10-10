@@ -2,14 +2,14 @@ import { Category, Course } from "@prisma/client";
 import { ThumbsDown } from "lucide-react";
 import CourseCard from "./course-card";
 
-type CoursesWithProgressWithCategory = Course & {
+type CourseWithProgressWithCategory = Course & {
     category: Category | null;
     chapters: { id: string }[];
     progress: number | null;
 };
 
 interface CoursesListProps {
-    items: CoursesWithProgressWithCategory[];
+    items: CourseWithProgressWithCategory[];
 }
 
 const CoursesList: React.FC<CoursesListProps> = ({
