@@ -19,16 +19,16 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>
-                            Bestätigen
-                        </AlertDialogTitle>
+                        <AlertDialogTitle>Bist du dir wirklich sicher?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            Bist du sicher, dass du den ausgewählten Kurs löschen möchtest?
+                            Gelöschte Kurse können nicht wiederhergestellt werden.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel> Abbrechen </AlertDialogCancel>
-                        <AlertDialogAction onClick={onConfirm}> Endgültig löschen </AlertDialogAction>
+                        <AlertDialogCancel>Abbrechen</AlertDialogCancel>
+                        <AlertDialogAction onClick={onConfirm}>
+                            Endgültig löschen
+                        </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
