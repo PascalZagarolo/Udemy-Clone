@@ -3,8 +3,8 @@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../ui/alert-dialog";
 
 interface ConfirmModalProps {
-    children : React.ReactNode;
-    onConfirm : () => void;
+    children: React.ReactNode;
+    onConfirm: () => void;
 }
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({
@@ -13,31 +13,27 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
 }) => {
     return (
         <>
-        <AlertDialog>
-            <AlertDialogTrigger>
-                {children}
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-                <AlertDialogHeader>
-                    <AlertDialogTitle>
-                        Bist du sicher?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                        Gelöschte Komponenten können nicht wiederhergestellt werden.
-                    </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                    <AlertDialogCancel>
-                        Abbrechen
-                    </AlertDialogCancel>
-                    <AlertDialogAction onClick={onConfirm}>
-                        Bestätigen
-                    </AlertDialogAction>
-                </AlertDialogFooter>
-            </AlertDialogContent>
-        </AlertDialog>
+            <AlertDialog>
+                <AlertDialogTrigger asChild>
+                    {children}
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>
+                            Bestätigen
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                            Bist du sicher, dass du den ausgewählten Kurs löschen möchtest?
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel> Abbrechen </AlertDialogCancel>
+                        <AlertDialogAction onClick={onConfirm}> Endgültig löschen </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </>
-     );
+    );
 }
- 
+
 export default ConfirmModal;
