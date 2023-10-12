@@ -126,7 +126,7 @@ const ChapterVideoForm : React.FC<ChapterVideoFormProps> = ({
             {isEditing && (
                 <div>
                     <FileUpload 
-                    endpoint="courseImage"
+                    endpoint="chapterVideo"
                     onChange={(url) => {
                         if(url) {
                             onSubmit({ videoUrl : url})
