@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IconBadge } from "./icon-badge";
 import { BookCopy, EuroIcon, Minus, SeparatorVerticalIcon, Video } from "lucide-react";
+import CourseProgress from "./course-progress";
 
 interface CourseCardProps {
     key : string,
@@ -62,7 +63,11 @@ const CourseCard: React.FC<CourseCardProps> = ({
                 <div>
                     {progress !== null ? (
                         <div>
-                            fortschritt
+                            <CourseProgress 
+                            value={12}
+                            size="success"
+                            variant="success"
+                            />
                         </div>
                     ): (
                         <p className="text-md md:text-sm font-medium text-slate-700">

@@ -41,7 +41,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-700 flex-col gap-y-2 text-secondary">
                     <LockIcon className="h-8 w-8" />
                     <p className="text-sm">
-                        Dieses Kapitel wird bei Kauf freigeschaltet.
+                        Dieses Kapitel wird erst nach dem Kauf freigeschaltet.
                     </p>
                 </div>
             )}

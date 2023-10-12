@@ -3,6 +3,7 @@ import { auth } from "@clerk/nextjs";
 import { Chapter, Course, UserProgress } from "@prisma/client";
 import { redirect } from "next/navigation";
 import CourseSideBarItem from "./course-sidebar-item";
+import CourseProgress from "@/components/course-progress";
 
 
 interface CourseSideBarProps {
@@ -26,7 +27,7 @@ const CourseSideBar: React.FC<CourseSideBarProps> = async ({
         return redirect("/")
     }
 
-    const purchased = await db.purchase.findFirst({
+    const purchased = await db.purchase.findMany({
         where :{
             userId: userId,
             courseId : course.id
@@ -41,6 +42,15 @@ const CourseSideBar: React.FC<CourseSideBarProps> = async ({
                 <h1 className="font-semibold">
                     {course.title}
                 </h1>
+                {!purchased && (
+                    <div className="mt-10">
+                        <CourseProgress 
+                        variant = "success"
+                        size="default"
+                        value = {progressCount}
+                        />
+                    </div> 
+                )}
             </div>
             <div className="flex flex-col w-full">
                 {course.chapters.map((chapter) => (
