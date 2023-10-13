@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from "@/lib/utils";
-import { CheckCircle, PlayCircleIcon, LockIcon } from "lucide-react";
+import { CheckCircle, PlayCircleIcon, LockIcon, PlayIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 
@@ -28,7 +28,7 @@ const CourseSideBarItem: React.FC<CourseSideBarItemProps> = ({
     const router = useRouter();
 
     const Icon = isLocked ? LockIcon : 
-        (isCompleted ? CheckCircle : PlayCircleIcon);
+        (isCompleted ? CheckCircle : PlayIcon);
 
         const isActive = pathname?.includes(id);
 

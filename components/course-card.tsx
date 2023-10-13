@@ -61,19 +61,17 @@ const CourseCard: React.FC<CourseCardProps> = ({
                     </div>
                 </div>
                 <div>
-                    {progress !== null ? (
-                        <div>
-                            <CourseProgress 
-                            value={12}
-                            size="success"
-                            variant="success"
-                            />
-                        </div>
-                    ): (
-                        <p className="text-md md:text-sm font-medium text-slate-700">
-                            <Minus className="h-4 w-4 text-sky-800"/> {formattedPrice(price)}
-                        </p>
-                    )}
+                {progress !== null ? (
+            <CourseProgress
+              variant={progress === 100 ? "success" : "default"}
+              size="success"
+              value={progress}
+            />
+          ) : (
+            <p className="text-md md:text-sm font-medium text-slate-700">
+              {formattedPrice(price)}
+            </p>
+          )}
                 </div>
             </div>
         </Link>

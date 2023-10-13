@@ -1,9 +1,13 @@
 'use client';
 
+import { useConfettiStore } from "@/hooks/use-confetti-store";
 import { cn } from "@/lib/utils";
 import MuxPlayer from "@mux/mux-player-react";
+import axios from "axios";
 import { Loader2, LockIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { set } from 'zod';
 
 interface VideoPlayerProps {
@@ -28,6 +32,35 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 }) => {
 
     const [isReady, setIsReady] = useState(false);
+    const router = useRouter();
+    const confetti = useConfettiStore();
+
+    const onEnd = async () => {
+
+        try {
+            if (completeOnEnd) {
+                await axios.put(`/api/courses/${courseId}/chapters/${chapterId}/progress`, { isCompleted: true })
+            }
+
+        } catch {
+            toast.error("Etwas ist schief gelaufen.")
+        }
+
+        if (!nextChapterId) {
+            confetti.onOpen();
+            toast.success("Kurs erfolgreich abgeschlossen")
+        } else {
+            toast.success("Kapitel erfolgreich abgeschlossen")
+        }
+
+        router.refresh();
+        if (nextChapterId) {
+            router.push(`/courses/${courseId}/chapter/${nextChapterId}`);
+        }
+
+
+
+    }
     
 
     return ( 
@@ -52,7 +85,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                     !isReady && "hidden"
                 )}
                 onCanPlay={() => setIsReady(true)}
-                onEnded={() => {}}
+                onEnded={onEnd}
                 autoPlay
                 playbackId={playbackId}
                 />
@@ -64,14 +97,3 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 export default VideoPlayer;
 
 
-/* 
-
-chapterId = {params.chapterId}
-                    title = {chapter.title}
-                    courseId = {params.courseId}
-                    nextChapterId = {nextChapter?.id}
-                    playbackId = {muxData?.playbackId}
-                    isLocked = {isLocked}
-                    completeOnEnd = {completeOnEnd}
-
-*/

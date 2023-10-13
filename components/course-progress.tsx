@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Progress } from "./ui/progress";
+import { BarChart2 } from "lucide-react";
 
 interface CourseProgressProps {
     variant? : "success" | "default";
@@ -29,10 +30,13 @@ const CourseProgress: React.FC<CourseProgressProps> = ({
             value={value}
             variant={variant}
             />
+            
             <p className={cn("font-medium mt-2 text-sky-700",
                 colorByVariant[variant || "default"],
                 sizeByVariant[variant || "default"], )}>
-                {Math.round(value)} %
+                    
+                Kurs zu {Math.round(value)} % abgeschlossen.
+                
             </p>
         </div>
      );

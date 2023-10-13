@@ -23,16 +23,18 @@ export async function POST(
       }
     });
 
-    const purchase = await db.purchase.findFirst({
+    const purchase = await db.purchase.findUnique({
       where: {
-            courseId : params.courseId,
-            userId : user.id
+        userId_courseId: {
+          userId: user.id,
+          courseId: params.courseId
+        }
       }
     });
 
     if (purchase) {
-        return new NextResponse("Already purchased", { status: 400 });
-      }
+      return new NextResponse("Already purchased", { status: 400 });
+    }
 
     if (!course) {
       return new NextResponse("Not found", { status: 404 });
@@ -42,7 +44,7 @@ export async function POST(
       {
         quantity: 1,
         price_data: {
-          currency: "USD",
+          currency: "EUR",
           product_data: {
             name: course.title,
             description: course.description!,
@@ -89,6 +91,6 @@ export async function POST(
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.log("[COURSE_ID_CHECKOUT]", error);
-    return new NextResponse("Internal Error", { status: 500 })
+    return new NextResponse("Etwas ist schief gelaufen", { status: 500 })
   }
 }
