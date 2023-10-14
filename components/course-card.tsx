@@ -5,18 +5,18 @@ import { BookCopy, EuroIcon, Minus, SeparatorVerticalIcon, Video } from "lucide-
 import CourseProgress from "./course-progress";
 
 interface CourseCardProps {
-    key : string,
-    id : string,
-    title : string,
-    imageUrl : string,
-    chaptersLength : number,
-    price : number ,
-    progress : number | null ,
-    category : string 
+   
+    id: string,
+    title: string,
+    imageUrl: string,
+    chaptersLength: number,
+    price: number,
+    progress: number | null,
+    category: string
 }
 
 
-const formattedPrice = (price : number) => {
+const formattedPrice = (price: number) => {
     return new Intl.NumberFormat("de-DE", {
         style: "currency",
         currency: "EUR",
@@ -24,7 +24,7 @@ const formattedPrice = (price : number) => {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({
-    key,
+    
     id,
     title,
     imageUrl,
@@ -33,15 +33,15 @@ const CourseCard: React.FC<CourseCardProps> = ({
     progress,
     category
 }) => {
-    return ( 
+    return (
         <Link href={`/courses/${id}`}>
             <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
                 <div className="relative w-full aspect-video rounded-md overflow-hidden">
                     <Image
-                    fill
-                    className="object-cover"
-                    alt={title}
-                    src={imageUrl}
+                        fill
+                        className="object-cover"
+                        alt={title}
+                        src={imageUrl}
                     />
                 </div>
                 <div className="flex flex-col pt-2">
@@ -54,30 +54,30 @@ const CourseCard: React.FC<CourseCardProps> = ({
                 </div>
                 <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
                     <div className="flex items-center gap-x-1 text-slate-500">
-                        <IconBadge icon={BookCopy} size="sm"/>
+                        <IconBadge icon={BookCopy} size="sm" />
                         <span>
                             {chaptersLength} Kapitel
                         </span>
                     </div>
                 </div>
                 <div>
-                {progress !== null ? (
-            <CourseProgress
-              variant={progress === 100 ? "success" : "default"}
-              size="success"
-              value={progress}
-            />
-          ) : (
-            <p className="text-md md:text-sm font-medium text-slate-700">
-              {formattedPrice(price)}
-            </p>
-          )}
+                    {progress !== null ? (
+                        <CourseProgress
+                            variant={progress === 100 ? "success" : "default"}
+                            size="success"
+                            value={progress}
+                        />
+                    ) : (
+                        <p className="text-md md:text-sm font-medium text-slate-700">
+                            {formattedPrice(price)}
+                        </p>
+                    )}
                 </div>
             </div>
         </Link>
-     );
+    );
 }
- 
+
 export default CourseCard;
 
 

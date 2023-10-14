@@ -35,7 +35,7 @@ const CourseProgress: React.FC<CourseProgressProps> = ({
                 colorByVariant[variant || "default"],
                 sizeByVariant[variant || "default"], )}>
                     
-                Kurs zu {Math.round(value)} % abgeschlossen.
+                Kurs zu {value} % abgeschlossen.
                 
             </p>
         </div>

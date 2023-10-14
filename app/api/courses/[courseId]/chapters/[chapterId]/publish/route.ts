@@ -33,9 +33,11 @@ export async function PATCH(
             }
         })
 
-        if(!oldStateChapter || !muxData || !oldStateChapter.title || !oldStateChapter.description ||!oldStateChapter.videoUrl ) {
+        /* if(!oldStateChapter || !muxData || !oldStateChapter.title || !oldStateChapter.description ||!oldStateChapter.videoUrl ) {
             return new NextResponse("Fehlende Kursinhalte : " , { status : 400})
-        }
+        } */
+
+        
 
         const newValue = oldStateChapter?.isPublished ? false : true;
 

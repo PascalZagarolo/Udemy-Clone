@@ -1,18 +1,17 @@
 'use client';
 
-import { Attechment, Course } from "@prisma/client";
+import { Attachment, Course } from "@prisma/client";
 
 import * as z from "zod";
 import axios from "axios";
 
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+
 import { File, FileBoxIcon, FilePlus2, FileUp, ImagePlusIcon, Loader, Loader2, MinusSquareIcon, PencilLine, PlusIcon, PlusSquareIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
+
 
 import  Image  from "next/image"
 import FileUpload from "@/components/file-upload";
@@ -20,7 +19,7 @@ import FileUpload from "@/components/file-upload";
 
 
 interface AttechmentFormProps {
-    initialData : Course & { attechments : Attechment[] }
+    initialData : Course & { attachments : Attachment[] }
 }
 
 const formSchema = z.object({
@@ -106,28 +105,28 @@ const AttechmentForm : React.FC<AttechmentFormProps> = ({
             
             {!isEditing && (
                 <>
-                {initialData.attechments.length === 0 && (
+                {initialData.attachments.length === 0 && (
                     <p className="text-sm mt-2 text-slate-500 italic">
                         Noch keine Anhänge hinzugefügt.
                     </p>
                 )}
-                {initialData.attechments.length > 0 && (
+                {initialData.attachments.length > 0 && (
                     <div className="space-y-2">
-                        {initialData.attechments.map((attechment) => (
-                            <div key={attechment.id}
+                        {initialData.attachments.map((attachment) => (
+                            <div key={attachment.id}
                             className="flex items-center p-3 w-full bg-sky-100 border-sky-200 border text-sky-700 rounded-md">
                                 <FileBoxIcon className="h-4 w-4 mr-2 flex-shrink-0"/>
                                 <p className="text-xs line-clamp-1">
-                                    {attechment.name}
+                                    {attachment.name}
                                 </p>
-                                {deletingId === attechment.id && (
+                                {deletingId === attachment.id && (
                                     <div>
                                         <Loader2 className="h-4 w-4 animate-spin"/>
                                     </div>
                                 )}
-                                {deletingId !== attechment.id && (
+                                {deletingId !== attachment.id && (
                                     <button className="ml-auto hover:opacity-75 transition" >
-                                        <MinusSquareIcon className ="w-4 h-4" onClick={async() => {await onDelete(attechment.id)}} />
+                                        <MinusSquareIcon className ="w-4 h-4" onClick={async() => {await onDelete(attachment.id)}} />
                                     </button>
                                 )}
                             </div>

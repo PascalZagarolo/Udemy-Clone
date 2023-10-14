@@ -12,6 +12,7 @@ import CourseProgressButton from "./_components/course-progress-button";
 import axios from "axios";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
 import toast from "react-hot-toast";
+import { db } from "@/lib/db";
 
 const ChapterIdPage = async ({
     params
@@ -40,7 +41,16 @@ const ChapterIdPage = async ({
         return redirect("/");
     }
 
-   
+   const ownCourse = await db.course.findUnique({
+    where : {
+        id : params.courseId,
+        userId
+    }
+   })
+
+   let isOwn = ownCourse ? true : false;
+
+  
 
 
     const isLocked = !chapter.isFree && !purchase;
@@ -81,7 +91,7 @@ const ChapterIdPage = async ({
                         <h2 className="text-2xl font-semibold mt-2">
                             {chapter.title}
                         </h2>
-                        {purchase ? (
+                        {purchase || isOwn ? (
                             <div className="mr-10">
                                 <CourseProgressButton
                                     chapterId={params.chapterId}

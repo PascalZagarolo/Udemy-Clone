@@ -35,7 +35,7 @@ const CourseIdPage = async ({
             id : params.courseId,
             userId
         }, include : {
-            attechments : {
+            attachments : {
                 orderBy : {
                     name : "asc"
                 }

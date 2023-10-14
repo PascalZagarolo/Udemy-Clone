@@ -1,40 +1,37 @@
 import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
 
-export const getProgress = async  (
-    userId : string,
-    courseId : string
-): Promise<any> => {
-    try {
+export const getProgress = async (
+  userId: string,
+  courseId: string,
+): Promise<number> => {
+  try {
+    const publishedChapters = await db.chapter.findMany({
+      where: {
+        courseId: courseId,
+        isPublished: true,
+      },
+      select: {
+        id: true,
+      }
+    });
 
-        const publishedChapters = await db.chapter.findMany({
-            where : {
-                courseId : courseId,
-                isPublished : true
-            }, select : {
-                id : true
-            }
-        })
+    const publishedChapterIds = publishedChapters.map((chapter) => chapter.id);
 
-        const publishedChaptersIds = publishedChapters.map((chapter) => chapter.id);
+    const validCompletedChapters = await db.userProgress.count({
+      where: {
+        userId: userId,
+        chapterId: {
+          in: publishedChapterIds,
+        },
+        isCompleted: true,
+      }
+    });
 
-        const validCompletedChapters = await db.userProgress.count({
-            where : {
-                userId : userId,
-                chapterId : {
-                    in : publishedChaptersIds
-                },
-                isCompleted : true
-            }
-        });
+    const progressPercentage = (validCompletedChapters / publishedChapterIds.length) * 100;
 
-        const progressPercentage = (validCompletedChapters / publishedChaptersIds.length) * 100;
-
-        return progressPercentage;
-
-
-    } catch (error) {
-        console.log("Fehler beim Abrufen des Fortschritts");
-        return null;
-    }
+    return progressPercentage;
+  } catch (error) {
+    console.log("[GET_PROGRESS]", error);
+    return 0;
+  }
 }
