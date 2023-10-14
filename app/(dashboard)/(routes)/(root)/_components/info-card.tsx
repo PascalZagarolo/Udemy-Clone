@@ -2,6 +2,7 @@ import { IconBadge } from "@/components/icon-badge";
 import { LucideIcon } from "lucide-react";
 import { IconType } from "react-icons";
 
+
 interface InfoCardProps {
     icon : LucideIcon,
     label : string,
@@ -28,7 +29,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
                     {label}
                 </p>
                 <p className="text-gray-500 text-sm">
-                    {numberOfItems} Kurse in deinem Besitz
+                {numberOfItems} {numberOfItems === 1 ? "Kurs befindet" : "Kurse befinden"} sich in deinem Besitz
                 </p>
             </div>
         </div>
