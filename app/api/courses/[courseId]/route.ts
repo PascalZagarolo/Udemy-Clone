@@ -136,16 +136,3 @@ export async function DELETE(
      }
 }
 
-export async function GET(
-    req : Request,
-    { params } : { params : { courseId : string}}
-) {
-
-    const course = await db.course.findUnique({
-        where : {
-            id : params.courseId
-        }
-    })
-
-    return NextResponse.json(course);
-}

@@ -16,7 +16,7 @@ export async function POST(
         const course = await db.course.create({
             data : {
                 userId,
-                title
+                title,
             }
          });
 
@@ -29,28 +29,3 @@ export async function POST(
     }
 }
 
-export async function GET(
-    req : Request
-) {
-    try {
-
-        const { userId } = await auth();
-        
-        if (!userId) {
-           
-            return null;
-        }
-
-
-        const courses = await db.course.findMany({
-
-        })
-
-        return NextResponse.json(courses);
-
-
-    } catch (error) {
-        console.log("Fehler in GET /api/courses");
-        return new NextResponse("Etwas ist beim erhalten der Daten schief gelaufen",    {status : 500})
-    }
-}
