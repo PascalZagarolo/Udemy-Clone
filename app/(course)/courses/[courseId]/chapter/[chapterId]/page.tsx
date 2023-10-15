@@ -111,6 +111,7 @@ const ChapterIdPage = async ({
                     <div>
                         <Preview
                             value={chapter.description!}
+                            onChange={() => {}}
                         />
                     </div>
                     {attachments.length > 0 && (

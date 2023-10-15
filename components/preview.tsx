@@ -6,7 +6,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 
 interface PreviewProps {
-    onChange : (value : string) => void,
+    onChange? : (value : string) => void,
     value : string
 }
 
