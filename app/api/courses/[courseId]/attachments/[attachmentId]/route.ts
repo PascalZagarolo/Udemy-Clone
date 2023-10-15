@@ -21,7 +21,7 @@ export async function DELETE(
             return new NextResponse("Keinen passenden Anhang gefunden : ", { status : 404})
         }
 
-        const attachment = await db.attechment.delete({
+        const attachment = await db.attachment.delete({
             where : {
                 id : params.attachmentId,
                 courseId : params.courseId
