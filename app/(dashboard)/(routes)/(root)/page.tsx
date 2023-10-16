@@ -4,9 +4,11 @@ import { UserButton, auth } from '@clerk/nextjs'
 import { CheckCheckIcon, Clock } from 'lucide-react';
 import Image from 'next/image'
 import { redirect } from 'next/navigation';
-import InfoCard from './_components/info-card';
+
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import InfoCard from './_components/info-card';
+
 
 export default async function Dashboard() {
 
