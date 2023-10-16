@@ -7,9 +7,7 @@ const AuthLayout = ({
         
         <div className="bg-gray-300 h-full justify-center flex items-center">
             {children}
-            <button>
-                
-            </button>
+            
         </div>
 
     
