@@ -44,7 +44,7 @@ export async function POST(
       {
         quantity: 1,
         price_data: {
-          currency: "EUR",
+          currency: "USD",
           product_data: {
             name: course.title,
             description: course.description!,
@@ -91,6 +91,6 @@ export async function POST(
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.log("[COURSE_ID_CHECKOUT]", error);
-    return new NextResponse("Etwas ist schief gelaufen", { status: 500 })
+    return new NextResponse("Interner Server Error", { status: 500 })
   }
 }

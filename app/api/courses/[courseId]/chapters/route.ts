@@ -1,47 +1,53 @@
-import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
+import { db } from "@/lib/db";
+
 export async function POST(
-    req : Request,
-    { params } : { params : { courseId : string }}
+  req: Request,
+  { params }: { params: { courseId: string } }
 ) {
-    try {
+  try {
+    const { userId } = auth();
+    const { title } = await req.json();
 
-        const { userId } = auth();
-        const values = await req.json();
-
-        if (!userId) { 
-            return new NextResponse("Nicht autorisiert" ,{status : 401})
-        }
-
-        if(!params.courseId) {
-            return new NextResponse("Kein passender Kurs wurde gefunden : " , { status : 404})
-        }
-
-        const lastChapter = await db.chapter.findFirst({
-            where :{
-                 courseId : params.courseId,
-            }, orderBy : {
-                position : "desc"
-            }
-        })
-
-        const newPosition = lastChapter?.position ? lastChapter.position + 1 : 1;
-
-        const chapter = await db.chapter.create({
-            data : {
-                courseId : params.courseId,
-                position : 2,
-                ...values
-            }
-        })
-
-
-        return NextResponse.json(chapter);
-
-    } catch (error){
-        console.log("FEHLER : /api/courses/[courseId]/chapters/route.ts POST");
-        return new NextResponse("Etwas ist schief gelaufen  : ", { status : 500 })
+    if (!userId) {
+      return new NextResponse("Nicht autorisiert", { status: 401 });
     }
+
+    const courseOwner = await db.course.findUnique({
+      where: {
+        id: params.courseId,
+        userId: userId,
+      }
+    });
+
+    if (!courseOwner) {
+      return new NextResponse("Nicht autorisiert", { status: 401 });
+    }
+
+    const lastChapter = await db.chapter.findFirst({
+      where: {
+        courseId: params.courseId,
+      },
+      orderBy: {
+        position: "desc",
+      },
+    });
+
+    const newPosition = lastChapter ? lastChapter.position + 1 : 1;
+
+    const chapter = await db.chapter.create({
+      data: {
+        title,
+        courseId: params.courseId,
+        position: newPosition,
+      }
+    });
+
+    return NextResponse.json(chapter);
+  } catch (error) {
+    console.log("[CHAPTERS]", error);
+    return new NextResponse("Interner Server Error", { status: 500 });
+  }
 }

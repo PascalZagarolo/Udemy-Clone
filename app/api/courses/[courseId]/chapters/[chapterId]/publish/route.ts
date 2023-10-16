@@ -8,17 +8,13 @@ export async function PATCH(
 ) {
     try {
 
-       
-
         const { userId } = auth();
 
         if (!userId) {
             return new NextResponse("Nicht autorisiert : " , { status : 401 })
         }
 
-        if (!params.courseId || !params.chapterId) {
-            return new NextResponse("Keine passenden Tokens erhalten :  ", { status : 404})
-        }
+      
 
         const oldStateChapter = await db.chapter.findUnique({
             where : {
@@ -44,6 +40,7 @@ export async function PATCH(
        const chapter = await db.chapter.update({
         where : {
             id : params.chapterId,
+            courseId : params.courseId
         }, data : {
             isPublished : newValue
         }
@@ -54,6 +51,6 @@ export async function PATCH(
 
     } catch(error) {
         console.log("Fehler in PATCH /api/courses/[courseId]/chapters/[chapterId   ");
-        return new NextResponse("Ein Fehler ist aufgetreten : ", { status : 500})
+        return new NextResponse("Interner Server Error", { status : 500})
     }
 }

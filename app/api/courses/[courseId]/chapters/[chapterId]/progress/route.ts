@@ -35,6 +35,6 @@ export async function PUT(
     return NextResponse.json(userProgress);
   } catch (error) {
     console.log("[CHAPTER_ID_PROGRESS]", error);
-    return new NextResponse("Etwas ist schief gelaufen...", { status: 500 });
+    return new NextResponse("Interner Server Error", { status: 500 });
   }
 }
