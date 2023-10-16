@@ -86,3 +86,22 @@ export async function PATCH(
     return new NextResponse("Interner Server Error", { status: 500 });
   }
 }
+
+export async function GET(
+  req : Request,
+  { params } : { params : { courseId : string}}
+) {
+  try {
+
+    const courses = await db.course.findMany({
+      where : {
+        isPublished : true
+      }
+    })
+
+
+  } catch(error){
+    console.log("Fehler in GET /courses/[courseId]/route.ts");
+    return new NextResponse("Interner Server Error", { status: 500 });
+  }
+}
