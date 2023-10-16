@@ -1,5 +1,5 @@
-import { auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+
+
 
 import { db } from "@/lib/db";
 
@@ -7,6 +7,7 @@ import { getCourses } from "@/actions/get-courses";
 import SearchInput from "@/components/search-input";
 import Categories from "./_components/categories";
 import CoursesList from "@/components/courses-list";
+import { auth } from "@clerk/nextjs/server";
 
 
 
@@ -21,17 +22,17 @@ interface SearchPageProps {
 const SearchPage = async ({
   searchParams
 }: SearchPageProps) => {
-  const { userId } = auth();
-
-  if (!userId) {
-    return redirect("/");
-  }
+  let { userId } = auth();
 
   const categories = await db.category.findMany({
     orderBy: {
       name: "asc"
     }
   });
+
+  if(!userId) {
+   userId = "user_2Wfz7FQAUdTyJToQl3SU4Qi7zwx"
+  }
 
   const courses = await getCourses({
     userId,
