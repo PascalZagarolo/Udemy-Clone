@@ -13,6 +13,11 @@ async function main() {
                 { name : "Sport" },
                 { name : "Ingenieurswissenschaften" }, 
                 { name : "Filme & Kunst" },
+                { name : "Wirtschaft" },
+                { name : "Gesundheit" },
+                { name : "Design"},
+                { name : "Mathematik"},
+                { name : "Sonstige Dienstleistungen "}
             ]
         })
 
