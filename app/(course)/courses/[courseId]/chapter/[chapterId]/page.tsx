@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { File } from "lucide-react";
+import { File, MessagesSquareIcon, MinusIcon } from "lucide-react";
 
 import { getChapter } from "@/actions/get-chapter";
 
@@ -13,6 +13,9 @@ import CourseProgressButton from "./_components/course-progress-button";
 import CourseEnrollButton from "./_components/course-enroll-button";
 import { Preview } from "@/components/preview";
 import ChapterCommentInput from "./_components/_comment-components/chapter-comment-input";
+import ChapterCommentBox from "./_components/_comment-components/chapter-comment-box";
+import { db } from "@/lib/db";
+import { comment } from "postcss";
 
 
 
@@ -48,6 +51,13 @@ const ChapterIdPage = async ({
 
   const isLocked = !chapter.isFree && !purchase;
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
+
+
+  const comments = await db.comments.findMany({
+    where : {
+      chapterId : params.chapterId
+    }
+  })
 
   return ( 
     <div>
@@ -104,6 +114,24 @@ const ChapterIdPage = async ({
             courseId = {params.courseId}
             chapterId={params.chapterId}
             />
+            
+            <div className="mt-5 w-full">
+              <MessagesSquareIcon className="h-6 w-6 mt-2" />
+              <div className="text-medium text-semibold mt-2">
+                {comments.length} Kommentare
+              </div>
+              <MinusIcon className="h-6 w-6 mt-2" />
+            </div>
+            <Separator className="text-gray-900 mb-5"/>
+            
+            {comments.length > 0 && (
+              comments.map((comment) => (
+                <ChapterCommentBox
+                comment = {comment}
+                />
+              )) 
+            )}
+            
           </div>
           {!!attachments.length && (
             <>

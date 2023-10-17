@@ -54,8 +54,10 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             console.log(values)
-            axios.post(`/api/courses/${courseId}/chapters/${chapterId}/comments`, values)
+            axios.post(`/api/courses/${courseId}/chapters/${chapterId}/comments`, values);
+            router.refresh();
             toast.success("Kommentar erfolgreich hinzugefügt");
+            
     
         } catch {
             toast.error("Etwas ist beim Kommentar hinzufügen schief gelaufen");
@@ -72,7 +74,7 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
                             <FormItem>
                                 <FormControl>
                                     <Input
-                                    placeholder="Deine Anmerkungen/Fragen zum Kapitel."
+                                    placeholder="Deine Anmerkungen/Fragen zum Kapitel..."
                                     {...field}
                                     />
                                 </FormControl>
@@ -81,8 +83,8 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
                         )}
                         />
                         <div className="flex items-center gap-x-2">
-                            <Button type="submit" disabled={!isValid || isSubmitting} >
-                                Änderungen speichern
+                            <Button type="submit" disabled={!isValid || isSubmitting} className="bg-blue-800 hover:bg-blue-800/80" >
+                                Kommentar abschicken.
                             </Button>
                         </div>
                     </form>
