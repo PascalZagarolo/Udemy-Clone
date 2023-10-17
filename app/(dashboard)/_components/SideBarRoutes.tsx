@@ -1,9 +1,11 @@
 'use client';
 
-import { BarChart3, Compass, Layout, List } from "lucide-react";
+import { BarChart3, Compass, Layout, List, Settings2Icon } from "lucide-react";
 import Image from "next/image";
 import SideBarItem from "./SideBarItem";
 import { usePathname } from "next/navigation";
+import Settings from "./Settings";
+
 
 const guestRoutes = [
     {
@@ -49,6 +51,12 @@ const SideBarRoutes = () => {
                 href={route.href}
                 />
             ))}
+            <div className="mt-[720px]">
+                <Settings 
+                icon={Settings2Icon}
+                label="Einstellungen"
+                />
+            </div>
         </div>
      );
 }
