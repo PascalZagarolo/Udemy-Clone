@@ -3,19 +3,19 @@ import { db } from "@/lib/db";
 import { auth, authMiddleware } from "@clerk/nextjs";
 import { EuroIcon, FileUpIcon, Layout, LayoutDashboard, ListChecks, LucideLayoutDashboard } from "lucide-react";
 import { redirect } from "next/navigation";
-import { NextResponse } from "next/server";
+
 import TitleForm from "./_components/title-form";
 import DescriptionForm from "./_components/description-form";
 import ImageForm from "./_components/image-form";
-import CourseCategory from "./_components/course-category-form";
+
 import CourseCategoryForm from "./_components/course-category-form";
 import PriceForm from "./_components/price-form";
 import AttechmentForm from "./_components/attechment-form";
 import ChapterForm from "./_components/chapter-form";
 import Banner from "@/components/banner";
-import PublishButton from "./_components/publish-button";
+
 import CourseAction from "./_components/course-action-form";
-import ChapterAction from "./chapters/[chapterId]/_components/chapter-actions";
+
 
 
 

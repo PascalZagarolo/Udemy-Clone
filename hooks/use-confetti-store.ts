@@ -1,5 +1,5 @@
 import { set } from 'zod';
-import { create } from 'zustand';
+import { create } from "zustand"
 
 type ConfettiStore = {
     isOpen : boolean;
@@ -11,4 +11,4 @@ export const useConfettiStore = create<ConfettiStore>((set) => ({
     isOpen: false,
     onOpen: () => set({ isOpen : true }),
     onClose: () => set({ isOpen : false })
-}));
+})); 

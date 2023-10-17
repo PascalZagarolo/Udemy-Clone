@@ -12,6 +12,7 @@ import CourseProgressButton from "./_components/course-progress-button";
 
 import CourseEnrollButton from "./_components/course-enroll-button";
 import { Preview } from "@/components/preview";
+import ChapterCommentInput from "./_components/_comment-components/chapter-comment-input";
 
 
 
@@ -96,6 +97,13 @@ const ChapterIdPage = async ({
           <Separator />
           <div>
             <Preview value={chapter.description!} />
+          </div>
+          <div>
+            <Separator className="h-4 w-4"/>
+            <ChapterCommentInput 
+            courseId = {params.courseId}
+            chapterId={params.chapterId}
+            />
           </div>
           {!!attachments.length && (
             <>
