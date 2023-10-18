@@ -5,10 +5,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { auth, redirectToSignIn } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { LucideIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import z from "zod";
 
 
@@ -27,8 +31,38 @@ const Settings: React.FC<SettingsProps> = ({
     label
 }) => {
 
+    
+    let name;
+    let username;
+
+    const [isLoadingData, setIsLoadingData] = useState(false);
+
+    
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`/api/profile`);
+                console.log(response.data)
+                username = response.data.username;
+                name = response.data.name;
+                
+            } catch {
+                toast.error("Fehler beim Laden des Nutzers")
+            } 
+        }
+        
+    })
+
+    const onClick = () => {
+        
+    }
+
+    
+
     const pathname = usePathname();
-    const router = useRouter();
+    
 
     const formSchema = z.object({
       name: z.string().min(1, {
@@ -41,17 +75,14 @@ const Settings: React.FC<SettingsProps> = ({
   const form = useForm<z.infer<typeof formSchema>>({
       resolver : zodResolver(formSchema),
       defaultValues : {
-          name : "",
-          username : "",
+          name : name || "",
+          username : username ||  "",
       }
   })
 
 
 
-    const onClick = () => {
-        console.log(pathname)
-
-    }
+   
 
     return (
       <div className="grid grid-cols-2 gap-2">
@@ -86,13 +117,13 @@ const Settings: React.FC<SettingsProps> = ({
                             <Label htmlFor="name" className="text-right">
                                 Name
                             </Label>
-                            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+                            <Input id="name" value={name} className="col-span-3" />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="text-right text-sm">
                                 Nutzername
                             </Label>
-                            <Input id="username" value="@peduarte" className="col-span-3" />
+                            <Input id="username" value={username} className="col-span-3" />
                         </div>
                     </div>
                     <SheetFooter>

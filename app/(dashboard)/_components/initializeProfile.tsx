@@ -10,9 +10,12 @@ import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Contact2, User2 } from "lucide-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import z from "zod";
 import Logo from "./Logo";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 
 interface initializeProfileBoxProps {
@@ -44,9 +47,21 @@ const initializeProfileBox: React.FC<initializeProfileBoxProps> = ({
     })
 
     const { isSubmitting, isValid } = form.formState;
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
-    const onSubmit = (values : z.infer<typeof formschema>) => {
-        console.log(values)
+    const onSubmit =  (values : z.infer<typeof formschema>) => {
+        try {
+            setIsLoading(true);
+            axios.post("/api/profile", values)
+            toast.success("Nutzer erfolgreich erstellt");
+            router.refresh();
+
+        } catch {
+            toast.error("Fehler beim Erstellen des Nutzers");
+        } finally {
+            setIsLoading(false)
+        }
     }
 
 
