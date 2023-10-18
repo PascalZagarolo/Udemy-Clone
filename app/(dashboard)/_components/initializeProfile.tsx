@@ -9,13 +9,14 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Contact2, User2 } from "lucide-react";
-import { useState } from "react";
+
 import { set, useForm } from "react-hook-form";
 import z from "zod";
 import Logo from "./Logo";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 
 interface initializeProfileBoxProps {
@@ -26,6 +27,7 @@ const initializeProfileBox: React.FC<initializeProfileBoxProps> = ({
     isOpen
 }) => {
 
+    const [isLoading, setIsLoading] = useState(false);
     
 
     const formschema = z.object({
@@ -47,7 +49,7 @@ const initializeProfileBox: React.FC<initializeProfileBoxProps> = ({
     })
 
     const { isSubmitting, isValid } = form.formState;
-    const [isLoading, setIsLoading] = useState(false);
+    
     const router = useRouter();
 
     const onSubmit =  (values : z.infer<typeof formschema>) => {

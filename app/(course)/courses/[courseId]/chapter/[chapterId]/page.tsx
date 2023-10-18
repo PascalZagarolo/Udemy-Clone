@@ -127,6 +127,7 @@ const ChapterIdPage = async ({
             {comments.length > 0 && (
               comments.map((comment) => (
                 <ChapterCommentBox
+                key={comment.id}
                 comment = {comment}
                 />
               )) 
