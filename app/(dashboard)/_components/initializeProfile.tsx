@@ -15,11 +15,11 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
 
-interface initializeProfileBoxProps {
+interface InitializeProfileBoxProps {
     isOpen: boolean
 }
 
-const initializeProfileBox: React.FC<initializeProfileBoxProps> = ({
+const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
     isOpen
 }) => {
 
@@ -135,4 +135,4 @@ const initializeProfileBox: React.FC<initializeProfileBoxProps> = ({
 
 }
 
-export default initializeProfileBox;
+export default InitializeProfileBox;
