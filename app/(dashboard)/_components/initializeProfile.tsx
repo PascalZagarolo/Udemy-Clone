@@ -1,22 +1,18 @@
-'use client';
-
-import Editor from "@/components/editor";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Contact2, User2 } from "lucide-react";
-
-import { set, useForm } from "react-hook-form";
-import z from "zod";
-import Logo from "./Logo";
-import toast from "react-hot-toast";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { zodResolver } from "@hookform/resolvers/zod"
+import axios from "axios"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import toast from "react-hot-toast"
+import z from "zod"
+import Logo from "./Logo"
+import { Contact2 } from "lucide-react"
+import { Separator } from "@/components/ui/separator"
+import { Label } from "@/components/ui/label"
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
 
 interface initializeProfileBoxProps {
@@ -27,7 +23,7 @@ const initializeProfileBox: React.FC<initializeProfileBoxProps> = ({
     isOpen
 }) => {
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
     
 
     const formschema = z.object({
