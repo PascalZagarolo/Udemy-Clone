@@ -33,8 +33,15 @@ const teacherRoutes = [
     }
 ]
 
+interface SideBarRoutesProps {
+    name : string;
+    username : string;
+}
 
-const SideBarRoutes = () => {
+const SideBarRoutes: React.FC<SideBarRoutesProps> = ({
+    name,
+    username
+}) => {
 
     const pathname = usePathname();
 
@@ -55,6 +62,8 @@ const SideBarRoutes = () => {
                 <Settings 
                 icon={Settings2Icon}
                 label="Einstellungen"
+                name = {name}
+                username = {username}
                 />
             </div>
         </div>

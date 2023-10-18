@@ -1,94 +1,74 @@
 'use client';
 
+import { getUserProfile } from "@/actions/get-userprofile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { LucideIcon } from "lucide-react";
+import { Contact2Icon, LucideIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import z from "zod";
 
 
 interface SettingsProps {
-
     icon: LucideIcon
     label: string;
+    name: string;
+    username: string
 
 }
 
 const SHEET_SIDES = ["top", "right", "bottom", "left"] as const
 
 const Settings: React.FC<SettingsProps> = ({
-
     icon: Icon,
-    label
+    label,
+    name,
+    username
 }) => {
-
-    
-    let name;
-    let username;
 
     const [isLoadingData, setIsLoadingData] = useState(false);
 
-    
-
-    useEffect(() => {
-
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`/api/profile`);
-                console.log(response.data)
-                username = response.data.username;
-                name = response.data.name;
-                
-            } catch {
-                toast.error("Fehler beim Laden des Nutzers")
-            } 
-        }
-        
-    })
+    const pathname = usePathname();
 
     const onClick = () => {
-        
+        //?
     }
 
-    
-
-    const pathname = usePathname();
-    
 
     const formSchema = z.object({
-      name: z.string().min(1, {
-         message: "Name ist zu kurz"
-      }), username : z.string().min(1, {
-        message : "Benutzername ist zu kurz"
-      })
-  })
+        name: z.string().min(1, {
+            message: "Name ist zu kurz"
+        }), username: z.string().min(1, {
+            message: "Benutzername ist zu kurz"
+        })
+    })
 
-  const form = useForm<z.infer<typeof formSchema>>({
-      resolver : zodResolver(formSchema),
-      defaultValues : {
-          name : name || "",
-          username : username ||  "",
-      }
-  })
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: name || "",
+            username: username || "",
+        }
+    })
 
 
 
-   
+
 
     return (
-      <div className="grid grid-cols-2 gap-2">
-            
+        <div className="grid grid-cols-2 gap-2">
+
             <Sheet>
-                <SheetTrigger asChild>
+                <SheetTrigger asChild disabled={isLoadingData}>
                     <button
                         type="button"
                         onClick={onClick}
@@ -107,33 +87,35 @@ const Settings: React.FC<SettingsProps> = ({
                 </SheetTrigger>
                 <SheetContent side="left">
                     <SheetHeader>
+                        <Contact2Icon />
                         <SheetTitle>Profil bearbeiten</SheetTitle>
                         <SheetDescription>
                             Ändere deinen Namen und deinen Benutzernamen. Änderungen sind für andere Sichtbar.
                         </SheetDescription>
                     </SheetHeader>
-                    <div className="grid gap-4 py-4">
+                    <div className="grid gap-4 py-4 mt-4">
                         <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="name" className="text-right">
+                            <Label htmlFor="name" className="text-left">
                                 Name
                             </Label>
-                            <Input id="name" value={name} className="col-span-3" />
+                            <Input id="name" value={name} className="col-span-3 ml-4" />
                         </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="username" className="text-right text-sm">
+                        <Separator className="bg-slate-800 w-[45px] mt-3 text-bold" />
+                        <div className="grid grid-cols-4 items-center gap-4 mt-4">
+                            <Label htmlFor="username" className="text-left text-sm">
                                 Nutzername
                             </Label>
-                            <Input id="username" value={username} className="col-span-3" />
+                            <Input id="username" value={username} className="col-span-3 ml-4" />
                         </div>
                     </div>
                     <SheetFooter>
                         <SheetClose asChild>
-                            <Button type="submit" className="bg-blue-900 hover:bg-blue-900/80">Änderungen speichern.</Button>
+                            <Button type="submit" className="bg-blue-900 hover:bg-blue-900/80 mt-4">Änderungen speichern.</Button>
                         </SheetClose>
                     </SheetFooter>
                 </SheetContent>
             </Sheet>
-          
+
         </div>
     )
 }

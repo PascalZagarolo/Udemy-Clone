@@ -3,6 +3,7 @@ import NavBar from "./_components/Navbar";
 import SideBar from "./_components/Sidebar";
 import InitializeProfile from "./_components/initializeProfile";
 import { db } from "@/lib/db";
+import { getUserProfile } from "@/actions/get-userprofile";
 
 const DashboardLayout = async ({
     children
@@ -26,6 +27,8 @@ const DashboardLayout = async ({
 
     userProfile ? createdProfile = true : createdProfile = false;
 
+   
+
     return ( 
         <div className="h-full">
             
@@ -33,7 +36,9 @@ const DashboardLayout = async ({
                 <NavBar />
             </div>
             <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
-                <SideBar />
+                <SideBar 
+                
+                />
             </div>
             <main className="md:pl-56 pt-[80px] h-full">
                 <InitializeProfile 
