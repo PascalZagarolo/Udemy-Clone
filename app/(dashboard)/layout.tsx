@@ -5,7 +5,8 @@ import SideBar from "./_components/Sidebar";
 import { db } from "@/lib/db";
 import { Preview } from "@/components/preview";
 import { Button } from "@/components/ui/button";
-import InitializeProfile from "./_components/InitializeProfile";
+import InitializeProfileBox from "./_components/initalize-profile";
+
 
 
 
@@ -43,9 +44,9 @@ const DashboardLayout = async ({
                 />
             </div>
             <main className="md:pl-56 pt-[80px] h-full">
-            <InitializeProfile 
-                isOpen={!userProfile}
-                />
+            <InitializeProfileBox 
+            isOpen={!createdProfile}
+            />
             {children}
             </main>
         </div>
