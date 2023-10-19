@@ -67,17 +67,17 @@ const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
 
 
     return (
-        <Dialog open={isOpen}>
-            <DialogContent>
+        <Dialog open={isOpen} aria-controls="radix-:R1mcq:">
+            <DialogContent aria-controls="radix-:R1mcq:">
                 <DialogHeader>
                     <div className="mb-10">
                         <Logo/>
                     </div>
-                    <DialogTitle className="flex flex-col mb-3">
+                    <DialogTitle className="flex flex-col mb-3" aria-controls="radix-:R1mcq:">
                         <Contact2 className="mb-3" />
                         Profil erstellen
                     </DialogTitle>
-                    <DialogDescription className="mt-3">
+                    <DialogDescription className="mt-3" aria-controls="radix-:R1mcq:">
                         Erstelle dein Profil, um mit dem Lernen zu beginnen. Dein Name sowie Benutzername sind für andere Nutzer sichtbar.
                     </DialogDescription>
                 </DialogHeader>
@@ -123,7 +123,7 @@ const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
                             />
                             
                             <div className="flex items-center gap-x-2">
-                                <Button type="submit" className="bg-blue-800 mt-4 bottom-0" disabled={!isValid || isSubmitting}>
+                                <Button type="submit" className="bg-blue-800 mt-4 bottom-0" aria-controls="radix-:R1mcq:" disabled={!isValid || isSubmitting}>
                                     Nutzer erstellen.
                                 </Button>
                             </div>

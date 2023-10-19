@@ -59,7 +59,7 @@ const SideBarRoutes: React.FC<SideBarRoutesProps> = ({
                 />
             ))}
             <div className="mt-[720px]">
-                <Settings 
+            <Settings 
                 icon={Settings2Icon}
                 label="Einstellungen"
                 name = {name}

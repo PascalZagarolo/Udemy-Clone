@@ -67,8 +67,8 @@ const Settings: React.FC<SettingsProps> = ({
     return (
         <div className="grid grid-cols-2 gap-2">
 
-            <Sheet>
-                <SheetTrigger asChild disabled={isLoadingData}>
+            <Sheet aria-controls="radix-:R1mcq:">
+                <SheetTrigger asChild disabled={isLoadingData} aria-controls="radix-:R1mcq:">
                     <button
                         type="button"
                         onClick={onClick}
@@ -110,7 +110,7 @@ const Settings: React.FC<SettingsProps> = ({
                     </div>
                     <SheetFooter>
                         <SheetClose asChild>
-                            <Button type="submit" className="bg-blue-900 hover:bg-blue-900/80 mt-4">Änderungen speichern.</Button>
+                            <Button type="submit" className="bg-blue-900 hover:bg-blue-900/80 mt-4" aria-controls="radix-:R1mcq:">Änderungen speichern.</Button>
                         </SheetClose>
                     </SheetFooter>
                 </SheetContent>
