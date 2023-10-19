@@ -23,6 +23,7 @@ interface SettingsProps {
     label: string;
     name: string;
     username: string
+    isOpen: boolean
 
 }
 
@@ -35,12 +36,12 @@ const Settings: React.FC<SettingsProps> = ({
     username
 }) => {
 
-    const [isLoadingData, setIsLoadingData] = useState(false);
+
 
     const pathname = usePathname();
 
     const onClick = () => {
-        //?
+        console.log("GEKLICKT!!!")
     }
 
 
@@ -67,8 +68,8 @@ const Settings: React.FC<SettingsProps> = ({
     return (
         <div className="grid grid-cols-2 gap-2">
 
-            <Sheet aria-controls="radix-:R1mcq:">
-                <SheetTrigger asChild disabled={isLoadingData} aria-controls="radix-:R1mcq:">
+            <Sheet>
+                <SheetTrigger asChild aria-controls="radix-:Rl6rcq:"> 
                     <button
                         type="button"
                         onClick={onClick}
@@ -77,7 +78,7 @@ const Settings: React.FC<SettingsProps> = ({
                         )} >
                         <div className="flex items-center gap-x-2 py-4">
                             <Icon
-                                size={22}
+                                size={23}
                                 className={cn(`text-slate-500`,)} />
 
                             {label}
@@ -110,7 +111,7 @@ const Settings: React.FC<SettingsProps> = ({
                     </div>
                     <SheetFooter>
                         <SheetClose asChild>
-                            <Button type="submit" className="bg-blue-900 hover:bg-blue-900/80 mt-4" aria-controls="radix-:R1mcq:">Änderungen speichern.</Button>
+                            <Button type="submit" className="bg-blue-900 hover:bg-blue-900/80 mt-4" aria-controls="radix-:Rl6rcq:">Änderungen speichern.</Button>
                         </SheetClose>
                     </SheetFooter>
                 </SheetContent>
