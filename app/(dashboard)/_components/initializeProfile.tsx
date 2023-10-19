@@ -27,7 +27,6 @@ const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
 
     const [isLoading, setIsLoading] = useState(false)
     
-
     const formschema = z.object({
         name: z.string().min(1, {
             message: "Name ist zu kurz"
@@ -63,8 +62,6 @@ const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
             setIsLoading(false)
         }
     }
-
-
 
     return (
         <Dialog open={isOpen} aria-controls="radix-:R1mcq:">
