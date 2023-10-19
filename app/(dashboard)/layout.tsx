@@ -37,10 +37,13 @@ const DashboardLayout = async ({
     return ( 
         <div className="h-full">
             <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50">
-                <NavBar />
+                <NavBar 
+                createdProfile = {createdProfile}
+                />
             </div>
             <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
-                <SideBar 
+                <SideBar
+                createdProfile = {createdProfile} 
                 />
             </div>
             <main className="md:pl-56 pt-[80px] h-full">

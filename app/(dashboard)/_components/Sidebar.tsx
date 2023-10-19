@@ -2,13 +2,21 @@ import { getUserProfile } from "@/actions/get-userprofile";
 import Logo from "./Logo";
 import SideBarRoutes from "./SideBarRoutes";
 
+interface SideBarProps {
+    createdProfile : boolean;
+}
 
 
-const SideBar = async ({
-    
+const SideBar: React.FC<SideBarProps> = async ({
+    createdProfile
 }) => {
+    
+    const { name , username } = createdProfile ? await getUserProfile() : { name: "", username: "" };
 
-    const { name , username } = await getUserProfile();
+    
+        
+    
+    
     return ( 
         <div className="h-full border-r flex-col flex overflow-y-auto bg-white shadow-sm">
             <div className="p-6">
@@ -16,7 +24,7 @@ const SideBar = async ({
             </div>
             <div className="flex flex-col w-full">
                 <SideBarRoutes 
-                name={name}
+                name = {name}
                 username={username}
                 />
             </div>
