@@ -23,7 +23,7 @@ interface SettingsProps {
     label: string;
     name: string;
     username: string
-    isOpen: boolean
+   
 
 }
 
