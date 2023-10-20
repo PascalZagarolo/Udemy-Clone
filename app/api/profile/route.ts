@@ -59,3 +59,32 @@ export async function GET(
         return new NextResponse("Interner Server Error" , { status : 500})
     }
 }
+
+export async function PATCH(
+    req : Request,
+) {
+     try {
+
+        const { userId } = auth();
+
+        const values = await req.json();
+
+        if (!userId) {
+            return new NextResponse("Nicht autorisiert" , { status : 401})
+        }
+
+        const patchedProfile = await db.user.update({
+            where : {
+                id : userId
+            } , data : {
+                ...values
+            }
+        })
+        
+
+        return NextResponse.json(patchedProfile);
+     } catch(error) {
+        console.log("Fehler in /api/profile route.ts PATCH");
+        return new NextResponse("Interner Server Error" , { status : 500})
+     }
+}

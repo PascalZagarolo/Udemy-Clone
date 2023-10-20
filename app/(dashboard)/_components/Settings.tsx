@@ -65,13 +65,27 @@ const Settings: React.FC<SettingsProps> = ({
     const methods = useForm();
 
     const { isSubmitting, isValid } = form.formState;
+    const router = useRouter();
+
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
-        toast.success("Profil erfolgreich bearbeitet")
+        try {
+            setIsLoading(true);
+            axios.patch("/api/profile", values);
+            toast.success("Änderungen gespeichert");
+            router.refresh();
+        } catch{
+            toast.error("Etwas ist schief gelaufen");
+        } finally {
+            setIsLoading(false);
+        }
+
+        
     }
 
+    
 
     return (
         <div className="grid grid-cols-2 gap-2">
