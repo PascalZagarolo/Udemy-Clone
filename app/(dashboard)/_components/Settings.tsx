@@ -2,6 +2,7 @@
 
 import { getUserProfile } from "@/actions/get-userprofile";
 import { Button } from "@/components/ui/button";
+import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
@@ -13,7 +14,7 @@ import axios from "axios";
 import { Contact2Icon, LucideIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { Form, FormProvider, set, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import z from "zod";
 
@@ -23,7 +24,7 @@ interface SettingsProps {
     label: string;
     name: string;
     username: string
-   
+
 
 }
 
@@ -61,15 +62,22 @@ const Settings: React.FC<SettingsProps> = ({
         }
     })
 
+    const methods = useForm();
+
+    const { isSubmitting, isValid } = form.formState;
 
 
+    const onSubmit = (values: z.infer<typeof formSchema>) => {
+        console.log(values)
+        toast.success("Profil erfolgreich bearbeitet")
+    }
 
 
     return (
         <div className="grid grid-cols-2 gap-2">
 
             <Sheet>
-                <SheetTrigger asChild aria-controls="radix-:Rl6rcq:"> 
+                <SheetTrigger asChild aria-controls="radix-:Rl6rcq:">
                     <button
                         type="button"
                         onClick={onClick}
@@ -94,26 +102,53 @@ const Settings: React.FC<SettingsProps> = ({
                             Ändere deinen Namen und deinen Benutzernamen. Änderungen sind für andere Sichtbar.
                         </SheetDescription>
                     </SheetHeader>
-                    <div className="grid gap-4 py-4 mt-4">
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="name" className="text-left">
-                                Name
+                    <FormProvider {...methods}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem className="mt-4 mb-6">
+                                        <FormControl>
+                                            <Input
+                                                placeholder="gebe deinen Namen ein..."
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Label >
+                                Benutzername
                             </Label>
-                            <Input id="name" value={name} className="col-span-3 ml-4" />
-                        </div>
-                        <Separator className="bg-slate-800 w-[45px] mt-3 text-bold" />
-                        <div className="grid grid-cols-4 items-center gap-4 mt-4">
-                            <Label htmlFor="username" className="text-left text-sm">
-                                Nutzername
-                            </Label>
-                            <Input id="username" value={username} className="col-span-3 ml-4" />
-                        </div>
-                    </div>
-                    <SheetFooter>
-                        <SheetClose asChild>
-                            <Button type="submit" className="bg-blue-900 hover:bg-blue-900/80 mt-4" aria-controls="radix-:Rl6rcq:">Änderungen speichern.</Button>
-                        </SheetClose>
-                    </SheetFooter>
+                            <Separator className="bg-slate-800 w-[45px] mt-3 text-bold" />
+                            <FormField
+                                control={form.control}
+                                name="username"
+                                render={({ field }) => (
+                                    <FormItem className="mt-8">
+                                        <FormControl>
+                                            <Input
+                                                placeholder="gebe deinen Nutzernamen ein..."
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <SheetFooter>
+                                <SheetClose asChild>
+                                    <Button type="submit" className="bg-blue-900 hover:bg-blue-900/80 mt-4" aria-controls="radix-:Rl6rcq:"
+                                        disabled={!isValid || isSubmitting}>
+                                        Änderungen speichern.
+                                    </Button>
+                                </SheetClose>
+                            </SheetFooter>
+                        </form>
+                    </FormProvider>
+
                 </SheetContent>
             </Sheet>
 

@@ -60,6 +60,7 @@ const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
             toast.error("Fehler beim Erstellen des Nutzers");
         } finally {
             setIsLoading(false)
+            isOpen = false;
         }
     }
 
@@ -82,7 +83,7 @@ const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
                         Name
                     </Label>
                     <Separator className="bg-slate-800 w-[30px] text-bold" />
-                    <Form {...form}>
+                  
                         <form onSubmit={form.handleSubmit(onSubmit)}>
                             <FormField
                                 control={form.control}
@@ -125,7 +126,7 @@ const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
                                 </Button>
                             </div>
                         </form>
-                    </Form>
+                  
             </DialogContent>
         </Dialog>
 
