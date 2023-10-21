@@ -8,7 +8,11 @@ import {
     FcSportsMode,
     FcEngineering,
     FcMultipleDevices,
-    FcAcceptDatabase
+    FcAcceptDatabase,
+    FcAreaChart,
+    FcGallery,
+    FcBusinessman,
+    FcOnlineSupport
 
 } from "react-icons/fc";
 import CategoryItem from "./category-item";
@@ -19,12 +23,17 @@ interface CategoriesProps {
 }
 
 const iconMap: Record<Category["name"], IconType> = {
-    "Musik" : FcMusic,
-    "Sport" : FcSportsMode,
+    "Design" : FcGallery,
     "Filme & Kunst" : FcPodiumWithAudience,
+    "Gesundheit" : FcSportsMode,
     "Ingenieurswissenschaften" : FcEngineering,
-    "Webentwicklung" : FcMultipleDevices,
+    "Musik" : FcMusic,
+    "Mathematik" : FcAreaChart,
     "Softwareentwicklung" : FcAcceptDatabase,
+    "Sonstige Dienstleistungen" : FcOnlineSupport,
+    "Sport" : FcSportsMode,
+    "Webentwicklung" : FcMultipleDevices,
+    "Wirtschaft" : FcBusinessman,
 }
 
 const Categories: React.FC<CategoriesProps> = ({
