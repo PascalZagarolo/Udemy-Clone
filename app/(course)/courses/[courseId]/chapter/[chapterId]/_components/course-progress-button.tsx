@@ -64,6 +64,7 @@ const CourseProgressButton: React.FC<CourseProgressButtonProps> = ({
         variant = {isCompleted ? "outline" : "success"}
         onClick={onClick}
         disabled={isLoading}
+        aria-controls="radix-:R2mqqrcq:"
         >
             {isCompleted ? "Kapitel-Fortschritt entfernen" : "Kapitel abschließen"}
             <Icon className="h-4 w-4 ml-2"/>

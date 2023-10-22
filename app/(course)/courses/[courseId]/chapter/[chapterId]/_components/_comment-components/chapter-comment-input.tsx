@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -64,8 +65,9 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
         }
     }
 
-    return ( 
+    return (
         <Form {...form}>
+            <div className="text-xl text-bold"> Fragen / Anregungen anderer Kursteilnehmer </div>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
                         <FormField 
                         control = {form.control}
@@ -73,17 +75,18 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
                         render = {({ field }) => (
                             <FormItem>
                                 <FormControl>
-                                    <Input
+                                    <Textarea 
                                     placeholder="Deine Anmerkungen/Fragen zum Kapitel..."
                                     {...field}
                                     />
+                                    
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                         />
                         <div className="flex items-center gap-x-2">
-                            <Button type="submit" disabled={!isValid || isSubmitting} className="bg-blue-800 hover:bg-blue-800/80" >
+                            <Button type="submit" disabled={!isValid || isSubmitting} className="bg-blue-800 hover:bg-blue-800/80" aria-controls="radix-:R2mqqrcq:" >
                                 Kommentar abschicken.
                             </Button>
                         </div>

@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { getProgress } from "@/actions/get-progress";
 import CourseNavbar from "./_components/course-navbar";
 import CourseSidebar from "./_components/course-sidebar";
+import Logo from "@/app/(dashboard)/_components/Logo";
 
 
 

@@ -16,6 +16,10 @@ import ChapterCommentInput from "./_components/_comment-components/chapter-comme
 import ChapterCommentBox from "./_components/_comment-components/chapter-comment-box";
 import { db } from "@/lib/db";
 import { comment } from "postcss";
+import { Combobox } from "@/components/ui/combobox";
+import { ComboboxComment } from "@/components/ui/combobox-comment";
+import CommentHeader from "./_components/_comment-components/chapter-comment-header";
+import { useState } from "react";
 
 
 
@@ -52,10 +56,16 @@ const ChapterIdPage = async ({
   const isLocked = !chapter.isFree && !purchase;
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
+ 
+
+  
+
 
   const comments = await db.comments.findMany({
     where : {
       chapterId : params.chapterId
+    }, orderBy : {
+      createdAt : "desc"
     }
   })
 
@@ -109,30 +119,11 @@ const ChapterIdPage = async ({
             <Preview value={chapter.description!} />
           </div>
           <div>
-            <Separator className="h-4 w-4"/>
-            <ChapterCommentInput 
-            courseId = {params.courseId}
+            <CommentHeader 
+            comments={comments}
+            courseId={params.courseId}
             chapterId={params.chapterId}
             />
-            
-            <div className="mt-5 w-full">
-              <MessagesSquareIcon className="h-6 w-6 mt-2" />
-              <div className="text-medium text-semibold mt-2">
-                {comments.length} Kommentare
-              </div>
-              <MinusIcon className="h-6 w-6 mt-2" />
-            </div>
-            <Separator className="text-gray-900 mb-5"/>
-            
-            {comments.length > 0 && (
-              comments.map((comment) => (
-                <ChapterCommentBox
-                key={comment.id}
-                comment = {comment}
-                />
-              )) 
-            )}
-            
           </div>
           {!!attachments.length && (
             <>

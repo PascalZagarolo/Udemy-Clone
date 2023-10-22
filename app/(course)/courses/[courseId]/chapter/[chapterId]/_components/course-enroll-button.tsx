@@ -41,8 +41,8 @@ const CourseEnrollButton: React.FC<CourseEnrollButtonProps> = ({
 
 
     return ( 
-        <Button className="bg-blue-800" onClick={OnClick} disabled={isLoading} size = "sm">
-            {formattedPrice(price!)}
+        <Button className="bg-blue-800" onClick={OnClick} disabled={isLoading} size = "sm" aria-controls="radix-:R2mqqrcq:">
+           Kaufen für {formattedPrice(price!)}
         </Button>
      );
 }
