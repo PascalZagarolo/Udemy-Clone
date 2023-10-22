@@ -22,6 +22,7 @@ import z from "zod";
 interface ChapterCommentInputProps {
     chapterId : string
     courseId : string
+    
 }
 
 
@@ -67,7 +68,7 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
 
     return (
         <Form {...form}>
-            <div className="text-xl text-bold"> Fragen / Anregungen anderer Kursteilnehmer </div>
+            <div className="text-xl text-bold mt-8"> Fragen / Anregungen anderer Kursteilnehmer </div>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
                         <FormField 
                         control = {form.control}
@@ -77,6 +78,7 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
                                 <FormControl>
                                     <Textarea 
                                     placeholder="Deine Anmerkungen/Fragen zum Kapitel..."
+                                    className="mt-8"
                                     {...field}
                                     />
                                     

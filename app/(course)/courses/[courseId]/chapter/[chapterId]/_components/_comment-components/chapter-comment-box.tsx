@@ -1,47 +1,50 @@
 
+'use client';
+
 import { getCommentFilter } from "@/actions/change-comment-filter";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { Comments } from "@prisma/client";
 import { FlipVerticalIcon, MoreHorizontalIcon, MoreVerticalIcon } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { comment } from "postcss";
 import { Label } from "recharts";
 
 interface CommentBoxProps {
     commentArray: Comments[]
+    commentFilter : string;
 }
 
 
 
 
-const CommentBox: React.FC<CommentBoxProps> = async ({
-    commentArray
+const CommentBox: React.FC<CommentBoxProps> =  ({
+    commentArray,
+    commentFilter
 }) => {
 
-    let filter = getCommentFilter();
+    
 
-    let i, j;
+    const searchParams = useSearchParams();
+    const filterOption = searchParams.get("commentFilter");
 
-    if(filter === "newest") {
-        i = commentArray.length - 1;
-        j = commentArray.length - 6;
-    } else if (filter === "oldest") {
-        i = 5;
-        j = 0;
+    if(filterOption === "newest") {
+        commentArray.sort((a, b) => {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        })
+    } else if (filterOption === "oldest") {
+        commentArray.sort((a, b) => {
+            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+        })
     }
 
-    const displayedComments = commentArray.length > 5 ? commentArray.slice(j, i) : commentArray;
+    const displayedComments = commentArray.length > 5 ? commentArray.slice(0, 5) : commentArray;
 
-    const getUserName = async (userId: string) => {
-        const user = await db.user.findUnique({
-            where: {
-                id: userId
-            }
-        })
-        return user?.name || "Unbekannter Nutzer";
+    const formattedDate =  (date : Date) => {
 
-
+        const formattedDate = new Date(date);
+        return formattedDate.toLocaleDateString("de-DE");
     }
 
 
@@ -52,6 +55,9 @@ const CommentBox: React.FC<CommentBoxProps> = async ({
                     <div key={comment.id}>
                         <div className="mt-4 text-medium text-semibold text-gray-900 hover:text-gray-900/80 font-semibold" >
                             <p>{comment.userId}</p>
+                        </div>
+                        <div className="text-sm text-gray-800/80">
+                            <p>{formattedDate(comment.createdAt)}</p>
                         </div>
                         <div className="text-sm text-semibold flex items-center  justify-between">
                             {comment.content}
@@ -65,7 +71,7 @@ const CommentBox: React.FC<CommentBoxProps> = async ({
                 ))
 
             )}
-            <Button className="w-full hover:underline" variant="ghost">
+            <Button className="w-full hover:underline" variant="ghost" aria-controls="radix-:R2mqqrcq:">
                 Alle Kommentare anzeigen
             </Button>
 

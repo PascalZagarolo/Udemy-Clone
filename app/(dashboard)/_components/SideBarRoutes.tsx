@@ -5,6 +5,7 @@ import Image from "next/image";
 import SideBarItem from "./SideBarItem";
 import { usePathname } from "next/navigation";
 import Settings from "./Settings";
+import { useState } from "react";
 
 
 const guestRoutes = [
@@ -46,6 +47,7 @@ const SideBarRoutes: React.FC<SideBarRoutesProps> = ({
     const pathname = usePathname();
 
     const isTeacherPage = pathname?.includes('/teacher');
+    const [isOpen, setIsOpen] = useState(false);
 
     const routes = isTeacherPage ? teacherRoutes : guestRoutes
     return ( 
@@ -64,6 +66,7 @@ const SideBarRoutes: React.FC<SideBarRoutesProps> = ({
                 label="Einstellungen"
                 name = {name}
                 username = {username}
+                
                 />
             </div>
         </div>
