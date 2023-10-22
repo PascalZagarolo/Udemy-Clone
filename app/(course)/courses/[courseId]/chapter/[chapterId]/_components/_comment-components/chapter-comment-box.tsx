@@ -1,5 +1,5 @@
 
-'use client';
+
 
 import { getCommentFilter } from "@/actions/change-comment-filter";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { FlipVerticalIcon, MoreHorizontalIcon, MoreVerticalIcon } from "lucide-r
 import { useSearchParams } from "next/navigation";
 import { comment } from "postcss";
 import { Label } from "recharts";
+import CommentContent from "./chapter-comment-content";
 
 interface CommentBoxProps {
     commentArray: Comments[]
@@ -41,36 +42,17 @@ const CommentBox: React.FC<CommentBoxProps> =  ({
 
     const displayedComments = commentArray.length > 5 ? commentArray.slice(0, 5) : commentArray;
 
-    const formattedDate =  (date : Date) => {
-
-        const formattedDate = new Date(date);
-        return formattedDate.toLocaleDateString("de-DE");
-    }
-
 
     return (
         <div className="flex flex-col">
-            {displayedComments.length > 0 && (
+            {/* {displayedComments.length > 0 && (
                 displayedComments.map((comment) => (
-                    <div key={comment.id}>
-                        <div className="mt-4 text-medium text-semibold text-gray-900 hover:text-gray-900/80 font-semibold" >
-                            <p>{comment.userId}</p>
-                        </div>
-                        <div className="text-sm text-gray-800/80">
-                            <p>{formattedDate(comment.createdAt)}</p>
-                        </div>
-                        <div className="text-sm text-semibold flex items-center  justify-between">
-                            {comment.content}
-                            <div className="ml-auto">
-                            <Button variant="ghost">
-                            <MoreVerticalIcon  className="h-4 w-4"/>
-                            </Button>
-                        </div>
-                        </div>
-                    </div>
+                    <CommentContent 
+                    comment={comment}
+                    />
                 ))
 
-            )}
+            )} */}
             <Button className="w-full hover:underline" variant="ghost" aria-controls="radix-:R2mqqrcq:">
                 Alle Kommentare anzeigen
             </Button>

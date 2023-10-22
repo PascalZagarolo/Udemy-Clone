@@ -20,15 +20,6 @@ const ChapterFilterBox: React.FC<ChapterFilterBoxProps> = ({
     onChange
 }) => {
 
-        var filterOption = ""
-        const router = useRouter();
-
-           
-
-      
-
-      
-
     return (
         <div>
             <div className="mt-8 w-full flex justify-between">
