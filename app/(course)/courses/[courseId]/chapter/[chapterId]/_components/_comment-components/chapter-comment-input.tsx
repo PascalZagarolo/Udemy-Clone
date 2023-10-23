@@ -68,8 +68,9 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
 
     return (
         <Form {...form}>
-            <div className="text-xl text-bold mt-8"> Fragen / Anregungen anderer Kursteilnehmer </div>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
+            <div className="text-xl font-semibold mt-8"> Fragen / Anregungen anderer Kursteilnehmer </div>
+            <p className="text-sm text-gray-700/60"> Kommentare sind für andere Nutzer öffentlich sichtbar </p>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8">
                         <FormField 
                         control = {form.control}
                         name="content"
@@ -78,7 +79,7 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
                                 <FormControl>
                                     <Textarea 
                                     placeholder="Deine Anmerkungen/Fragen zum Kapitel..."
-                                    className="mt-8"
+                                    className="mt-16"
                                     {...field}
                                     />
                                     
@@ -87,8 +88,8 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
                             </FormItem>
                         )}
                         />
-                        <div className="flex items-center gap-x-2">
-                            <Button type="submit" disabled={!isValid || isSubmitting} className="bg-blue-800 hover:bg-blue-800/80" aria-controls="radix-:R2mqqrcq:" >
+                        <div className="flex items-center gap-x-2 mt-4">
+                            <Button type="submit" disabled={!isValid || isSubmitting} className="bg-blue-800 hover:bg-blue-800/80 mt-4" aria-controls="radix-:R2mqqrcq:" >
                                 Kommentar abschicken.
                             </Button>
                         </div>

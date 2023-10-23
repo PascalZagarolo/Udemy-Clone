@@ -129,6 +129,8 @@ model Comments {
   
   userId String
   
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   chapterId String
   chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 
@@ -138,6 +140,7 @@ model Comments {
   updatedAt DateTime @updatedAt
 
   @@index([chapterId])
+  @@index([userId])
  
 }
 
@@ -145,6 +148,8 @@ model User {
   id String @id @default(uuid())
   name String
   username String @unique
+
+  comments Comments[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

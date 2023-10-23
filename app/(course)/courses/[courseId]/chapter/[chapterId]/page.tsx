@@ -13,13 +13,15 @@ import CourseProgressButton from "./_components/course-progress-button";
 import CourseEnrollButton from "./_components/course-enroll-button";
 import { Preview } from "@/components/preview";
 import ChapterCommentInput from "./_components/_comment-components/chapter-comment-input";
-import ChapterCommentBox from "./_components/_comment-components/chapter-comment-box";
+
 import { db } from "@/lib/db";
 import { comment } from "postcss";
 import { Combobox } from "@/components/ui/combobox";
 import { ComboboxComment } from "@/components/ui/combobox-comment";
 import CommentHeader from "./_components/_comment-components/chapter-comment-header";
 import { useState } from "react";
+import CommentSection from "./_components/_comment-components/comment";
+import { Comments, User } from "@prisma/client";
 
 
 
@@ -58,16 +60,21 @@ const ChapterIdPage = async ({
 
  
 
-  
+  type CommentWithUserProfile = Comments & {
+    user : User
+  }
 
-
-  const comments = await db.comments.findMany({
+  const comments : CommentWithUserProfile[] = await db.comments.findMany({
     where : {
       chapterId : params.chapterId
+    }, include : {
+      user : true
     }, orderBy : {
       createdAt : "desc"
     }
   })
+
+  
 
   return ( 
     <div>
@@ -118,12 +125,15 @@ const ChapterIdPage = async ({
           <div>
             <Preview value={chapter.description!} />
           </div>
-          <div>
-            <CommentHeader 
+          <div className="mt-16">
+            
+            <CommentSection 
             comments={comments}
             courseId={params.courseId}
-            chapterId={params.chapterId}
+            chapterId={params.chapterId}  
+          
             />
+            
           </div>
           {!!attachments.length && (
             <>

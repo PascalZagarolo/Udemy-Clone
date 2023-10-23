@@ -10,7 +10,7 @@ import { MessagesSquareIcon } from "lucide-react";
 import { Combo } from "next/font/google";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import ChapterCommentInput from "./chapter-comment-input";
-import ChapterCommentBox from "./chapter-comment-box";
+
 import { changeCommentFilter, getCommentFilter } from "@/actions/change-comment-filter";
 import ChapterFilterBox from "./chapter-comment-filterbox";
 import { useEffect } from "react";
@@ -23,7 +23,7 @@ interface CommentHeaderProps {
   comments: Comments[];
   courseId: string;
   chapterId: string
-
+  usernameArray : string[]
 }
 
 let filterOption = getCommentFilter();
@@ -37,6 +37,7 @@ const CommentHeader: React.FC<CommentHeaderProps> = ({
   comments,
   courseId,
   chapterId,
+  usernameArray,
 
 }) => {
 
@@ -60,9 +61,9 @@ const CommentHeader: React.FC<CommentHeaderProps> = ({
   
   
   return (
-    <div>
+    <div className="mt-16">
       
-      <div className="mt-4">
+      <div>
         <Separator className="h-0.5 w-full bg-blue-800/40 mb-4" />
   
         <ChapterCommentInput
@@ -77,16 +78,8 @@ const CommentHeader: React.FC<CommentHeaderProps> = ({
         />
       </div>
       <div>
-      {comments.length > 0 && (
-                <ChapterCommentBox
-                commentArray = {comments}
-                commentFilter = {filterOption}
-        />
-             
-            )}
-
-      </div>
       
+      </div>
     </div>
   );
 }

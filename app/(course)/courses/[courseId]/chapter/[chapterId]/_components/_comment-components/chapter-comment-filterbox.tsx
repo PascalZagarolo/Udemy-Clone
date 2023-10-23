@@ -1,5 +1,3 @@
-'use client';
-
 import { changeCommentFilter, getCommentFilter } from "@/actions/change-comment-filter";
 import { ComboboxComment } from "@/components/ui/combobox-comment";
 import { Separator } from "@/components/ui/separator";
