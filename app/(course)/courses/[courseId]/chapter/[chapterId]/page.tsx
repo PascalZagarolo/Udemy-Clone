@@ -22,6 +22,7 @@ import CommentHeader from "./_components/_comment-components/chapter-comment-hea
 import { useState } from "react";
 import CommentSection from "./_components/_comment-components/comment";
 import { Comments, User } from "@prisma/client";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 
 
@@ -75,9 +76,12 @@ const ChapterIdPage = async ({
   })
 
   
+  
+  
 
   return ( 
     <div>
+      
       {userProgress?.isCompleted && (
         <Banner
           variant="success"
@@ -157,6 +161,7 @@ const ChapterIdPage = async ({
           )}
         </div>
       </div>
+      
     </div>
    );
 }
