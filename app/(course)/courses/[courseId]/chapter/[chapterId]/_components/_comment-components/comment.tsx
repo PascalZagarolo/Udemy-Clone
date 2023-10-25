@@ -3,6 +3,9 @@ import CommentHeader from "./chapter-comment-header";
 import { getUserName } from "@/actions/get-username";
 import CommentContent from "./chapter-comment-content";
 import CommentBox from "./chapter-comment-box";
+import { auth, redirectToSignIn, redirectToSignUp } from "@clerk/nextjs";
+import { redirect } from "next/dist/server/api-utils";
+import toast from "react-hot-toast";
 
 
 
@@ -25,6 +28,12 @@ const CommentSection: React.FC<CommentHeaderProps> = async ({
     chapterId,
 }) => {
 
+    const { userId } = auth();
+
+    if(!userId) {
+      redirectToSignUp();
+    }
+
     const usernames: string[] = [];
 
     async function fetchUsernames() {
@@ -45,7 +54,7 @@ const CommentSection: React.FC<CommentHeaderProps> = async ({
             />
             <CommentBox 
             comments={comments}
-            
+            userId = {userId || "ijohsdijsdjipügds"}
             />
         </div>
      );

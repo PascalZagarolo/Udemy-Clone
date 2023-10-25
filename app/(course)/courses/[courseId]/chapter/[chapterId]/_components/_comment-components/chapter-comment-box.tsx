@@ -21,14 +21,15 @@ type CommentWithUserProfile = Comments & {
 
 interface CommentBoxProps {
     comments: CommentWithUserProfile[];
+    userId : string
 }
 
 
 
 
 const CommentBox: React.FC<CommentBoxProps> = ({
-    comments
-
+    comments,
+    userId
 }) => {
 
     const searchParams = useSearchParams();
@@ -94,11 +95,14 @@ const CommentBox: React.FC<CommentBoxProps> = ({
             
             {displayedComments.length > 0 && (
                 displayedComments.map((comment) => (
+                   
                     <CommentContent
                         key={comment.id}
                         comment={comment}
                         username={comment.user.username}
+                        userId = {userId}
                     />
+                
                 ))
             )}
             <Button className="w-full hover:underline" variant="ghost" aria-controls="radix-:R2mqqrcq:" onClick={onClick}>

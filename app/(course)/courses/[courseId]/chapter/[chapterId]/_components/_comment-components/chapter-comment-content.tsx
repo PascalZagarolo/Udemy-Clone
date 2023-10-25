@@ -23,6 +23,7 @@ import { useParams, useRouter } from "next/navigation";
 interface CommentContentProps {
     comment: Comments;
     username: string;
+    userId : string
 }
 
 const formattedDate = (date: Date) => {
@@ -38,7 +39,8 @@ const formattedDate = (date: Date) => {
 
 const CommentContent: React.FC<CommentContentProps> = ({
     comment,
-    username
+    username,
+    userId
 }) => {
 
     const [isEditing, setIsEditing] = useState(false);
@@ -75,6 +77,8 @@ const CommentContent: React.FC<CommentContentProps> = ({
     }
 
     const { isSubmitting, isValid } = form.formState;
+
+    const ownComment = comment.userId === userId;
 
     return (
         <div key={comment.id}>
@@ -125,9 +129,14 @@ const CommentContent: React.FC<CommentContentProps> = ({
                     </Form>
                 )}
                 <div className="ml-auto">
-                    <EditToolTip
+                    
+                    
+                    {!isEditing && ownComment && (
+                        <EditToolTip
                         onClick={onClick}
                     />
+                    )}
+                    
                 </div>
             </div>
         </div>
