@@ -70,7 +70,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({
                     </DialogHeader>
                     {comments.length > 0 && (
                         comments.map((comment) => (
-                            <div>
+                            <div key={comment.id}>
                                 <div className="flex justify-between">
                                     <p className="font-semibold">{comment.user.username}</p>
                                     <p className="text-sm text-gray-700/80">{formattedDate(comment.createdAt)}</p>
