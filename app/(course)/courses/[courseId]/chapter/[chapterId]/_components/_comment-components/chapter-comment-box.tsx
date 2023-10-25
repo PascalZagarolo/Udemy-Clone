@@ -61,16 +61,19 @@ const CommentBox: React.FC<CommentBoxProps> = ({
     return (
         <div className="flex flex-col">
             <Dialog open={isOpen}
-                onOpenChange={onClick}>
-                <DialogContent className="">
+                onOpenChange={onClick}
+                >
+                <DialogContent className="h-full scroll-m-0 overflow-scroll">
                     <DialogHeader className="flex justify-between">
                         <MessageCircle className="h-6 w-6" />
                         <p className="mr-auto font-semibold text-xl">  Kommentare </p>
-                        <Separator className="bg-gray-900"/>
+                        <div className="mt-4">
+                        <Separator className="bg-gray-900 mt-4"/>
+                        </div>
                     </DialogHeader>
                     {comments.length > 0 && (
                         comments.map((comment) => (
-                            <div key={comment.id}>
+                            <div key={comment.id} className="overflow-y:scroll">
                                 <div className="flex justify-between">
                                     <p className="font-semibold">{comment.user.username}</p>
                                     <p className="text-sm text-gray-700/80">{formattedDate(comment.createdAt)}</p>
