@@ -23,7 +23,7 @@ import { useParams, useRouter } from "next/navigation";
 interface CommentContentProps {
     comment: Comments;
     username: string;
-    userId : string
+    userId: string
 }
 
 const formattedDate = (date: Date) => {
@@ -92,11 +92,12 @@ const CommentContent: React.FC<CommentContentProps> = ({
                 {!isEditing ? (
                     <p>{comment.content}</p>
                 ) : (
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)}>
-                            <Dialog open={isEditing}
-                                onOpenChange={() => setIsEditing(false)}>
-                                <DialogContent>
+                    <Dialog open={isEditing}
+                        onOpenChange={() => setIsEditing(false)}>
+                        <DialogContent>
+                            <Form {...form}>
+                                <form onSubmit={form.handleSubmit(onSubmit)}>
+
                                     <DialogHeader >
                                         <DialogTitle className="flex">
                                             <MessageCircleIcon className="w-6 h-6" />
@@ -111,6 +112,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
                                             <FormItem>
                                                 <FormControl>
                                                     <Input
+                                                        placeholder="..."
                                                         {...field}
                                                         className="mt-4"
                                                     />
@@ -123,20 +125,21 @@ const CommentContent: React.FC<CommentContentProps> = ({
                                     <Button type="submit" className="mt-4 bg-blue-800 hover:bg-blue-800/80" disabled={!isValid || isSubmitting}>
                                         Änderungen speichern
                                     </Button>
-                                </DialogContent>
-                            </Dialog>
-                        </form>
-                    </Form>
+
+                                </form>
+                            </Form>
+                        </DialogContent>
+                    </Dialog>
                 )}
                 <div className="ml-auto">
-                    
-                    
+
+
                     {!isEditing && ownComment && (
                         <EditToolTip
-                        onClick={onClick}
-                    />
+                            onClick={onClick}
+                        />
                     )}
-                    
+
                 </div>
             </div>
         </div>
