@@ -136,6 +136,8 @@ model Comments {
 
   content String @db.Text
 
+  isEdited Boolean @default(false)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

@@ -116,12 +116,13 @@ const CommentContent: React.FC<CommentContentProps> = ({
                                                         {...field}
                                                         className="mt-4"
                                                     />
+
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
-                                    >
-                                    </FormField>
+                                    />
+
                                     <Button type="submit" className="mt-4 bg-blue-800 hover:bg-blue-800/80" disabled={!isValid || isSubmitting}>
                                         Änderungen speichern
                                     </Button>
