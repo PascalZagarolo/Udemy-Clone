@@ -82,8 +82,11 @@ const CommentContent: React.FC<CommentContentProps> = ({
 
     return (
         <div key={comment.id}>
-            <div className="mt-4 text-medium text-semibold text-gray-900 hover:text-gray-900/80 font-semibold" >
+            <div className="mt-4 text-medium text-semibold text-gray-900 hover:text-gray-900/80 font-semibold flex justify-between" >
                 <p>{username}</p>
+                {comment.isEdited && (
+                    <p className="mr-auto ml-2 text-xs text-gray-700/50 items-center justify-evenly mt-1">(bearbeitet)</p>
+                )}
             </div>
             <div className="text-sm text-gray-800/80">
                 <p>{formattedDate(comment.createdAt)}</p>

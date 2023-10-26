@@ -16,7 +16,8 @@ export async function PATCH(
             where : {
                 id : params.commentId
             }, data : {
-                content : content
+                content : content,
+                isEdited : true
             }
         })
 
