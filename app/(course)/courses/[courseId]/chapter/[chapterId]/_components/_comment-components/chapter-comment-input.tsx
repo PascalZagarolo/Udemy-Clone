@@ -63,6 +63,9 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
     
         } catch {
             toast.error("Etwas ist beim Kommentar hinzufügen schief gelaufen");
+        } finally {
+            form.reset();
+            router.refresh();
         }
     }
 
