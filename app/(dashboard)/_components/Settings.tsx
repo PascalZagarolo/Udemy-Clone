@@ -76,16 +76,16 @@ const Settings: React.FC<SettingsProps> = ({
             axios.patch("/api/profile", values);
             toast.success("Änderungen gespeichert");
             router.refresh();
-        } catch{
+        } catch {
             toast.error("Etwas ist schief gelaufen");
         } finally {
             setIsLoading(false);
         }
 
-        
+
     }
 
-    
+
 
     return (
         <div className="grid grid-cols-2 gap-2">
@@ -109,7 +109,7 @@ const Settings: React.FC<SettingsProps> = ({
                     </button>
                 </SheetTrigger>
                 <SheetContent side="left">
-                    <SheetHeader>
+                    <SheetHeader className="mb-8">
                         <Contact2Icon />
                         <SheetTitle>Profil bearbeiten</SheetTitle>
                         <SheetDescription>
@@ -117,6 +117,10 @@ const Settings: React.FC<SettingsProps> = ({
                         </SheetDescription>
                     </SheetHeader>
                     <FormProvider {...methods}>
+                        <Label>
+                            Name
+                        </Label>
+                        <Separator className="bg-slate-800 w-[45px] mt-3 text-bold" />
                         <form onSubmit={form.handleSubmit(onSubmit)}>
                             <FormField
                                 control={form.control}
