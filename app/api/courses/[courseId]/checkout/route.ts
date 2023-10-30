@@ -13,7 +13,7 @@ export async function POST(
     const user = await currentUser();
 
     if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new NextResponse("Unauthorized", { status: 404 });
     }
 
     const course = await db.course.findUnique({
@@ -81,6 +81,7 @@ export async function POST(
       line_items,
       mode: 'payment',
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?success=1`,
+      
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?canceled=1`,
       metadata: {
         courseId: course.id,
@@ -88,9 +89,11 @@ export async function POST(
       }
     });
 
+    
+
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.log("[COURSE_ID_CHECKOUT]", error);
-    return new NextResponse("Interner Server Error", { status: 500 })
+    return new NextResponse("Internal Error", { status: 500 })
   }
 }
