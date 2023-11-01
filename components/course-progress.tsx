@@ -25,7 +25,7 @@ const CourseProgress: React.FC<CourseProgressProps> = ({
 }) => {
     return (
         <div>
-            {value > 100 ? (
+            {value < 100 ? (
                 <div>
                 <p className={cn("font-medium mt-2 text-sky-700",
                     colorByVariant[variant || "default"],
