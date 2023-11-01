@@ -8,7 +8,13 @@ import { CoffeeIcon, Link2, LogOut } from "lucide-react";
 import Link from "next/link";
 import SearchInput from "./search-input";
 
-const NavBarRoutes = () => {
+interface NavBarRoutesProps {
+    username : string;
+}
+
+const NavBarRoutes: React.FC<NavBarRoutesProps> = ({
+    username
+}) => {
 
     const pathname = usePathname();
 
@@ -18,10 +24,20 @@ const NavBarRoutes = () => {
     const isPlayerPage = pathname?.includes('/chapter');
     const isSearchPage = pathname?.includes("/search")
 
-
+    
 
     return (
         <>
+        {!isTeacherPage && !isPlayerPage && !isSearchPage && (
+            <h2>
+                <div>
+                <h1 className="flex items-center font-semibold text-xl">
+                    🎉Willkommen zurück <p className="ml-2  text-blue-800 "> {username || ""} </p> ! 🎉
+                </h1>
+            </div>
+            </h2>
+        )}
+        
         {isSearchPage && (
             <div className="hidden md:block">
                 <SearchInput />
