@@ -22,7 +22,7 @@ const CourseNavBar: React.FC<CourseNavBarProps> = ({
             course = {course}
             progressCount = {progressCount}
             />
-            <NavBarRoutes />
+            <NavBarRoutes username=""/>
         </div>
      );
 }
