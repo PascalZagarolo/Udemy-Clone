@@ -152,10 +152,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
                         />
                     )}
                     {!isEditing && !ownComment && (
-                        <ReportToolTip
-                            onClick={onReport}
-                            isOpen = {isReporting}
-                        />
+                        <ReportToolTip/>
                     )}
 
                     
