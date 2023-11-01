@@ -81,8 +81,9 @@ const CommentContent: React.FC<CommentContentProps> = ({
     const ownComment = comment.userId === userId;
 
     return (
-        <div key={comment.id}>
-            <div className="mt-4 text-medium text-semibold text-gray-900 hover:text-gray-900/80 font-semibold flex justify-between" >
+        <div key={comment.id} className="hover:bg-gray-300/90 mt-4">
+            <div className="text-medium text-semibold text-gray-900 hover:text-gray-900/70 font-semibold flex justify-between " >
+                
                 <p>{username}</p>
                 {comment.isEdited && (
                     <p className="mr-auto ml-2 text-xs text-gray-700/50 items-center justify-evenly mt-1">(bearbeitet)</p>
