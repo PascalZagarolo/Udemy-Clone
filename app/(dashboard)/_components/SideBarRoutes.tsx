@@ -50,7 +50,8 @@ const SideBarRoutes: React.FC<SideBarRoutesProps> = ({
     const [isOpen, setIsOpen] = useState(false);
 
     const routes = isTeacherPage ? teacherRoutes : guestRoutes
-    return ( 
+    return (
+        <div> 
         <div className="flex flex-col w-full">
             {routes.map((route) => (
                 <SideBarItem 
@@ -60,15 +61,14 @@ const SideBarRoutes: React.FC<SideBarRoutesProps> = ({
                 href={route.href}
                 />
             ))}
-            <div className="mt-[720px]">
-            <Settings 
-                icon={Settings2Icon}
-                label="Einstellungen"
-                name = {name}
-                username = {username}
-                
-                />
-            </div>
+        </div>
+        <div className="position: absolute bottom-0">
+        <Settings 
+            icon={Settings2Icon}
+            label="Einstellungen"
+            name = {name}
+            username = {username} />
+        </div>
         </div>
      );
 }
