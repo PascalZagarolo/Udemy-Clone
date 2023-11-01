@@ -138,6 +138,8 @@ model Comments {
 
   isEdited Boolean @default(false)
 
+  likes Int @default(0)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

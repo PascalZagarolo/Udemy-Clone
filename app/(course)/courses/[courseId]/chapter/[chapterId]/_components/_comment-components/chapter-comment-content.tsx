@@ -18,6 +18,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
+import ReportToolTip from "../report-tooltip";
 
 
 interface CommentContentProps {
@@ -47,6 +48,12 @@ const CommentContent: React.FC<CommentContentProps> = ({
 
     const onClick = () => {
         setIsEditing(true)
+    }
+
+    const [isReporting, setIsReporting] = useState(false);
+
+    const onReport = () => {
+        setIsReporting(true)
     }
 
 
@@ -144,6 +151,14 @@ const CommentContent: React.FC<CommentContentProps> = ({
                             onClick={onClick}
                         />
                     )}
+                    {!isEditing && !ownComment && (
+                        <ReportToolTip
+                            onClick={onReport}
+                            isOpen = {isReporting}
+                        />
+                    )}
+
+                    
 
                 </div>
             </div>
