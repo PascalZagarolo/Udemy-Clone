@@ -9,30 +9,20 @@ import toast from "react-hot-toast";
 
 
 
+interface ReportToolTipProps {
+    onClick : () => void;
 
-const ReportToolTip= ({
-    
+ }
+
+const ReportToolTip: React.FC<ReportToolTipProps> = ({
+    onClick
 }) => {
 
 
-    const [isOpen, setIsOpen] = useState(false);
-
-    const onClick = () => {
-        //! implement report functionality
-
-        toast.success("Kommentar wurde erfolgreich gemeldet")
-        setIsOpen(false)
-    }
-
-    const onOpen = () => {
-        setIsOpen(isOpen => !isOpen)
-        console.log(isOpen)
-    }
-    
-
+   
     return (
         <div>
-            <Button variant="ghost" aria-controls="radix-:R2mqqrcq:" onClick={onOpen}>
+            <Button variant="ghost" aria-controls="radix-:R2mqqrcq:" onClick={onClick}>
                 <MoreVerticalIcon className="h-4 w-4 hover:bg-gray-300" />
             </Button>   
         </div>

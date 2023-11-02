@@ -19,6 +19,8 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import ReportToolTip from "../report-tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+
 
 
 interface CommentContentProps {
@@ -83,6 +85,10 @@ const CommentContent: React.FC<CommentContentProps> = ({
         }
     }
 
+    const reportTrigger = () => {
+        console.log("gedrückt");
+    }
+
     const { isSubmitting, isValid } = form.formState;
 
     const ownComment = comment.userId === userId;
@@ -90,7 +96,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
     return (
         <div key={comment.id} className="hover:bg-gray-300/90 mt-4">
             <div className="text-medium text-semibold text-gray-900 hover:text-gray-900/70 font-semibold flex justify-between " >
-                
+
                 <p>{username}</p>
                 {comment.isEdited && (
                     <p className="mr-auto ml-2 text-xs text-gray-700/50 items-center justify-evenly mt-1">(bearbeitet)</p>
@@ -151,11 +157,30 @@ const CommentContent: React.FC<CommentContentProps> = ({
                             onClick={onClick}
                         />
                     )}
+
                     {!isEditing && !ownComment && (
-                        <ReportToolTip/>
+                        <>
+                        <Popover>
+                            <PopoverTrigger>
+                            <ReportToolTip
+                                onClick={onReport}
+                            />
+                           </PopoverTrigger>
+                           <PopoverTrigger className="mb-4">
+                           <button className="rounded-md" onClick={reportTrigger}>
+                                <PopoverContent side="top" className="border-r hover:bg-gray-400/50 flex items-center justify-center w-[200px] h-[50px] mb-4 mr-8"> 
+                                        <label className="font-semibold text-sm">
+                                            Kommentar melden
+                                        </label>     
+                                </PopoverContent>
+                                
+                                </button>
+                                </PopoverTrigger>
+                            </Popover>
+                        </>
                     )}
 
-                    
+
 
                 </div>
             </div>
