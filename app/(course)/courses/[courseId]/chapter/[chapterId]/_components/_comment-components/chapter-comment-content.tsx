@@ -22,6 +22,8 @@ import { useParams, useRouter } from "next/navigation";
 
 
 import ReportBox from "./_report_components/report-box";
+import LikeBox from "@/components/like-box";
+import { Separator } from "@/components/ui/separator";
 
 
 
@@ -85,41 +87,35 @@ const CommentContent: React.FC<CommentContentProps> = ({
         }
     }
 
-    const reportTrigger = () => {
-
-        setOpenReport(true);
-
-        return (
-            <Dialog open>
-                <DialogContent>
-                    dsfsd
-                </DialogContent>
-            </Dialog>
-        )
-    }
+    
 
     const { isSubmitting, isValid } = form.formState;
 
     const ownComment = comment.userId === userId;
 
-    const [openReport, setOpenReport] = useState(false);
+   
 
     return (
         <div key={comment.id} className="hover:bg-gray-300/90 mt-4">
-            <div className="text-medium text-semibold text-gray-900 hover:text-gray-900/70 font-semibold flex justify-between " >
+            <div className="text-base text-bold text-gray-900 hover:text-gray-900/70 font-semibold flex justify-between " >
 
                 <p>{username}</p>
                 {comment.isEdited && (
                     <p className="mr-auto ml-2 text-xs text-gray-700/50 items-center justify-evenly mt-1">(bearbeitet)</p>
                 )}
             </div>
-            <div className="text-sm text-gray-800/80">
+            <div className="text-xs text-gray-700/80 mt-1">
                 <p>{formattedDate(comment.createdAt)}</p>
             </div>
-
-            <div className="text-sm text-semibold flex items-center justify-between">
+            <div>
+            <Separator className="bg-black w-[20px] mt-2"/>
+            <div className="text-sm text-semibold flex justify-between">
                 {!isEditing ? (
-                    <p>{comment.content}</p>
+                    <>
+                    
+                    <p className="mt-2 text-sm">{comment.content}</p>
+                    
+                    </>
                 ) : (
                     <Dialog open={isEditing}
                         onOpenChange={() => setIsEditing(false)}>
@@ -179,6 +175,9 @@ const CommentContent: React.FC<CommentContentProps> = ({
 
 
                 </div>
+                
+            </div>
+            <LikeBox/>
             </div>
         </div>
     );
