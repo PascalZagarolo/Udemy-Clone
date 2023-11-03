@@ -64,12 +64,13 @@ const CommentHeader: React.FC<CommentHeaderProps> = ({
     <div className="mt-16">
       
       <div>
-        <Separator className="h-0.5 w-full bg-blue-800/40 mb-4" />
+        <Separator className="h-[1.5px] bg-blue-800 mb-4 w-[250px]" />
   
         <ChapterCommentInput
           courseId={courseId}
           chapterId={chapterId}
         />
+        <Separator className="h-[1.5px] bg-blue-800 mb-4 w-[250px] mt-4 ml-auto"/>
       </div>
       <div>
         <ChapterFilterBox 

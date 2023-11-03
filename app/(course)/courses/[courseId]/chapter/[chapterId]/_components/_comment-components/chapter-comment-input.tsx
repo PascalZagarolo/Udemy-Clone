@@ -8,6 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Separator } from "@radix-ui/react-separator";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState} from "react";
@@ -70,10 +71,11 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
     }
 
     return (
+        <div>
         <Form {...form}>
             <div className="text-xl font-semibold mt-8"> Fragen / Anregungen anderer Kursteilnehmer </div>
-            <p className="text-sm text-gray-700/60"> Kommentare sind für andere Nutzer öffentlich sichtbar </p>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8">
+            <p className="text-sm text-gray-700/60 mt-2"> Kommentare sind für andere Nutzer öffentlich sichtbar </p>
+                    <form onSubmit={form.handleSubmit(onSubmit)} >
                         <FormField 
                         control = {form.control}
                         name="content"
@@ -82,7 +84,7 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
                                 <FormControl>
                                     <Textarea 
                                     placeholder="Deine Anmerkungen/Fragen zum Kapitel..."
-                                    className="mt-16"
+                                    className="mt-8"
                                     {...field}
                                     />
                                     
@@ -92,12 +94,16 @@ const ChapterCommentInput: React.FC<ChapterCommentInputProps> = ({
                         )}
                         />
                         <div className="flex items-center gap-x-2 mt-4">
-                            <Button type="submit" disabled={!isValid || isSubmitting} className="bg-blue-800 hover:bg-blue-800/80 mt-4" aria-controls="radix-:R2mqqrcq:" >
+                            
+                            <Button type="submit" disabled={!isValid || isSubmitting} className="bg-blue-800 hover:bg-blue-800/80 mt-4 mb-4" aria-controls="radix-:R2mqqrcq:" >
                                 Kommentar abschicken.
                             </Button>
                         </div>
+                        
                     </form>
                 </Form>
+                
+                </div>
      );
 }
  

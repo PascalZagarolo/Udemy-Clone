@@ -129,11 +129,11 @@ const ChapterIdPage = async ({
               />
             )}
           </div>
-          <Separator />
+          <Separator className="bg-black w-8 mb-4 mt-4" />
           <div>
             <Preview value={chapter.description!} />
           </div>
-          <div className="mt-16">
+          <div className="mt-4">
             
             <CommentSection 
             comments={comments}
