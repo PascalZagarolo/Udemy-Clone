@@ -20,6 +20,7 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import ReportToolTip from "../report-tooltip";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Radio } from "@radix-ui/react-radio-group";
 
 
 
@@ -52,11 +53,9 @@ const CommentContent: React.FC<CommentContentProps> = ({
         setIsEditing(true)
     }
 
-    const [isReporting, setIsReporting] = useState(false);
 
-    const onReport = () => {
-        setIsReporting(true)
-    }
+
+
 
 
     const formschema = z.object({
@@ -86,12 +85,23 @@ const CommentContent: React.FC<CommentContentProps> = ({
     }
 
     const reportTrigger = () => {
-        console.log("gedrückt");
+
+        setOpenReport(true);
+
+        return (
+            <Dialog open>
+                <DialogContent>
+                    dsfsd
+                </DialogContent>
+            </Dialog>
+        )
     }
 
     const { isSubmitting, isValid } = form.formState;
 
     const ownComment = comment.userId === userId;
+
+    const [openReport, setOpenReport] = useState(false);
 
     return (
         <div key={comment.id} className="hover:bg-gray-300/90 mt-4">
@@ -105,6 +115,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
             <div className="text-sm text-gray-800/80">
                 <p>{formattedDate(comment.createdAt)}</p>
             </div>
+
             <div className="text-sm text-semibold flex items-center justify-between">
                 {!isEditing ? (
                     <p>{comment.content}</p>
@@ -160,21 +171,31 @@ const CommentContent: React.FC<CommentContentProps> = ({
 
                     {!isEditing && !ownComment && (
                         <>
-                        <Popover>
-                            <PopoverTrigger>
-                            <ReportToolTip
-                                onClick={onReport}
-                            />
-                           </PopoverTrigger>
-                           <PopoverTrigger className="mb-4">
-                           <button className="rounded-md" onClick={reportTrigger}>
-                                <PopoverContent side="top" className="border-r hover:bg-gray-400/50 flex items-center justify-center w-[200px] h-[50px] mb-4 mr-8"> 
-                                        <label className="font-semibold text-sm">
-                                            Kommentar melden
-                                        </label>     
-                                </PopoverContent>
-                                
-                                </button>
+                            <Dialog open={openReport} onOpenChange={() => setOpenReport(!openReport)}>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>
+                                            <p className="text-base font-medium"> Aus welchem Grund möchtest du diesen
+                                                <label className="text-blue-800 font-semibold"> Kommentar </label>
+                                                melden? </p>
+                                        </DialogTitle>
+                                    </DialogHeader>
+                                    ....
+                                </DialogContent>
+                            </Dialog>
+                            <Popover>
+                                <PopoverTrigger>
+                                    <ReportToolTip
+                                    />
+                                </PopoverTrigger>
+                                <PopoverTrigger className="mb-4" asChild>
+                                    <button className="rounded-md" onClick={reportTrigger}>
+                                        <PopoverContent side="top" className="border-r hover:bg-gray-400/50 flex items-center justify-center w-[200px] h-[50px] mb-4 mr-8 ">
+                                            <label className="font-semibold text-sm">
+                                                Kommentar melden
+                                            </label>
+                                        </PopoverContent>
+                                    </button>
                                 </PopoverTrigger>
                             </Popover>
                         </>
