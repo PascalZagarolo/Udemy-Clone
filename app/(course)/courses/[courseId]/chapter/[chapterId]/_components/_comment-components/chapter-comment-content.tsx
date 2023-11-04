@@ -25,6 +25,10 @@ import ReportBox from "./_report_components/report-box";
 import LikeBox from "@/components/like-box";
 import { Separator } from "@/components/ui/separator";
 
+import DeleteToolTip from "../delete-comment-tooltip";
+import { AlertDialog, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { AlertDialogDescription } from "@radix-ui/react-alert-dialog";
+
 
 
 interface CommentContentProps {
@@ -87,6 +91,10 @@ const CommentContent: React.FC<CommentContentProps> = ({
         }
     }
 
+    const [isDeleting, setIsDeleting] = useState(false);
+    const onDelete = () => {
+        setIsDeleting(true);
+    }
     
 
     const { isSubmitting, isValid } = form.formState;
@@ -112,23 +120,22 @@ const CommentContent: React.FC<CommentContentProps> = ({
             <div className="text-sm text-semibold flex justify-between">
                 {!isEditing ? (
                     <>
-                    
                     <p className="mt-2 text-sm">{comment.content}</p>
-                    
                     </>
                 ) : (
                     <Dialog open={isEditing}
                         onOpenChange={() => setIsEditing(false)}>
-                        <DialogContent>
+                        <DialogContent className="border-black">
                             <Form {...form}>
                                 <form onSubmit={form.handleSubmit(onSubmit)}>
 
                                     <DialogHeader >
                                         <DialogTitle className="flex">
                                             <MessageCircleIcon className="w-6 h-6" />
-                                            <p className="ml-4"> Inhalt deines Kommentars bearbeiten </p>
+                                            <p className="ml-4 mb-2"> Inhalt deines Kommentars bearbeiten </p>
                                         </DialogTitle>
                                         <p className="text-sm text-gray-700/70"> Änderungen werden sofort übernommen und sind nach dem speichern für alle sichtbar </p>
+                                        <Separator className="bg-blue-800 w-[30px]"/>
                                     </DialogHeader>
                                     <FormField
                                         control={form.control}
@@ -139,7 +146,8 @@ const CommentContent: React.FC<CommentContentProps> = ({
                                                     <Input
                                                         placeholder="..."
                                                         {...field}
-                                                        className="mt-4"
+                                                        className="mt-8 selection:border-none"
+
                                                     />
 
                                                 </FormControl>
@@ -148,7 +156,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
                                         )}
                                     />
 
-                                    <Button type="submit" className="mt-4 bg-blue-800 hover:bg-blue-800/80" disabled={!isValid || isSubmitting}>
+                                    <Button type="submit" className="mt-8 bg-blue-800 hover:bg-blue-800/80" disabled={!isValid || isSubmitting}>
                                         Änderungen speichern
                                     </Button>
 
@@ -161,9 +169,41 @@ const CommentContent: React.FC<CommentContentProps> = ({
 
 
                     {!isEditing && ownComment && (
+                      
+                        <div className="flex justify-between">
                         <EditToolTip
                             onClick={onClick}
+                            
                         />
+                        <AlertDialog>
+                            <AlertDialogTrigger>
+                        <DeleteToolTip 
+                        onDelete={onDelete}
+                        />
+                        </AlertDialogTrigger>
+                        <AlertDialogContent className="border-black">
+                            <AlertDialogHeader>
+                                <AlertDialogTitle className="flex justify-left">
+                                    Möchtest du deinen <p className="text-rose-600 ml-2 mr-2 font-semibold"> Kommentar </p> wirklich löschen?
+                                </AlertDialogTitle>
+                                <AlertDialogDescription className="text-gray-700/80 text-sm">
+                                    Diese Aktion ist unwiderruflich. Gelöschte Kommentare können nicht wiederhergestellt werden. Alle Antworten auf diesen Kommentar werden ebenfalls gelöscht.
+                                </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter className="mt-4">
+                                <AlertDialogTrigger>
+                                    <Button className="bg-black mr-4 hover:bg-black/80">
+                                        Abbrechen
+                                    </Button>
+                                    <Button className="bg-rose-600 hover:bg-rose-600/80">
+                                        Kommentar löschen
+                                    </Button>
+                                </AlertDialogTrigger>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                        </AlertDialog>
+                        </div>
+                       
                     )}
 
                     {!isEditing && !ownComment && (
@@ -171,10 +211,8 @@ const CommentContent: React.FC<CommentContentProps> = ({
                             <ReportBox />
                         </>
                     )}
-
-
-
                 </div>
+                
                 
             </div>
             <LikeBox/>

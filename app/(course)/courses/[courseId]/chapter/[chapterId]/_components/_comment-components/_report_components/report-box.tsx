@@ -34,7 +34,7 @@ const ReportBox = () => {
     return (
         <div>
             <Dialog open={openReport} onOpenChange={() => setOpenReport(!openReport)}>
-                <DialogContent>
+                <DialogContent className="border-black border-spacing-4">
                     <DialogHeader>
                         <DialogTitle>
                             <p className="text-medium font-medium mb-2"> Aus welchem Grund möchtest du diesen
