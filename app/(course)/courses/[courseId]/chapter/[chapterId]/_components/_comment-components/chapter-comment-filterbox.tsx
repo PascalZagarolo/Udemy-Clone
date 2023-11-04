@@ -29,10 +29,8 @@ const ChapterFilterBox: React.FC<ChapterFilterBoxProps> = ({
                 <div className="ml-auto">
                     <ComboboxComment onChange={onChange} />
                 </div>
-                <div className="justify-between flex flex-row">
-                    <Separator className="h-4 w-4 text-slate-800" />
-                </div>
-                <Separator className="h-4 w-4" />
+                
+                
             </div>
 
         </div>

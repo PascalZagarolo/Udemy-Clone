@@ -125,7 +125,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
    
 
     return (
-        <div key={comment.id} className="hover:bg-gray-300/90 mt-4">
+        <div key={comment.id} className="hover:bg-gray-200/50 mt-4">
             <div className="text-base text-bold text-gray-900 hover:text-gray-900/70 font-semibold flex justify-between " >
 
                 <p>{username}</p>
@@ -137,7 +137,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
                 <p>{formattedDate(comment.createdAt)}</p>
             </div>
             <div>
-            <Separator className="bg-black w-[20px] mt-2"/>
+            <Separator className="bg-black w-[50px] mt-4 mb-2"/>
             <div className="text-sm text-semibold flex justify-between">
                 {!isEditing ? (
                     <>
@@ -200,6 +200,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
                             <AlertDialogTrigger>
                         <DeleteToolTip 
                         onDelete={onDelete}
+                        disabled={deleteLoading}
                         />
                         </AlertDialogTrigger>
                         <AlertDialogContent className="border-black">
@@ -236,7 +237,11 @@ const CommentContent: React.FC<CommentContentProps> = ({
                 
                 
             </div>
-            <LikeBox/>
+            <Separator className="w-[50px] ml-auto bg-black mt-2 mr-5"/>
+            <LikeBox
+            comments = {comment}
+            />
+            
             </div>
         </div>
     );
