@@ -27,9 +27,7 @@ const LikeBox: React.FC<LikeBoxProps> = ({
     const onClick = () => {
         try {
             axios.patch(`/api/courses/${params.courseId}/chapters/${params.chapterId}/comments/${comments.id}/like`, { isLike : true });
-            console.log(params.courseId);
-            console.log(params.chapterId)
-            toast.success(comments.id)
+            
         } catch{
             console.log("error like...")
         } finally{
@@ -55,7 +53,7 @@ const LikeBox: React.FC<LikeBoxProps> = ({
                 </button>
                 
             </div>
-            <div className="justify-between items-center mr-[770px] mb-[2px] text-sm text-blue-800/80 font-bold ml-4">
+            <div className="justify-between items-center mr-[770px] mb-[2px] text-sm text-blue-800/80 font-semibold ml-4">
                 {comments.likes} Likes
             </div>
         </div>
