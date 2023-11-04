@@ -128,7 +128,6 @@ model Comments {
   id String @id @default(uuid())
   
   userId String
-  
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   chapterId String
@@ -140,6 +139,8 @@ model Comments {
 
   likes Int @default(0)
 
+  
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

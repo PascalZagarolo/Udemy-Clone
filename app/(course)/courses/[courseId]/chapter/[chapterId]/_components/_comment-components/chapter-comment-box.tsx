@@ -44,6 +44,10 @@ const CommentBox: React.FC<CommentBoxProps> = ({
         comments.sort((a, b) => {
             return a.createdAt.getTime() - b.createdAt.getTime();
         })
+    } else if (filterOption === "best") {
+        comments.sort((a, b) => {
+            return b.likes - a.likes;
+        })
     }
 
     const displayedComments = comments.length > 5 ? comments.slice(0, 5) : comments;
