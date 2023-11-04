@@ -29,8 +29,6 @@ const ChapterFilterBox: React.FC<ChapterFilterBoxProps> = ({
                 <div className="ml-auto">
                     <ComboboxComment onChange={onChange} />
                 </div>
-                
-                
             </div>
 
         </div>
