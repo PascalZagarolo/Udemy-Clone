@@ -29,3 +29,30 @@ export async function PATCH(
         return new NextResponse("Interner Server Error" , { status : 500 })
     }
 }
+
+export async function DELETE(
+    req : Request,
+    { params } : { params : { courseId : string , chapterId : string, commentId : string}}
+) {
+    try {
+
+    const { userId } = auth();
+    
+    if(!userId){
+        return new NextResponse("Nicht autorisiert" , { status : 401})
+    }
+
+    const comment = await db.comments.deleteMany({
+        where : {
+            id : params.commentId,
+        }
+    })
+
+    return NextResponse.json(comment);
+    
+
+    } catch(error){
+        console.log("Fehler in Comment/[commentId]/route.ts: DELETE");
+        return new NextResponse("Interner Server Error" , { status : 500 })
+    }
+}

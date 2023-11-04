@@ -58,6 +58,11 @@ const CommentContent: React.FC<CommentContentProps> = ({
 
     const onClick = () => {
         setIsEditing(true)
+        try {
+
+        } catch {
+            toast.error("Fehler beim Löschen deines Kommentars");
+        }
     }
 
 
@@ -94,6 +99,22 @@ const CommentContent: React.FC<CommentContentProps> = ({
     const [isDeleting, setIsDeleting] = useState(false);
     const onDelete = () => {
         setIsDeleting(true);
+    }
+
+    const [deleteLoading, setIsDeleteLoading] = useState(false);
+
+    const onDeleteConfirm = () => {
+        try {
+            setIsDeleteLoading(true);
+            axios.delete(`/api/courses/${params.courseId}/chapters/${params.chapterId}/comments/${comment.id}`);
+            
+        } catch {
+            toast.error("Fehler beim löschen")
+        } finally {
+            setIsDeleteLoading(false);
+            toast.success("Kommentar erfolgreich gelöscht");
+            router.refresh();
+        }
     }
     
 
@@ -195,7 +216,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
                                     <Button className="bg-black mr-4 hover:bg-black/80">
                                         Abbrechen
                                     </Button>
-                                    <Button className="bg-rose-600 hover:bg-rose-600/80">
+                                    <Button className="bg-rose-600 hover:bg-rose-600/80" onClick={onDeleteConfirm}>
                                         Kommentar löschen
                                     </Button>
                                 </AlertDialogTrigger>
