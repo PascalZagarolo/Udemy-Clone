@@ -15,23 +15,68 @@ export async function PATCH(
 
         const { isLike } = await req.json();
 
-        
+        const alreadyLiked = await db.likes.findFirst({
+            where : {
+                userId : userId,
+                commentId : params.commentId
+            }
+        })
 
         const likeAmount = isLike ? 1 : -1;
 
-        const likedComment = await db.comments.update({
-            where : {
-                id : params.commentId
-            }, 
-                data : {
-                    likes : {
-                        increment : likeAmount
-                    }
-            }
-           
-        })
+        if (!alreadyLiked) {
+            const likedComment = await db.comments.update({
+                where : {
+                    id : params.commentId
+                }, 
+                    data : {
+                        likes : {
+                            increment : likeAmount
+                        }
+                }
+               
+            })
 
-        return NextResponse.json(likedComment);
+            const setLikeComment = await db.likes.create({
+                data : {
+                    userId : userId,
+                    commentId : params.commentId
+                }
+            })
+
+            return NextResponse.json({likedComment, setLikeComment});
+        } else  {
+            const likedComment = await db.comments.update({
+                where : {
+                    id : params.commentId
+                }, 
+                    data : {
+                        likes : {
+                            increment : -1
+                        }
+                }
+               
+            })
+
+            const setLikeComment = await db.likes.delete({
+                where : {
+                    userId_commentId : {
+                        userId,
+                        commentId : params.commentId
+                    }
+                }
+            })
+
+            return NextResponse.json({likedComment, setLikeComment});
+        }
+
+        
+
+        
+
+        
+
+        
     } catch(error) {
         console.log("Etwas ist schief gelaufen...");
         return new NextResponse("Interner Server Error" , { status : 500 })

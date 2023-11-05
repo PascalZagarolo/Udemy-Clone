@@ -139,7 +139,7 @@ model Comments {
 
   likes Int @default(0)
 
-  
+  likedBy Likes[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -159,3 +159,16 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Likes {
+  id String @id @default(uuid())
+  
+  userId String
+  
+  commentId String
+  comment Comments @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@index([commentId])
+  @@unique([userId, commentId])
+}
+
