@@ -8,7 +8,7 @@ export async function PATCH(
 ) {
     try {
         const { userId } = auth();
-
+        //dislike function!!!
         if (!userId) {
             return new NextResponse("Nicht autorisiert" , { status : 401})
         }
