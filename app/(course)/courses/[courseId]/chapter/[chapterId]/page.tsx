@@ -142,7 +142,7 @@ const ChapterIdPage = async ({
               />
             )}
           </div>
-          <h1 className="flex justify-between font-semibold text-base mb-2">
+          <h1 className="flex justify-between font-medium text-base mb-2">
               erstellt von : <p className="mr-auto ml-2 text-blue-800 font-bold"> {courseOwner?.username} </p>
             </h1>
           <Separator className="bg-black w-8 mb-4 mt-4" />
