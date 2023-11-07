@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { auth, redirectToSignIn } from "@clerk/nextjs";
+import { auth, redirectToSignIn, useUser } from "@clerk/nextjs";
 import { redirect } from "next/dist/server/api-utils";
 import { NextResponse } from "next/server";
 
@@ -59,6 +59,8 @@ export async function GET(
         return new NextResponse("Interner Server Error" , { status : 500})
     }
 }
+
+
 
 export async function PATCH(
     req : Request,

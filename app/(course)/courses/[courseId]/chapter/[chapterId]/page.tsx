@@ -75,6 +75,18 @@ const ChapterIdPage = async ({
     }
   })
 
+  const courseCreator = await db.course.findUnique({
+    where : {
+      id : params.courseId
+    }
+  })
+
+  const courseOwner = await db.user.findUnique({
+    where: {
+      id : courseCreator?.userId
+    }
+  })
+
   
   
   
@@ -111,10 +123,11 @@ const ChapterIdPage = async ({
           />
         </div>
         <div>
-          <div className="p-4 flex flex-col md:flex-row items-center justify-between">
-            <h2 className="text-2xl font-semibold mb-2">
+          <div className="mt-4 flex flex-col md:flex-row items-center justify-between">
+            <h2 className="text-2xl font-semibold">
               {chapter.title}
             </h2>
+            
             {purchase ? (
               <CourseProgressButton
                 chapterId={params.chapterId}
@@ -129,6 +142,9 @@ const ChapterIdPage = async ({
               />
             )}
           </div>
+          <h1 className="flex justify-between font-semibold text-base mb-2">
+              erstellt von : <p className="mr-auto ml-2 text-blue-800 font-bold"> {courseOwner?.username} </p>
+            </h1>
           <Separator className="bg-black w-8 mb-4 mt-4" />
           <div>
             <Preview value={chapter.description!} />
