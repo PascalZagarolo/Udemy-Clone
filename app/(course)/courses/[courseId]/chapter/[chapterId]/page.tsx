@@ -25,6 +25,7 @@ import { Comments, User } from "@prisma/client";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { getUser } from "@/actions/get-user";
 import { Button } from "@/components/ui/button";
+import ProfilePageLink from "./_components/profile-page-link";
 
 
 
@@ -131,7 +132,6 @@ const ChapterIdPage = async ({
             <h2 className="text-2xl font-semibold">
               {chapter.title}
             </h2>
-            
             {purchase ? (
               <CourseProgressButton
                 chapterId={params.chapterId}
@@ -146,9 +146,10 @@ const ChapterIdPage = async ({
               />
             )}
           </div>
-          <h1 className="flex justify-between font-medium text-base mb-2">
-              erstellt von : <button className="mr-auto ml-2"><p className="mr-auto ml-2 text-blue-800 font-bold"> {courseOwner?.username} </p> </button>
-            </h1>
+         <ProfilePageLink 
+         courseOwner_username={courseOwner?.username!}
+         courseOwner_id={courseOwner?.id!}
+         />
           <Separator className="bg-black w-8 mb-4 mt-4" />
           <div>
             <Preview value={chapter.description!} />
