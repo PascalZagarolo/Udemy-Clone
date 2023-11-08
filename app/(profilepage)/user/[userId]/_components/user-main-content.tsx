@@ -1,16 +1,19 @@
 import { User } from "@prisma/client";
 import UserCourses from "./user-courses";
 import UserDescription from "./user-description";
+import Image from "next/image";
 
 interface UserMainContentProps {
     user : User;
+    imageUrl : string
 }
 
 const UserMainContent: React.FC<UserMainContentProps> = ({
-    user
+    user,
+    imageUrl
 }) => {
     return ( 
-        <div className="mt-4">
+        <div className="mt-4">     
             <UserDescription/>
             <UserCourses
             user = {user}

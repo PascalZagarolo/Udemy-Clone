@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 import UserHeader from "./_components/user-header";
 import { redirect } from "next/navigation";
 import UserMainContent from "./_components/user-main-content";
-import { auth } from "@clerk/nextjs";
+import { auth, clerkClient } from "@clerk/nextjs";
 
 const UserMainPage = async ({
     params
@@ -15,6 +15,10 @@ const UserMainPage = async ({
         }
     })
 
+    const clerkUser = await clerkClient.users.getUser(user?.id || "");
+
+    const imageUrl = clerkUser.imageUrl;
+
     if(!user) {
         return redirect("/");
     }
@@ -26,19 +30,16 @@ const UserMainPage = async ({
       <div className="h-[80px] md:pl-80 fixed inset-y-0 w-full z-50">
       <UserHeader 
       user = {user}
+      imageUrl = {imageUrl}
       />
       </div>
       <div className="hidden md:flex h-full w-80 flex-col fixed inset-y-0 z-50">
         
       </div>
       <main className="md:pl-80 pt-[80px] h-full mt-16">
-        { userId === params.userId && (
-            <div>
-                eigenes Profil!!!
-            </div>
-        )}
         <UserMainContent
         user={user}
+        imageUrl = {imageUrl}
         />
       </main>
     </div>

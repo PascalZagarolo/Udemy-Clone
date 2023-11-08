@@ -2,6 +2,7 @@ import CourseCard from "@/components/course-card";
 import { db } from "@/lib/db";
 import { User } from "@prisma/client";
 import { Clapperboard } from "lucide-react";
+import UserFooter from "./user-footer";
 
 interface UserCoursesProps {
     user : User;
@@ -11,18 +12,28 @@ interface UserCoursesProps {
 const UserCourses: React.FC<UserCoursesProps> = async ({
     user
 }) => {
-
+    let comment_amount = 0;
     const ownerId = user.id;
 
     const courses = await db.course.findMany({
         where : {
             userId : ownerId
         }, include : {
-            chapters : true,
+            chapters: {
+                include : {
+                    comments : true
+                }
+            },
             category : true,
             
         }
     })
+
+    for(let i = 0; i < courses.length; i++) {
+        for(let j = 0; j < courses[i].chapters.length; j++) {
+            comment_amount += courses[i].chapters[j].comments.length;
+        }
+    }
 
     return ( 
         <div className="mt-32">
@@ -46,6 +57,10 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
                     ))}
                 </div>
             </main>
+            <div className="mt-32">
+                
+                <UserFooter />
+            </div>
         </div>
      );
 }

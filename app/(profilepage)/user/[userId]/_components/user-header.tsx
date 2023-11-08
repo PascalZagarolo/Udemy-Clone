@@ -11,12 +11,14 @@ import { redirect, usePathname, useRouter } from "next/navigation";
 import { Label } from "recharts";
 
 interface UserHeaderProps {
-    user : User 
+    user : User;
+    imageUrl : string 
 }
 
 
 const UserHeader: React.FC<UserHeaderProps> = ({
-    user
+    user,
+    imageUrl
 }) => {
 
     const getFirstUserLetter = () => {
@@ -50,9 +52,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({
             <h1 className="text-medium font-semibold text-gray-800/80">
                 Mitglied seit  : {formattedDate()}
             </h1>
-            <div>
-                <Separator className="w-full bg-black"/>
-            </div>
+            
         </div>
         </>
      );
