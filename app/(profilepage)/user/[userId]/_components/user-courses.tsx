@@ -32,7 +32,7 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
             <main>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
                     {courses.map((course) => (
-                        <div>
+                        <div id={course.id}>
                             <CourseCard 
                             id = {course.id}
                             title={course.title}
