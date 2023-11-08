@@ -23,6 +23,8 @@ import { useState } from "react";
 import CommentSection from "./_components/_comment-components/comment";
 import { Comments, User } from "@prisma/client";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { getUser } from "@/actions/get-user";
+import { Button } from "@/components/ui/button";
 
 
 
@@ -74,6 +76,8 @@ const ChapterIdPage = async ({
       createdAt : "desc"
     }
   })
+
+  
 
   const courseCreator = await db.course.findUnique({
     where : {
@@ -143,7 +147,7 @@ const ChapterIdPage = async ({
             )}
           </div>
           <h1 className="flex justify-between font-medium text-base mb-2">
-              erstellt von : <p className="mr-auto ml-2 text-blue-800 font-bold"> {courseOwner?.username} </p>
+              erstellt von : <button className="mr-auto ml-2"><p className="mr-auto ml-2 text-blue-800 font-bold"> {courseOwner?.username} </p> </button>
             </h1>
           <Separator className="bg-black w-8 mb-4 mt-4" />
           <div>
