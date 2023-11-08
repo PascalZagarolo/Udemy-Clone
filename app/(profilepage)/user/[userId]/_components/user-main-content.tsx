@@ -13,7 +13,7 @@ const UserMainContent: React.FC<UserMainContentProps> = ({
     imageUrl
 }) => {
     return ( 
-        <div className="mt-4">     
+        <div className="mt-8 ml-16">     
             <UserDescription/>
             <UserCourses
             user = {user}

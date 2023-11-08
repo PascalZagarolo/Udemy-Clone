@@ -36,7 +36,7 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
     }
 
     return ( 
-        <div className="mt-32">
+        <div className="mt-16">
             <h2 className="text-2xl font-semibold mb-4 justify-start flex">
                <Clapperboard className="mr-4 mb-2"/> Meine Kurse ( <p className="text-blue-800 font-bold"> {courses.length} </p> )
             </h2>

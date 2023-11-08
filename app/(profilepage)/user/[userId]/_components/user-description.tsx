@@ -14,6 +14,30 @@ const UserDescription = () => {
             <h3 className="flex text-2xl font-semibold justify-start">
                 <p className="text-blue-800">Ü</p>ber mich
             </h3>
+            <div>
+                Dieser Nutzer hat noch keinen Text über sich geteilt.
+            </div>
+            <div>
+                Dieser Nutzer hat noch keinen Text über sich geteilt.
+            </div>
+            <div>
+                Dieser Nutzer hat noch keinen Text über sich geteilt.
+            </div>
+            <div>
+                Dieser Nutzer hat noch keinen Text über sich geteilt.
+            </div>
+            <div>
+                Dieser Nutzer hat noch keinen Text über sich geteilt.
+            </div>
+            <div>
+                Dieser Nutzer hat noch keinen Text über sich geteilt.
+            </div>
+            <div>
+                Dieser Nutzer hat noch keinen Text über sich geteilt.
+            </div>
+            <div>
+                Dieser Nutzer hat noch keinen Text über sich geteilt.
+            </div>
         </div>
     );
 }
