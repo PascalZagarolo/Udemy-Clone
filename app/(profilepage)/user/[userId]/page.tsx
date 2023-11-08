@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import UserHeader from "./_components/user-header";
 import { redirect } from "next/navigation";
 import UserMainContent from "./_components/user-main-content";
+import { auth } from "@clerk/nextjs";
 
 const UserMainPage = async ({
     params
@@ -18,6 +19,8 @@ const UserMainPage = async ({
         return redirect("/");
     }
 
+    const { userId } = auth();
+
     return ( 
         <div className="h-full">
       <div className="h-[80px] md:pl-80 fixed inset-y-0 w-full z-50">
@@ -29,7 +32,14 @@ const UserMainPage = async ({
         
       </div>
       <main className="md:pl-80 pt-[80px] h-full mt-16">
-        <UserMainContent />
+        { userId === params.userId && (
+            <div>
+                eigenes Profil!!!
+            </div>
+        )}
+        <UserMainContent
+        user={user}
+        />
       </main>
     </div>
      );
