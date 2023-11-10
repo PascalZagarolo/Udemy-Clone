@@ -37,6 +37,12 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
         }
     }
 
+    let chapterAmount = 0;
+
+    for (let i = 0; i < courses.length; i++) {
+        chapterAmount += courses[i].chapters.length;
+    }
+
     return ( 
         <div className="ml-16 mt-8">
             <div>
@@ -44,8 +50,9 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
             </div>
             <UserInformation
             userId = {user.id}
-            courseLength = {courses.length}
-            commentLength = {commentAmount}
+            courseAmount = {courses.length}
+            chapterAmount = {chapterAmount}
+            commentAmount = {commentAmount}
             />     
             <UserDescription/>
             <UserCourses

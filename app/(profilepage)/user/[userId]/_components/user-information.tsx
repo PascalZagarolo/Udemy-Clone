@@ -1,19 +1,21 @@
 import Banner from "@/components/banner";
 import { db } from "@/lib/db";
-import { BadgeIndianRupee, Check, Clapperboard, MessagesSquare, User, VerifiedIcon } from "lucide-react";
+import { BadgeIndianRupee, Check, Clapperboard, Film, MessagesSquare, Star, User, VerifiedIcon } from "lucide-react";
 import Image from "next/image";
 
 
 interface UserInformationProps {
     userId: string;
-    courseLength: number;
-    commentLength : number;
+    courseAmount: number;
+    commentAmount : number;
+    chapterAmount : number;
 }
 
 const UserInformation: React.FC<UserInformationProps> =  ({
     userId,
-    courseLength,
-    commentLength
+    courseAmount,
+    commentAmount,
+    chapterAmount
 }) => {
 
     
@@ -38,7 +40,7 @@ const UserInformation: React.FC<UserInformationProps> =  ({
 
             <div className="ml-8 font-semibold text-2xl justify-start flex mt-6 items-center">
             <MessagesSquare className="mr-4" />
-                <p className="text-blue-800 mr-2 font-bold"> {commentLength} </p> Kommentare erhalten
+                <p className="text-blue-800 mr-2 font-bold"> {commentAmount} </p> Kommentare erhalten
             </div>
             </div>
 
@@ -46,9 +48,19 @@ const UserInformation: React.FC<UserInformationProps> =  ({
             <div className="ml-4">
             <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
             <Clapperboard className="mr-4" />
-                <p className="text-blue-800 mr-2 font-bold"> {courseLength} </p> Kurs erstellt
+                <p className="text-blue-800 mr-2 font-bold"> {courseAmount} </p> Kurs erstellt
+            </div>
+            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
+            <Film className="mr-4" />
+                <p className="text-blue-800 mr-2 font-bold"> {chapterAmount} </p> Kapitel geteilt
+            </div>
             </div>
 
+            <div className="ml-4">
+            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
+            <Star className="mr-4 text-yellow-400" />
+                <p className="text-yellow-400 mr-2 font-bold"> 4.3 </p> Sterne-Bewertung
+            </div>
             
             </div>
 

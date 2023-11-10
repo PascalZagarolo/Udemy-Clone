@@ -156,6 +156,10 @@ model User {
 
   comments Comments[]
 
+  imageUrl String? @db.Text
+
+  description String? @db.Text
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
