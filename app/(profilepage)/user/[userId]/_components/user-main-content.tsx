@@ -38,8 +38,10 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
     }
 
     return ( 
-        <div className="ml-16 mt-4">
-            <UserAlert />
+        <div className="ml-16 mt-8">
+            <div>
+            
+            </div>
             <UserInformation
             userId = {user.id}
             courseLength = {courses.length}

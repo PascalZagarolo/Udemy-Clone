@@ -25,28 +25,28 @@ const UserInformation: React.FC<UserInformationProps> =  ({
             <div >
                 <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" width={100} height={100} alt="teacher"/>
             </div>
-            <div className="ml-2">
+            <div className="">
                 <Check className="text-blue-800" />
             </div>
 
 
             <div className="ml-8">
-            <div className="ml-8 font-bold text-2xl justify-start flex mt-4 items-center">
+            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
             <User className="mr-4" />
-                <p className="text-blue-800 mr-2"> 200 </p> Kunden
+                <p className="text-blue-800 mr-2 font-bold"> 200 </p> Kunden
             </div>
 
-            <div className="ml-8 font-bold text-2xl justify-start flex mt-6 items-center">
+            <div className="ml-8 font-semibold text-2xl justify-start flex mt-6 items-center">
             <MessagesSquare className="mr-4" />
-                <p className="text-blue-800 mr-2"> {commentLength} </p> Kommentare erhalten
+                <p className="text-blue-800 mr-2 font-bold"> {commentLength} </p> Kommentare erhalten
             </div>
             </div>
 
 
             <div className="ml-4">
-            <div className="ml-8 font-bold text-2xl justify-start flex mt-4 items-center">
+            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
             <Clapperboard className="mr-4" />
-                <p className="text-blue-800 mr-2"> {courseLength} </p> Kurs erstellt
+                <p className="text-blue-800 mr-2 font-bold"> {courseLength} </p> Kurs erstellt
             </div>
 
             
