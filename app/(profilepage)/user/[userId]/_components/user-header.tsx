@@ -34,8 +34,8 @@ const UserHeader: React.FC<UserHeaderProps> = ({
 
     return (
         <>
-        <div className="w-full mt-4 ml-8">
-            <div>
+        <div className="w-full ml-8 opacity-100 ">
+            <div className="mt-4">
                 <h3 className="text-4xl font-semibold flex justify-items-start ">
                     
                     <p className="text-blue-800 text-5xl font-bold"> {user.username.charAt(0)} </p> {user.username.substring(1, user.username.length)}
@@ -54,7 +54,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({
                 </h3>
                 
             </div>
-            <h1 className="text-medium font-semibold text-gray-800/80">
+            <h1 className="text-medium font-semibold text-gray-800/80 text-sm">
                 Mitglied seit  : {formattedDate()}
             </h1>
             

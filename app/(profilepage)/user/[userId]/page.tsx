@@ -55,7 +55,7 @@ const UserMainPage = async ({
                 createdProfile = {createdProfile} 
                 />
       </div>
-      <main className="md:pl-56 pt-[80px] h-full">
+      <main className="md:pl-56  pt-[80px] h-full">
         <UserMainContent
         user={user}
         imageUrl = {imageUrl}
