@@ -149,6 +149,8 @@ const ChapterIdPage = async ({
          <ProfilePageLink 
          courseOwner_username={courseOwner?.username!}
          courseOwner_id={courseOwner?.id!}
+         imageUrl = {courseOwner?.imageUrl || "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"}
+        creationDate={courseOwner?.createdAt}
          />
           <Separator className="bg-black w-8 mb-4 mt-4" />
           <div>
