@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import { z } from "zod";
@@ -24,20 +25,24 @@ const UploadProfilePic = () => {
         console.log(values);
 
         try {
-            await axios.patch(`/user/{}`, values)
-
-
-            router.refresh()
+            await axios.patch(`/api/user/${params.userId}/profilepic`, values)
+            console.log("Neues pfp: ", values)
+            
         } catch {
             toast.error("Fehler beim Speichern")
+        } finally {
+            toast.success("Profilbild erfolgreich geändert");
+            router.refresh();
         }
     }
+
+
 
     return (
 
         <Dialog>
             <DialogTrigger>
-                <div className="font-semibold">Profilbild ändern</div>
+                Profilbild ändern
                 </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
@@ -55,7 +60,7 @@ const UploadProfilePic = () => {
                 </DialogHeader>
                 <DialogFooter>
                     <DialogTrigger>
-                    <Button className="bg-blue-800 hover:bg-blue-800/80">Änderungen speichern</Button>
+                    <Button className="bg-blue-800 hover:bg-blue-800/80" type="submit" >Änderungen speichern</Button>
                     </DialogTrigger>
                 </DialogFooter>
             </DialogContent>

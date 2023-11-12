@@ -17,12 +17,15 @@ export async function PATCH(
 
 
         const values = await req.json();
+        
+
+        
 
         const updatedProfile = await db.user.update({
             where : {
                 id : userId
-            }, data : {
-                imageUrl : values.imageUrl
+            }, data: {
+                imageUrl : values.url
             }
         })
 
