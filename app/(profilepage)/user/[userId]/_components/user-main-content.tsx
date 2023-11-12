@@ -5,6 +5,7 @@ import Image from "next/image";
 import UserInformation from "./user-information";
 import UserAlert from "./user-alert";
 import { db } from "@/lib/db";
+import { auth } from "@clerk/nextjs";
 
 interface UserMainContentProps {
     user : User;
@@ -28,6 +29,12 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
             }
         }
     })
+
+    const { userId } = auth();
+
+    let isOwnSite;
+
+    userId === user.id ? isOwnSite = true : isOwnSite = false; 
 
     let commentAmount = 0;
 
@@ -54,7 +61,9 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
             chapterAmount = {chapterAmount}
             commentAmount = {commentAmount}
             />     
-            <UserDescription/>
+            <UserDescription
+            isOwnSite = {isOwnSite}
+            />
             <UserCourses
             user = {user}
             />
