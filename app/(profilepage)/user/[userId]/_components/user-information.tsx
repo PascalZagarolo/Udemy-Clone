@@ -1,7 +1,14 @@
 import Banner from "@/components/banner";
+import FileUpload from "@/components/file-upload";
 import { db } from "@/lib/db";
+import { UploadButton } from "@uploadthing/react";
+import axios from "axios";
 import { BadgeIndianRupee, Check, Clapperboard, Film, MessagesSquare, Star, User, VerifiedIcon } from "lucide-react";
 import Image from "next/image";
+import { z } from "zod";
+import UploadProfilePic from "./user-upload-profilepic";
+
+import { Button } from "@/components/ui/button";
 
 
 interface UserInformationProps {
@@ -19,12 +26,15 @@ const UserInformation: React.FC<UserInformationProps> =  ({
 }) => {
 
     
+
+    
     
 
-    return ( 
+    return (
+        
         <div className="w-full mb-8  mt-8">
             <div className="justify-start flex">
-            <div >
+            <div className="ml-2">
                 <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" width={100} height={100} alt="teacher"/>
             </div>
             <div className="">
@@ -66,7 +76,9 @@ const UserInformation: React.FC<UserInformationProps> =  ({
 
             
         </div>
+        <UploadProfilePic/>
         </div>
+        
      );
 }
  

@@ -61,7 +61,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
     
     const fetchProfilePic = async () => {
     try {
-           const user = await clerkClient.users.getUser("2W1l6SkeMWtL5NEZroX43bnIBVH");
+           const { user } = useUser();
            console.log(user);
     } catch {
         console.log("FEHLGESCHLAGEN")
