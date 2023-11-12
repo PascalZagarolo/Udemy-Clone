@@ -41,7 +41,7 @@ const UploadProfilePic = () => {
     return (
 
         <Dialog>
-            <DialogTrigger>
+            <DialogTrigger className="font-semibold">
                 Profilbild ändern
                 </DialogTrigger>
             <DialogContent>

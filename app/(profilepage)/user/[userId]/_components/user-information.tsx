@@ -18,7 +18,7 @@ interface UserInformationProps {
     chapterAmount : number;
 }
 
-const UserInformation: React.FC<UserInformationProps> =  ({
+const UserInformation: React.FC<UserInformationProps> = async ({
     userId,
     courseAmount,
     commentAmount,
@@ -27,15 +27,20 @@ const UserInformation: React.FC<UserInformationProps> =  ({
 
     
 
-    
+    const user = await db.user.findUnique({
+        where : {
+            id : userId
+        }
+    })
     
 
     return (
         
         <div className="w-full mb-8  mt-8">
             <div className="justify-start flex">
-            <div className="ml-2">
-                <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" width={100} height={100} alt="teacher"/>
+            <div className="rounded-md">
+                <Image src={user?.imageUrl || "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"} width={120} height={120} alt="teacher"
+                className="rounded-full"/>
             </div>
             <div className="">
                 <Check className="text-blue-800" />
@@ -76,7 +81,9 @@ const UserInformation: React.FC<UserInformationProps> =  ({
 
             
         </div>
+        <div className="ml-1 items-center">
         <UploadProfilePic/>
+        </div>
         </div>
         
      );
