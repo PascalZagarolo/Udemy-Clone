@@ -6,7 +6,7 @@ import UserInformation from "./user-information";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 
 interface UserDescriptionProps {
     isOwnSite : boolean;
@@ -37,7 +37,9 @@ const UserDescription: React.FC<UserDescriptionProps> = ({
             </h3>
             <Dialog open={isEditing} onOpenChange={onClick}>
                 <DialogContent>
-                        Testt...
+                        <DialogHeader>
+                            Profilbeschreibung ändern
+                        </DialogHeader>
                 </DialogContent>
             </Dialog>
             <div>
