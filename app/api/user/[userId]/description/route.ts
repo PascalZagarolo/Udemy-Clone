@@ -14,9 +14,9 @@ export async function PATCH(
             return new NextResponse("Nicht autorisiert" , { status : 401 });
         }
 
-        const { newDescription } = await req.json();
+        const { description } = await req.json();
 
-        if(!newDescription) {
+        if(!description) {
             return new NextResponse("Fehlende Daten" , { status : 400 });
         }
 
@@ -24,7 +24,7 @@ export async function PATCH(
             where : {
                 id : params.userId
             }, data : {
-                description : newDescription
+                description : description
             
             }
         })

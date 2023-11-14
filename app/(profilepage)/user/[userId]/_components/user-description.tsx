@@ -13,6 +13,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { DialogTitle } from "@radix-ui/react-dialog";
+import toast from "react-hot-toast";
+import { useParams } from "next/navigation";
+import axios from "axios";
 
 interface UserDescriptionProps {
     isOwnSite : boolean;
@@ -39,6 +42,7 @@ const UserDescription: React.FC<UserDescriptionProps> = ({
     const { isSubmitting, isValid } = form.formState;
 
     const [isEditing, setIsEditing] = useState(false);
+    const params = useParams();
 
     const onClick = () => {
         setIsEditing(!isEditing)
@@ -46,8 +50,17 @@ const UserDescription: React.FC<UserDescriptionProps> = ({
     }
     
 
-    const onSubmit = () => {
-        //..
+    const onSubmit = (values : z.infer<typeof formSchema>) => {
+        try {
+            axios.patch(`/api/user/${params.userId}/description`, values);
+            console.log(values.description)
+            toast.success("Beschreibung gespeichert");
+
+        } catch {
+            toast.error("Fehler beim Speichern der Beschreibung");
+        } finally {
+            setIsEditing(false);
+        }
     }
 
     return (
