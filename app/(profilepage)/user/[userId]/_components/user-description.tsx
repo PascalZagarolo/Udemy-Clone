@@ -68,7 +68,7 @@ const UserDescription: React.FC<UserDescriptionProps> = ({
                             <DialogTitle>
                                 <div className="font-semibold text-lg flex justify-start "><User className="mr-4 text-blue-800"/>Profilbeschreibung ändern</div>
                             </DialogTitle>
-                            <p> teile Informationen über dich mit anderen Nutzern auf der ganzen Welt. </p>
+                            <p className="text-sm text-gray-800/80"> teile Informationen über dich mit anderen Nutzern auf der ganzen Welt. </p>
                             
                         </DialogHeader>
 
@@ -92,7 +92,7 @@ const UserDescription: React.FC<UserDescriptionProps> = ({
                         />
                         <div className="flex items-center gap-x-2">
                             <Button disabled={!isValid || isSubmitting} type="submit">
-                                Änderungen speichern
+                                Beschreibung speichern
                             </Button>
                         </div>
                     </form>
