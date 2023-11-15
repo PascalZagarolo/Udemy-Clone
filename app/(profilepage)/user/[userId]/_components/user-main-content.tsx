@@ -63,6 +63,7 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
             />     
             <UserDescription
             isOwnSite = {isOwnSite}
+            user={user}
             />
             <UserCourses
             user = {user}

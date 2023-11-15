@@ -1,7 +1,7 @@
 'use client';
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { PencilIcon, Terminal, User } from "lucide-react";
+import { PencilIcon, Terminal,  User2 } from "lucide-react";
 import UserInformation from "./user-information";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -16,13 +16,18 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 import toast from "react-hot-toast";
 import { useParams } from "next/navigation";
 import axios from "axios";
+import { User } from "@prisma/client";
+
 
 interface UserDescriptionProps {
     isOwnSite : boolean;
+    user: User;
+   
 }
 
 const UserDescription: React.FC<UserDescriptionProps> = ({
-    isOwnSite
+    isOwnSite,
+    user
 }) => {
 
 
@@ -79,7 +84,7 @@ const UserDescription: React.FC<UserDescriptionProps> = ({
                 <DialogContent>
                         <DialogHeader>
                             <DialogTitle>
-                                <div className="font-semibold text-lg flex justify-start "><User className="mr-4 text-blue-800"/>Profilbeschreibung ändern</div>
+                                <div className="font-semibold text-lg flex justify-start "><User2 className="mr-4 text-blue-800"/>Profilbeschreibung ändern</div>
                             </DialogTitle>
                             <p className="text-sm text-gray-800/80"> teile Informationen über dich mit anderen Nutzern auf der ganzen Welt. </p>
                             
@@ -114,28 +119,17 @@ const UserDescription: React.FC<UserDescriptionProps> = ({
                 </DialogContent>
             </Dialog>
             <div>
-                Dieser Nutzer hat noch keinen Text über sich geteilt.
-            </div>
-            <div>
-                Dieser Nutzer hat noch keinen Text über sich geteilt.
-            </div>
-            <div>
-                Dieser Nutzer hat noch keinen Text über sich geteilt.
-            </div>
-            <div>
-                Dieser Nutzer hat noch keinen Text über sich geteilt.
-            </div>
-            <div>
-                Dieser Nutzer hat noch keinen Text über sich geteilt.
-            </div>
-            <div>
-                Dieser Nutzer hat noch keinen Text über sich geteilt.
-            </div>
-            <div>
-                Dieser Nutzer hat noch keinen Text über sich geteilt.
-            </div>
-            <div>
-                Dieser Nutzer hat noch keinen Text über sich geteilt.
+            {user.description ? (
+                <div>
+                    <div className="mr-80">
+                        {user.description}
+                    </div>
+                </div>
+            ): (
+                <div>
+                    <p className="text-gray-800/80"> Dieser Nutzer hat noch keinen Text über sich geteilt. </p>
+                </div>
+            )}
             </div>
         </div>
     );

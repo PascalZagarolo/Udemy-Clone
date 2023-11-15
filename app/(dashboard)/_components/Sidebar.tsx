@@ -19,7 +19,7 @@ const SideBar: React.FC<SideBarProps> = async ({
     
     return (
         <div> 
-        <div className="h-full border-r flex flex-col  overflow-y-auto bg-white shadow-sm">
+        <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm">
             <div className="p-6">
                 <Logo />
             </div>

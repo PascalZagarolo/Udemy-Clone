@@ -6,6 +6,7 @@ const Logo = () => {
             <Image 
                 height={150}
                 width={150}
+                sizes="150px"
                 alt="logo"
                 src="logo.svg"
             />
