@@ -39,6 +39,8 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
         }
     }
 
+    let i = 0;
+
     return ( 
         <div className="mt-16">
             <h2 className="text-2xl font-semibold mb-4 justify-start flex">
@@ -47,7 +49,8 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
             <main>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
                     {courses.map((course) => (
-                            <CourseCard 
+                        <div key ={i++}>
+                        <CourseCard 
                             id = {course.id}
                             title={course.title}
                             imageUrl={course.imageUrl || ""}
@@ -56,6 +59,8 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
                             progress={0}
                             category={course.category?.name || ""}
                             />
+                        </div>
+                            
                     ))}
                 </div>
             </main>
