@@ -59,22 +59,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
 
     const [pfpLoaded, pfpIsLoading] = useState(false);
     
-    const fetchProfilePic = async () => {
-    try {
-           const { user } = useUser();
-           console.log(user);
-    } catch {
-        console.log("FEHLGESCHLAGEN")
-        
-    }
-    finally {
-        pfpIsLoading(true);
-    }
-    } 
     
-    useEffect(() => {
-        fetchProfilePic();
-    }, [])
    
 
     const [isEditing, setIsEditing] = useState(false);
