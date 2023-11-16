@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { User } from "@prisma/client";
 import { Clapperboard } from "lucide-react";
 import UserFooter from "./user-footer";
+import { getCourses } from "@/actions/get-courses";
 
 interface UserCoursesProps {
     user : User;
@@ -17,7 +18,8 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
 
     const courses = await db.course.findMany({
         where : {
-            userId : ownerId
+            userId : ownerId,
+            isPublished : true
         }, include : {
             chapters: {
                 include : {
@@ -28,6 +30,8 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
             
         }
     })
+
+    
 
     for(let i = 0; i < courses.length; i++) {
         for(let j = 0; j < courses[i].chapters.length; j++) {
@@ -58,7 +62,6 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
                 </div>
             </main>
             <div className="mt-32">
-                
                 <UserFooter />
             </div>
         </div>
