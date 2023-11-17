@@ -3,7 +3,8 @@ const nextConfig = {
     images : {
         domains : [
             "utfs.io",
-            "upload.wikimedia.org"
+            "upload.wikimedia.org",
+            "logoipsum.com"
         ]
     }
 }

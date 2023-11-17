@@ -8,7 +8,7 @@ const Logo = () => {
                 width={150}
                 sizes="150px"
                 alt="logo"
-                src="logo.svg"
+                src="https://img.logoipsum.com/243.svg"
             />
         </div>
      );
