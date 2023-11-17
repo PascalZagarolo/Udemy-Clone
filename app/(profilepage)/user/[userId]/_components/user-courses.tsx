@@ -64,9 +64,7 @@ const UserCourses: React.FC<UserCoursesProps> = async ({
                     ))}
                 </div>
             </main>
-            <div className="mt-32">
-                <UserFooter />
-            </div>
+            
         </div>
      );
 }

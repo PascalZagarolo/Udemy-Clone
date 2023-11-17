@@ -6,6 +6,7 @@ import UserInformation from "./user-information";
 import UserAlert from "./user-alert";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
+import UserFooter from "./user-footer";
 
 interface UserMainContentProps {
     user : User;
@@ -52,22 +53,24 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
 
     return ( 
         <div className="ml-16 mt-8">
-            <div>
             
-            </div>
             <UserInformation
             userId = {user.id}
             courseAmount = {courses.length}
             chapterAmount = {chapterAmount}
             commentAmount = {commentAmount}
-            />     
+            />
+            <div className="mr-80">
             <UserDescription
             isOwnSite = {isOwnSite}
             user={user}
             />
+            </div>     
+            
             <UserCourses
             user = {user}
             />
+            
         </div>
      );
 }
