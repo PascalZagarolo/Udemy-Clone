@@ -132,7 +132,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
     
     return (
         <div key={comment.id} >
-            {pfpLoaded && (
+            
                 
                <div className="hover:bg-gray-200/50 mt-4">
                <div className="text-base text-bold text-gray-900 hover:text-gray-900/70 font-semibold flex justify-between " >
@@ -256,7 +256,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
                </div>
            </div>
 
-            )}
+            
         
         </div>
     )
