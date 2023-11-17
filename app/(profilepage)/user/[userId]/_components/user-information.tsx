@@ -75,8 +75,7 @@ const UserInformation: React.FC<UserInformationProps> = async ({
 
             <div className="ml-4">
             <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
-            <Star className="mr-4 text-yellow-400" />
-                <p className="text-yellow-400 mr-2 font-bold"> 4.3 </p> Sterne-Bewertung
+            
             </div>
             
             </div>
