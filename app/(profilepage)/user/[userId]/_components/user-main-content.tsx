@@ -20,9 +20,13 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
 
     const courses = await db.course.findMany({
         where : {
-            userId : user.id
+            userId : user.id,
+            isPublished : true
         }, include : {
             chapters : {
+                where : {
+                    isPublished : true
+                },
                 include : {
                     comments : true
                 }
