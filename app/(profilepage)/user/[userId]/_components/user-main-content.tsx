@@ -31,6 +31,18 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
         }
     })
 
+    let customerAmount = 0;
+
+    for(let i = 0; i < courses.length; i++) {
+        let purchaseIncludeCourse = await db.purchase.findMany({
+            where : {
+                courseId : courses[i].id
+            }
+        })
+
+        customerAmount += purchaseIncludeCourse.length;
+    }
+
     const { userId } = auth();
 
     let isOwnSite;
@@ -59,6 +71,7 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
             courseAmount = {courses.length}
             chapterAmount = {chapterAmount}
             commentAmount = {commentAmount}
+            customerAmount = {customerAmount}
             />
             <div className="mr-80">
             <UserDescription

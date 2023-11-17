@@ -2,6 +2,9 @@ import { Facebook, Instagram, Layers, Mail, MailsIcon, Youtube } from "lucide-re
 
 
 const UserFooter = () => {
+
+    
+
     return ( 
         <div>
             <div className="justify-between flex">

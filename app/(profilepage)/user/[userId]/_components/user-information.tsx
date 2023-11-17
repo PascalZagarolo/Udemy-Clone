@@ -16,13 +16,15 @@ interface UserInformationProps {
     courseAmount: number;
     commentAmount : number;
     chapterAmount : number;
+    customerAmount : number;
 }
 
 const UserInformation: React.FC<UserInformationProps> = async ({
     userId,
     courseAmount,
     commentAmount,
-    chapterAmount
+    chapterAmount,
+    customerAmount,
 }) => {
 
     
@@ -50,7 +52,7 @@ const UserInformation: React.FC<UserInformationProps> = async ({
             <div className="ml-8">
             <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
             <User className="mr-4" />
-                <p className="text-blue-800 mr-2 font-bold"> 200 </p> Kunden
+                <p className="text-blue-800 mr-2 font-bold"> {customerAmount} </p> {customerAmount > 1 ? "Kunden" : "Kunde"}
             </div>
 
             <div className="ml-8 font-semibold text-2xl justify-start flex mt-6 items-center">
