@@ -47,6 +47,8 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
         customerAmount += purchaseIncludeCourse.length;
     }
 
+    
+
     const { userId } = auth();
 
     let isOwnSite;
@@ -77,7 +79,7 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
             commentAmount = {commentAmount}
             customerAmount = {customerAmount}
             />
-            <div className="mr-80">
+            <div className="sm:mr-2 md:mr-80 lg:mr-80 sm:hidden">
             <UserDescription
             isOwnSite = {isOwnSite}
             user={user}

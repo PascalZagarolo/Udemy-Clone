@@ -38,7 +38,7 @@ const UserInformation: React.FC<UserInformationProps> = async ({
 
     return (
         
-        <div className="w-full mb-8  mt-8">
+        <div className="w-full mb-8  mt-8 sm:hidden">
             <div className="justify-start flex">
             <div className="rounded-md">
                 <Image src={user?.imageUrl || "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"} width={120} height={120} alt="teacher"

@@ -120,8 +120,8 @@ const UserDescription: React.FC<UserDescriptionProps> = ({
             </Dialog>
             <div>
             {user.description ? (
-                <div className="mr-80">
-                    <div className="mr-80">
+                <div className="sm:mr-8 md:mr-80 lg:mr-80">
+                    <div className="sm:mr-8 md:mr-80 lg:mr-80">
                         {user.description}
                     </div>
                 </div>
