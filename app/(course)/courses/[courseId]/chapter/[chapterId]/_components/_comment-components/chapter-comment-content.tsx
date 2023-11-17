@@ -131,7 +131,7 @@ const CommentContent: React.FC<CommentContentProps> = ({
     const ownComment = comment.userId === userId;
     
     return (
-        <div key={comment.id} >
+        <div key={comment.id} className="sm:mt-2">
             
                 
                <div className="hover:bg-gray-200/50 mt-4">

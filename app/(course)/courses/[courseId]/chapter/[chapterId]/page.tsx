@@ -146,12 +146,14 @@ const ChapterIdPage = async ({
               />
             )}
           </div>
+          <div className="sm:ml-8 sm:mr-4">
          <ProfilePageLink 
          courseOwner_username={courseOwner?.username!}
          courseOwner_id={courseOwner?.id!}
          imageUrl = {courseOwner?.imageUrl || "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"}
         creationDate={courseOwner?.createdAt}
          />
+         
           <Separator className="bg-black w-8 mb-4 mt-4" />
           <div>
             <Preview value={chapter.description!} />
@@ -165,6 +167,7 @@ const ChapterIdPage = async ({
           
             />
             
+          </div>
           </div>
           {!!attachments.length && (
             <>

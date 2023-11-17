@@ -40,7 +40,7 @@ const LikeBox: React.FC<LikeBoxProps> = ({
         comments.likes = 0;
     }
     return ( 
-        <div className="flex justify-between">
+        <div className="flex items-stretch sm:items-center">
             
             
             <button onClick={onClick}>
@@ -53,7 +53,7 @@ const LikeBox: React.FC<LikeBoxProps> = ({
                 </button>
                 
             </div>
-            <div className="justify-between items-center mr-[770px] mb-[2px] text-sm text-blue-800/80 font-semibold ml-4">
+            <div className="mr-auto mb-[2px] text-sm text-blue-800/90 font-semibold ">
                 {comments.likes} Likes
             </div>
         </div>
