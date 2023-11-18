@@ -79,7 +79,7 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
             commentAmount = {commentAmount}
             customerAmount = {customerAmount}
             />
-            <div className="sm:mr-2 md:mr-80 lg:mr-80 sm:hidden">
+            <div className="sm:mr-2 md:mr-80 lg:mr-80">
             <UserDescription
             isOwnSite = {isOwnSite}
             user={user}

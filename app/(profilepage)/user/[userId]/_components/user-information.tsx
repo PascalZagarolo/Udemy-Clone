@@ -3,12 +3,14 @@ import FileUpload from "@/components/file-upload";
 import { db } from "@/lib/db";
 import { UploadButton } from "@uploadthing/react";
 import axios from "axios";
-import { BadgeIndianRupee, Check, Clapperboard, Film, MessagesSquare, Star, User, VerifiedIcon } from "lucide-react";
+import { BadgeIndianRupee, Check, Clapperboard, Film, MessagesSquare, Settings2, Star, User, VerifiedIcon } from "lucide-react";
 import Image from "next/image";
 import { z } from "zod";
 import UploadProfilePic from "./user-upload-profilepic";
 
 import { Button } from "@/components/ui/button";
+import { auth } from "@clerk/nextjs";
+import UserSocialDialog from "./user-social-links-dialog";
 
 
 interface UserInformationProps {
@@ -27,6 +29,8 @@ const UserInformation: React.FC<UserInformationProps> = async ({
     customerAmount,
 }) => {
 
+    const isOwnSite = auth().userId === userId;
+
     
 
     const user = await db.user.findUnique({
@@ -38,7 +42,11 @@ const UserInformation: React.FC<UserInformationProps> = async ({
 
     return (
         
-        <div className="w-full mb-8  mt-8 sm:hidden">
+        <div className="w-full mb-8  mt-8 ">
+
+        {isOwnSite &&
+            <UserSocialDialog />
+        }
             <div className="justify-start flex">
             <div className="rounded-md">
                 <Image src={user?.imageUrl || "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"} width={120} height={120} alt="teacher"
