@@ -3,20 +3,57 @@
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-
-
-
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { CircleEllipsis, Globe, Globe2, Instagram, MailCheck, Settings, Share, Twitter, Youtube } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 
 const UserSocialDialog = () => {
+
+    const formSchema = z.object({
+        instagram : z.string().min(3, {
+            message : "Username ist zu kurz"
+        }),
+        twitter : z.string().min(3, {
+            message : "Username ist zu kurz"
+        }),
+        youtube : z.string().min(1, {
+            message : "Username ist zu kurz"
+        }),
+    })
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver : zodResolver(formSchema),
+        defaultValues : {
+            instagram : "",
+            twitter : "",
+            youtube : "",
+        }
+    })
+
+    const { isSubmitting, isValid } = form.formState;
+
+    const onSubmit = (values : z.infer<typeof formSchema>) => {
+        console.log(values);
+    }
+
+
     return ( 
         <div>
+
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                    
+                </form>
+            </Form>
+
             <Dialog>
                 <DialogTrigger>
                     <Settings/>
@@ -87,6 +124,9 @@ const UserSocialDialog = () => {
                 </DialogFooter>
                 </DialogContent>
             </Dialog>
+
+
+
         </div>
      );
 }
