@@ -1,7 +1,8 @@
 'use client';
 
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
@@ -10,7 +11,7 @@ import { Switch } from "@/components/ui/switch";
 
 
 
-import { Instagram, MailCheck, Settings, Share, Twitter, Youtube } from "lucide-react";
+import { CircleEllipsis, Globe, Globe2, Instagram, MailCheck, Settings, Share, Twitter, Youtube } from "lucide-react";
 
 
 const UserSocialDialog = () => {
@@ -66,10 +67,24 @@ const UserSocialDialog = () => {
                     </div>
                     <Label className="text-sm"> Sonstiges : </Label>
                     <Separator className="bg-black w-8 ml-auto"/>
-
-                    <div>
-
+                    <div className="flex items-center justify-center">
+                    <p className="mr-auto"><Switch className="w-4 h-4 mr-4"/></p>
+                        <Label className="mr-auto"> Deine Website </Label>
+                        <Globe/>
+                        
                     </div>
+                    <div className="flex justify-start items-center mt-4">
+                        
+                        
+                        <Input placeholder="deine Website-URL" className="ml-4 w-full" >
+                        </Input>
+                    </div>
+                    <Separator className="w-8 mr-auto bg-black mt-4"/>
+                    <DialogFooter>
+                    <Button className="bg-blue-800 hover:bg-blue-800/80">
+                        Einstellungen festlegen
+                    </Button>
+                </DialogFooter>
                 </DialogContent>
             </Dialog>
         </div>
