@@ -10,7 +10,8 @@ import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { CircleEllipsis, Globe, Globe2, Instagram, MailCheck, Settings, Share, Twitter, Youtube } from "lucide-react";
+import { CircleEllipsis, Globe, Globe2, Instagram, Mail, MailCheck, Settings, Share, Twitter, Youtube } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -27,6 +28,9 @@ const UserSocialDialog = () => {
         youtube: z.string().min(1, {
             message: "Username ist zu kurz"
         }),
+        email: z.string().min(1, {
+            message: "Username ist zu kurz"
+        }),
     })
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -38,22 +42,33 @@ const UserSocialDialog = () => {
         }
     })
 
+    const [instaEnabled, setInstaEnabled] = useState(false);
+    const [twitterEnabled, setTwitterEnabled] = useState(false);
+    const [youtubeEnabled, setYoutubeEnabled] = useState(false);
+
     const { isSubmitting, isValid } = form.formState;
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
         console.log(values);
     }
 
+    const onInstaChange = () => {
+        setInstaEnabled(!instaEnabled);
+    }
+    
+    const onTwitterChange = () => {
+        setInstaEnabled(!instaEnabled);
+    }
+
+    const onYoutubeChange = () => {
+        setInstaEnabled(!instaEnabled);
+    }
+
+    
+
 
     return (
         <div>
-
-
-
-
-
-
-
             <Dialog>
                 <DialogTrigger>
                     <Settings />
@@ -79,7 +94,7 @@ const UserSocialDialog = () => {
                                             <Instagram className="w-4 h-4" /> 
                                             <div className="flex justify-start items-center"> Instagram  
                                                 <div className="ml-auto mb-2"> 
-                                                    <Switch className="ml-auto w-4 h-4"/>
+                                                    <Switch className="ml-auto w-4 h-4" onCheckedChange={onInstaChange}/>
                                                 </div> 
                                             </div>
                                         </FormLabel>
@@ -106,7 +121,7 @@ const UserSocialDialog = () => {
                                                 <Twitter className="w-4 h-4" />
                                                 <div className="flex justify-start items-center"> Twitter  
                                                 <div className="ml-auto mb-2"> 
-                                                    <Switch className="ml-auto w-4 h-4"/>
+                                                    <Switch className="ml-auto w-4 h-4" onClick={onTwitterChange}/>
                                                 </div> 
                                             </div>
                                             </FormLabel>
@@ -132,13 +147,13 @@ const UserSocialDialog = () => {
                                                 <Youtube className="w-4 h-4" />
                                                 <div className="flex justify-start items-center"> YouTube  
                                                 <div className="ml-auto mb-2"> 
-                                                    <Switch className="ml-auto w-4 h-4"/>
+                                                    <Switch className="ml-auto w-4 h-4" onClick={onYoutubeChange}/>
                                                 </div>
                                                 </div>
                                             </FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    disabled={isSubmitting}
+                                                    disabled
                                                     placeholder="zum Beispiel : @username"
                                                     {...field} />
                                             </FormControl>
@@ -157,12 +172,42 @@ const UserSocialDialog = () => {
                                 </Label>
 
                                 <Separator className="bg-black w-8 mt-2 mb-2"/>
+                                <div className="mt-4">
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>
+                                                <Mail className="w-4 h-4" />
+                                                <div className="flex justify-start items-center"> E-Mail Addresse  
+                                                <div className="ml-auto mb-2"> 
+                                                    <Switch className="ml-auto w-4 h-4"/>
+                                                </div>
+                                                </div>
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    disabled={isSubmitting}
+                                                    placeholder="zum Beispiel : test@test.com"
+                                                    {...field} />
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                >
+                                </FormField>
+                                </div>
+                                <Separator className="bg-black w-8 mb-2 ml-auto mt-4"/>
                             </div>
+
+                            <Button className = "bg-blue-800 mt-2">
+                                Einstellungen festlegen
+                            </Button>
 
                         </form>
                     </Form>
 
-
+                                       
 
                 </DialogContent>
             </Dialog>
