@@ -11,6 +11,7 @@ import { Switch } from "@/components/ui/switch";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { CircleEllipsis, Globe, Globe2, Instagram, Mail, MailCheck, Settings, Share, Twitter, Youtube } from "lucide-react";
+import { on } from "node:events";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -55,18 +56,19 @@ const UserSocialDialog = () => {
     const onInstaChange = () => {
         setInstaEnabled(!instaEnabled);
     }
-    
+
     const onTwitterChange = () => {
-        setInstaEnabled(!instaEnabled);
+        setInstaEnabled(!twitterEnabled);
     }
 
     const onYoutubeChange = () => {
-        setInstaEnabled(!instaEnabled);
+        setYoutubeEnabled(!youtubeEnabled);
+        console.log(youtubeEnabled);
     }
 
-    
 
-    
+
+
 
 
     return (
@@ -93,21 +95,21 @@ const UserSocialDialog = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>
-                                            <Instagram className="w-4 h-4" /> 
-                                            <div className="flex justify-start items-center"> Instagram  
-                                                <div className="ml-auto mb-2"> 
-                                                    <Switch className="ml-auto w-4 h-4" onCheckedChange={onInstaChange}/>
-                                                </div> 
+                                            <Instagram className="w-4 h-4" />
+                                            <div className="flex justify-start items-center"> Instagram
+                                                <div className="ml-auto mb-2">
+                                                    <Switch className="ml-auto w-4 h-4" onCheckedChange={onInstaChange} />
+                                                </div>
                                             </div>
                                         </FormLabel>
                                         <div className="flex justify-start items-center">
-                                        <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
-                                        <FormControl>
-                                            <Input
-                                                disabled={isSubmitting}
-                                                placeholder="zum Beispiel : @username"
-                                                {...field} />
-                                        </FormControl>
+                                            <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
+                                            <FormControl>
+                                                <Input
+                                                    disabled={isSubmitting || !youtubeEnabled}
+                                                    placeholder="zum Beispiel : @username"
+                                                    {...field} />
+                                            </FormControl>
                                         </div>
                                     </FormItem>
                                 )}
@@ -121,11 +123,11 @@ const UserSocialDialog = () => {
                                         <FormItem>
                                             <FormLabel>
                                                 <Twitter className="w-4 h-4" />
-                                                <div className="flex justify-start items-center"> Twitter  
-                                                <div className="ml-auto mb-2"> 
-                                                    <Switch className="ml-auto w-4 h-4" onClick={onTwitterChange}/>
-                                                </div> 
-                                            </div>
+                                                <div className="flex justify-start items-center"> Twitter
+                                                    <div className="ml-auto mb-2">
+                                                        <Switch className="ml-auto w-4 h-4" onClick={onTwitterChange} />
+                                                    </div>
+                                                </div>
                                             </FormLabel>
                                             <FormControl>
                                                 <Input
@@ -147,18 +149,23 @@ const UserSocialDialog = () => {
                                         <FormItem>
                                             <FormLabel>
                                                 <Youtube className="w-4 h-4" />
-                                                <div className="flex justify-start items-center"> YouTube  
-                                                <div className="ml-auto mb-2"> 
-                                                    <Switch className="ml-auto w-4 h-4" onClick={onYoutubeChange}/>
-                                                </div>
+                                                <div className="flex justify-start items-center"> YouTube
+                                                    <div className="ml-auto mb-2">
+                                                        <Switch className="ml-auto w-4 h-4" onClick={onYoutubeChange} />
+                                                    </div>
                                                 </div>
                                             </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    disabled={!youtubeEnabled}
-                                                    placeholder="zum Beispiel : @username"
-                                                    {...field} />
-                                            </FormControl>
+                                            {youtubeEnabled && (
+                                                <div>
+                                                    <FormControl>
+                                                        <Input
+                                                            disabled={!youtubeEnabled}
+                                                            placeholder="zum Beispiel : @username"
+                                                            {...field} />
+                                                    </FormControl>
+                                                </div>
+                                            )}
+
                                         </FormItem>
                                     )}
                                 >
@@ -167,49 +174,49 @@ const UserSocialDialog = () => {
 
                             <div className="mt-4">
                                 <Separator
-                                className="bg-black w-8 ml-auto mb-2"
+                                    className="bg-black w-8 ml-auto mb-2"
                                 />
                                 <Label>
-                                    Sonstiges : 
+                                    Sonstiges :
                                 </Label>
 
-                                <Separator className="bg-black w-8 mt-2 mb-2"/>
+                                <Separator className="bg-black w-8 mt-2 mb-2" />
                                 <div className="mt-4">
-                                <FormField
-                                    control={form.control}
-                                    name="email"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>
-                                                <Mail className="w-4 h-4" />
-                                                <div className="flex justify-start items-center"> E-Mail Addresse  
-                                                <div className="ml-auto mb-2"> 
-                                                    <Switch className="ml-auto w-4 h-4"/>
-                                                </div>
-                                                </div>
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    disabled={isSubmitting}
-                                                    placeholder="zum Beispiel : test@test.com"
-                                                    {...field} />
-                                            </FormControl>
-                                        </FormItem>
-                                    )}
-                                >
-                                </FormField>
+                                    <FormField
+                                        control={form.control}
+                                        name="email"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>
+                                                    <Mail className="w-4 h-4" />
+                                                    <div className="flex justify-start items-center"> E-Mail Addresse
+                                                        <div className="ml-auto mb-2">
+                                                            <Switch className="ml-auto w-4 h-4" />
+                                                        </div>
+                                                    </div>
+                                                </FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        disabled={isSubmitting}
+                                                        placeholder="zum Beispiel : test@test.com"
+                                                        {...field} />
+                                                </FormControl>
+                                            </FormItem>
+                                        )}
+                                    >
+                                    </FormField>
                                 </div>
-                                <Separator className="bg-black w-8 mb-2 ml-auto mt-4"/>
+                                <Separator className="bg-black w-8 mb-2 ml-auto mt-4" />
                             </div>
 
-                            <Button className = "bg-blue-800 mt-2" type="submit" disabled={isSubmitting || !isValid}>
+                            <Button className="bg-blue-800 mt-2" type="submit" disabled={isSubmitting || !isValid}>
                                 Einstellungen festlegen
                             </Button>
 
                         </form>
                     </Form>
 
-                                       
+
 
                 </DialogContent>
             </Dialog>
