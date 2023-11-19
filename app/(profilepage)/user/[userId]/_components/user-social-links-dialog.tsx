@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Form } from "@/components/ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
@@ -18,117 +18,159 @@ import { z } from "zod";
 const UserSocialDialog = () => {
 
     const formSchema = z.object({
-        instagram : z.string().min(3, {
-            message : "Username ist zu kurz"
+        instagram: z.string().min(3, {
+            message: "Username ist zu kurz"
         }),
-        twitter : z.string().min(3, {
-            message : "Username ist zu kurz"
+        twitter: z.string().min(3, {
+            message: "Username ist zu kurz"
         }),
-        youtube : z.string().min(1, {
-            message : "Username ist zu kurz"
+        youtube: z.string().min(1, {
+            message: "Username ist zu kurz"
         }),
     })
 
     const form = useForm<z.infer<typeof formSchema>>({
-        resolver : zodResolver(formSchema),
-        defaultValues : {
-            instagram : "",
-            twitter : "",
-            youtube : "",
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            instagram: "",
+            twitter: "",
+            youtube: "",
         }
     })
 
     const { isSubmitting, isValid } = form.formState;
 
-    const onSubmit = (values : z.infer<typeof formSchema>) => {
+    const onSubmit = (values: z.infer<typeof formSchema>) => {
         console.log(values);
     }
 
 
-    return ( 
+    return (
         <div>
 
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                    
-                </form>
-            </Form>
+
+
+
+
+
 
             <Dialog>
                 <DialogTrigger>
-                    <Settings/>
+                    <Settings />
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle className="flex justify-start items-center">
-                            <Share className="text-blue-800"/>
+                            <Share className="text-blue-800" />
                             <p className="ml-8"> Teile Links zu deinen anderen Websites. </p>
                         </DialogTitle>
-                       
                     </DialogHeader>
                     <Label className="text-sm"> Soziale Links : </Label>
-                    <Separator className="bg-black w-8 mr-auto"/>
-                    <div className="mt-2"> 
-                    <div className="flex justify-start items-center">
-                        <Switch className="w-4 h-4 mr-4"/>
-                        <MailCheck className="w-8 h-8 ml-4 mr-4"/>
-                        <p className="mr-2"> Email  </p>
-                        <Input placeholder="..." className="ml-4 w-full">
-                        </Input>
-                    </div>
+                    <Separator className="bg-black w-8 mr-auto" />
 
-                    <div className="flex justify-start items-center mt-4">
-                        <Switch className="w-4 h-4 mr-4"/>
-                        <Instagram className="w-8 h-8 ml-4 mr-4"/>
-                        <p className="mr-2"> instagram.com/</p>
-                        <Input placeholder="dein Username" className="ml-4 w-full" >
-                        </Input>
-                    </div>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <FormField
+                                control={form.control}
+                                name="instagram"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>
+                                            <Instagram className="w-4 h-4" /> 
+                                            <div className="flex justify-start items-center"> Instagram  
+                                                <div className="ml-auto mb-2"> 
+                                                    <Switch className="ml-auto w-4 h-4"/>
+                                                </div> 
+                                            </div>
+                                        </FormLabel>
+                                        <div className="flex justify-start items-center">
+                                        <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
+                                        <FormControl>
+                                            <Input
+                                                disabled={isSubmitting}
+                                                placeholder="zum Beispiel : @username"
+                                                {...field} />
+                                        </FormControl>
+                                        </div>
+                                    </FormItem>
+                                )}
+                            >
+                            </FormField>
+                            <div className="mt-4">
+                                <FormField
+                                    control={form.control}
+                                    name="twitter"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>
+                                                <Twitter className="w-4 h-4" />
+                                                <div className="flex justify-start items-center"> Twitter  
+                                                <div className="ml-auto mb-2"> 
+                                                    <Switch className="ml-auto w-4 h-4"/>
+                                                </div> 
+                                            </div>
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    disabled={isSubmitting}
+                                                    placeholder="zum Beispiel : @username"
+                                                    {...field} />
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                >
+                                </FormField>
+                            </div>
 
-                    <div className="flex justify-start items-center mt-4">
-                        <Switch className="w-4 h-4 mr-4"/>
-                        <Twitter className="w-8 h-8 ml-4 mr-4"/>
-                        <p className="mr-2"> twitter.com/</p>
-                        <Input placeholder="dein Username" className="ml-4 w-full" >
-                        </Input>
-                    </div>
+                            <div className="mt-4">
+                                <FormField
+                                    control={form.control}
+                                    name="youtube"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>
+                                                <Youtube className="w-4 h-4" />
+                                                <div className="flex justify-start items-center"> YouTube  
+                                                <div className="ml-auto mb-2"> 
+                                                    <Switch className="ml-auto w-4 h-4"/>
+                                                </div>
+                                                </div>
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    disabled={isSubmitting}
+                                                    placeholder="zum Beispiel : @username"
+                                                    {...field} />
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                >
+                                </FormField>
+                            </div>
 
-                    <div className="flex justify-start items-center mt-4">
-                        <Switch className="w-4 h-4 mr-4"/>
-                        <Youtube className="w-8 h-8 ml-4 mr-4"/>
-                        <p className="mr-2"> youtube.com/</p>
-                        <Input placeholder="dein Username" className="ml-4 w-full" >
-                        </Input>
-                    </div>
+                            <div className="mt-4">
+                                <Separator
+                                className="bg-black w-8 ml-auto mb-2"
+                                />
+                                <Label>
+                                    Sonstiges : 
+                                </Label>
 
-                    </div>
-                    <Label className="text-sm"> Sonstiges : </Label>
-                    <Separator className="bg-black w-8 ml-auto"/>
-                    <div className="flex items-center justify-center">
-                    <p className="mr-auto"><Switch className="w-4 h-4 mr-4"/></p>
-                        <Label className="mr-auto"> Deine Website </Label>
-                        <Globe/>
-                        
-                    </div>
-                    <div className="flex justify-start items-center mt-4">
-                        
-                        
-                        <Input placeholder="deine Website-URL" className="ml-4 w-full" >
-                        </Input>
-                    </div>
-                    <Separator className="w-8 mr-auto bg-black mt-4"/>
-                    <DialogFooter>
-                    <Button className="bg-blue-800 hover:bg-blue-800/80">
-                        Einstellungen festlegen
-                    </Button>
-                </DialogFooter>
+                                <Separator className="bg-black w-8 mt-2 mb-2"/>
+                            </div>
+
+                        </form>
+                    </Form>
+
+
+
                 </DialogContent>
             </Dialog>
 
 
 
         </div>
-     );
+    );
 }
- 
+
 export default UserSocialDialog;
