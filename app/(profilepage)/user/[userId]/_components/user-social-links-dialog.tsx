@@ -66,6 +66,8 @@ const UserSocialDialog = () => {
 
     
 
+    
+
 
     return (
         <div>
@@ -153,7 +155,7 @@ const UserSocialDialog = () => {
                                             </FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    disabled
+                                                    disabled={!youtubeEnabled}
                                                     placeholder="zum Beispiel : @username"
                                                     {...field} />
                                             </FormControl>
@@ -200,7 +202,7 @@ const UserSocialDialog = () => {
                                 <Separator className="bg-black w-8 mb-2 ml-auto mt-4"/>
                             </div>
 
-                            <Button className = "bg-blue-800 mt-2">
+                            <Button className = "bg-blue-800 mt-2" type="submit" disabled={isSubmitting || !isValid}>
                                 Einstellungen festlegen
                             </Button>
 
