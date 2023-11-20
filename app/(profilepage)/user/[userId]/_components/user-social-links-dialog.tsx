@@ -46,6 +46,7 @@ const UserSocialDialog = () => {
     const [instaEnabled, setInstaEnabled] = useState(false);
     const [twitterEnabled, setTwitterEnabled] = useState(false);
     const [youtubeEnabled, setYoutubeEnabled] = useState(false);
+    const [emailEnabled, setEmailEnabled] = useState(false);
 
     const { isSubmitting, isValid } = form.formState;
 
@@ -64,6 +65,10 @@ const UserSocialDialog = () => {
     const onYoutubeChange = () => {
         setYoutubeEnabled(!youtubeEnabled);
         console.log(youtubeEnabled);
+    }
+
+    const onEmailChange = () => {
+        setEmailEnabled(!emailEnabled);
     }
 
 
@@ -90,6 +95,7 @@ const UserSocialDialog = () => {
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
                             <FormField
+                                disabled={!instaEnabled}
                                 control={form.control}
                                 name="instagram"
                                 render={({ field }) => (
@@ -103,15 +109,23 @@ const UserSocialDialog = () => {
                                             </div>
                                         </FormLabel>
                                         <div className="flex justify-start items-center">
-                                            <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
-                                            <FormControl>
-                                                <Input
-                                                    disabled = {true}
-                                                    type="instagram"
-                                                    placeholder="zum Beispiel : @username"
-                                                    {...field} 
-                                                    />
-                                            </FormControl>
+
+
+                                            {instaEnabled && (
+                                                <div>
+                                                    <div>                                        <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
+                                                        <FormControl>
+                                                            <Input
+                                                                disabled={true}
+                                                                type="instagram"
+                                                                placeholder="zum Beispiel : @username"
+                                                                {...field}
+                                                            />
+                                                        </FormControl>
+                                                    </div>
+                                                </div>
+                                            )}
+
                                         </div>
                                     </FormItem>
                                 )}
@@ -128,16 +142,20 @@ const UserSocialDialog = () => {
                                                 <Twitter className="w-4 h-4" />
                                                 <div className="flex justify-start items-center"> Twitter
                                                     <div className="ml-auto mb-2">
-                                                        <Switch className="ml-auto w-4 h-4" onClick={onTwitterChange} />
+                                                        <Switch className="ml-auto w-4 h-4" onCheckedChange={onTwitterChange} />
                                                     </div>
                                                 </div>
                                             </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    disabled={isSubmitting || !twitterEnabled}
-                                                    placeholder="zum Beispiel : @username"
-                                                    {...field} />
-                                            </FormControl>
+                                            {twitterEnabled && (
+                                                <div>
+                                                    <FormControl>
+                                                        <Input
+                                                            disabled={isSubmitting || !twitterEnabled}
+                                                            placeholder="zum Beispiel : @username"
+                                                            {...field} />
+                                                    </FormControl>
+                                                </div>
+                                            )}
                                         </FormItem>
                                     )}
                                 >
@@ -146,6 +164,7 @@ const UserSocialDialog = () => {
 
                             <div className="mt-4">
                                 <FormField
+                                    disabled={!youtubeEnabled}
                                     control={form.control}
                                     name="youtube"
                                     render={({ field }) => (
@@ -154,7 +173,7 @@ const UserSocialDialog = () => {
                                                 <Youtube className="w-4 h-4" />
                                                 <div className="flex justify-start items-center"> YouTube
                                                     <div className="ml-auto mb-2">
-                                                        <Switch className="ml-auto w-4 h-4" onClick={onYoutubeChange} />
+                                                        <Switch className="ml-auto w-4 h-4" onCheckedChange={onYoutubeChange} />
                                                     </div>
                                                 </div>
                                             </FormLabel>
@@ -186,6 +205,7 @@ const UserSocialDialog = () => {
                                 <Separator className="bg-black w-8 mt-2 mb-2" />
                                 <div className="mt-4">
                                     <FormField
+                                        disabled={!emailEnabled}
                                         control={form.control}
                                         name="email"
                                         render={({ field }) => (
@@ -194,16 +214,21 @@ const UserSocialDialog = () => {
                                                     <Mail className="w-4 h-4" />
                                                     <div className="flex justify-start items-center"> E-Mail Addresse
                                                         <div className="ml-auto mb-2">
-                                                            <Switch className="ml-auto w-4 h-4" />
+                                                            <Switch className="ml-auto w-4 h-4" onCheckedChange={onEmailChange} />
                                                         </div>
                                                     </div>
                                                 </FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        disabled={isSubmitting}
-                                                        placeholder="zum Beispiel : test@test.com"
-                                                        {...field} />
-                                                </FormControl>
+                                                {emailEnabled && (
+                                                    <div>
+                                                        <FormControl>
+                                                            <Input
+                                                                disabled={isSubmitting}
+                                                                placeholder="zum Beispiel : test@test.com"
+                                                                {...field} />
+                                                        </FormControl>
+                                                    </div>
+                                                )}
+
                                             </FormItem>
                                         )}
                                     >
