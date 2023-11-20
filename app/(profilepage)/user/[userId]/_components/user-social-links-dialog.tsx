@@ -58,7 +58,7 @@ const UserSocialDialog = () => {
     }
 
     const onTwitterChange = () => {
-        setInstaEnabled(!twitterEnabled);
+        setTwitterEnabled(!twitterEnabled);
     }
 
     const onYoutubeChange = () => {
@@ -106,9 +106,11 @@ const UserSocialDialog = () => {
                                             <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
                                             <FormControl>
                                                 <Input
-                                                    disabled={isSubmitting || !youtubeEnabled}
+                                                    disabled = {true}
+                                                    type="instagram"
                                                     placeholder="zum Beispiel : @username"
-                                                    {...field} />
+                                                    {...field} 
+                                                    />
                                             </FormControl>
                                         </div>
                                     </FormItem>
@@ -119,6 +121,7 @@ const UserSocialDialog = () => {
                                 <FormField
                                     control={form.control}
                                     name="twitter"
+                                    disabled={!twitterEnabled}
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>
@@ -131,7 +134,7 @@ const UserSocialDialog = () => {
                                             </FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    disabled={isSubmitting}
+                                                    disabled={isSubmitting || !twitterEnabled}
                                                     placeholder="zum Beispiel : @username"
                                                     {...field} />
                                             </FormControl>
