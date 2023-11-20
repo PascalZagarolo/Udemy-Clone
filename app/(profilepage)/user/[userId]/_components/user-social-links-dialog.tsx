@@ -14,6 +14,7 @@ import { CircleEllipsis, Globe, Globe2, Instagram, Mail, MailCheck, Settings, Sh
 import { on } from "node:events";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+
 import { z } from "zod";
 
 
@@ -53,30 +54,29 @@ const UserSocialDialog = () => {
     const { isSubmitting, isValid } = form.formState;
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
+        
         console.log(values);
     }
 
     const onInstaChange = () => {
-        setInstaEnabled(!instaEnabled);
+        setInstaEnabled(instaEnabled);
+        console.log("Insta : " , instaEnabled);
     }
 
     const onTwitterChange = () => {
         setTwitterEnabled(!twitterEnabled);
+        console.log("Twitter : " , twitterEnabled);
     }
 
     const onYoutubeChange = () => {
         setYoutubeEnabled(!youtubeEnabled);
-        console.log(youtubeEnabled);
+        console.log("YouTube : " , youtubeEnabled);
     }
 
     const onEmailChange = () => {
         setEmailEnabled(!emailEnabled);
+        console.log("Email : " , emailEnabled)
     }
-
-
-
-
-
 
     return (
         <div>
@@ -110,16 +110,12 @@ const UserSocialDialog = () => {
                                                 </div>
                                             </div>
                                         </FormLabel>
-                                        <div className="flex justify-start items-center">
-
-
                                             {instaEnabled && (
                                                 <div className="w-full">
                                                     <div className="flex justify-start items-center w-full">                                        
                                                         <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
                                                         <FormControl>
-                                                            <Input
-                                                                disabled={true}
+                                                            <Input 
                                                                 type="instagram"
                                                                 placeholder="zum Beispiel : @username"
                                                                 {...field}
@@ -128,8 +124,6 @@ const UserSocialDialog = () => {
                                                     </div>
                                                 </div>
                                             )}
-
-                                        </div>
                                     </FormItem>
                                 )}
                             >
@@ -209,6 +203,7 @@ const UserSocialDialog = () => {
                                 <Separator className="bg-black w-8 mt-2 mb-2" />
                                 <div className="mt-4">
                                     <FormField
+                                        
                                         disabled={!emailEnabled}
                                         control={form.control}
                                         name="email"
@@ -247,14 +242,8 @@ const UserSocialDialog = () => {
 
                         </form>
                     </Form>
-
-
-
                 </DialogContent>
             </Dialog>
-
-
-
         </div>
     );
 }
