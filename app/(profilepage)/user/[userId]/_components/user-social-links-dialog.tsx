@@ -144,7 +144,7 @@ const UserSocialDialog = () => {
                                                 </div>
                                             </FormLabel>
                                             {twitterEnabled && (
-                                                <div>
+                                               
                                                     <FormControl>
                                                         <Input
                                                             disabled={isSubmitting || !twitterEnabled}
@@ -152,7 +152,7 @@ const UserSocialDialog = () => {
                                                             {...field} 
                                                             readOnly = {twitterEnabled}/>
                                                     </FormControl>
-                                                </div>
+                                               
                                             )}
                                         </FormItem>
                                     )}
@@ -176,14 +176,14 @@ const UserSocialDialog = () => {
                                                 </div>
                                             </FormLabel>
                                             {youtubeEnabled && (
-                                                <div>
+                                               
                                                     <FormControl>
                                                         <Input
                                                             disabled={!youtubeEnabled}
                                                             placeholder="zum Beispiel : @username"
                                                             {...field} />
                                                     </FormControl>
-                                                </div>
+                                              
                                             )}
 
                                         </FormItem>
