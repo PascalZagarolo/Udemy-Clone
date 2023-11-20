@@ -24,7 +24,8 @@ const UserSocialDialog = () => {
             message: "Username ist zu kurz"
         }),
         twitter: z.string().min(3, {
-            message: "Username ist zu kurz"
+            message: "Username ist zu kurz",
+            
         }),
         youtube: z.string().min(1, {
             message: "Username ist zu kurz"
@@ -40,6 +41,7 @@ const UserSocialDialog = () => {
             instagram: "",
             twitter: "",
             youtube: "",
+            email: "",
         }
     })
 
@@ -112,8 +114,9 @@ const UserSocialDialog = () => {
 
 
                                             {instaEnabled && (
-                                                <div>
-                                                    <div>                                        <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
+                                                <div className="w-full">
+                                                    <div className="flex justify-start items-center w-full">                                        
+                                                        <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
                                                         <FormControl>
                                                             <Input
                                                                 disabled={true}
@@ -152,7 +155,8 @@ const UserSocialDialog = () => {
                                                         <Input
                                                             disabled={isSubmitting || !twitterEnabled}
                                                             placeholder="zum Beispiel : @username"
-                                                            {...field} />
+                                                            {...field} 
+                                                            readOnly = {twitterEnabled}/>
                                                     </FormControl>
                                                 </div>
                                             )}
@@ -222,7 +226,7 @@ const UserSocialDialog = () => {
                                                     <div>
                                                         <FormControl>
                                                             <Input
-                                                                disabled={isSubmitting}
+                                                                disabled={isSubmitting || !emailEnabled}
                                                                 placeholder="zum Beispiel : test@test.com"
                                                                 {...field} />
                                                         </FormControl>
@@ -237,7 +241,7 @@ const UserSocialDialog = () => {
                                 <Separator className="bg-black w-8 mb-2 ml-auto mt-4" />
                             </div>
 
-                            <Button className="bg-blue-800 mt-2" type="submit" disabled={isSubmitting || !isValid}>
+                            <Button className="bg-blue-800 mt-2" type="submit" disabled={isSubmitting}>
                                 Einstellungen festlegen
                             </Button>
 
