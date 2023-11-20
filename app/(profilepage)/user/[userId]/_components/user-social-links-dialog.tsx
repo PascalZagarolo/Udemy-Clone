@@ -20,21 +20,38 @@ import { z } from "zod";
 
 const UserSocialDialog = () => {
 
+    
+
+    
+
+    const [instaEnabled, setInstaEnabled] = useState(false);
+    const [twitterEnabled, setTwitterEnabled] = useState(false);
+    const [youtubeEnabled, setYoutubeEnabled] = useState(false);
+    const [emailEnabled, setEmailEnabled] = useState(false);
+
+    
+
+
     const formSchema = z.object({
-        instagram: z.string().min(3, {
+        instagram: 
+        instaEnabled ? z.string().min(3, {
             message: "Username ist zu kurz"
-        }),
+        }) : z.string().min(3, {
+            message: "Username ist zu kurz"
+        }).optional(),
+        
         twitter: z.string().min(3, {
             message: "Username ist zu kurz",
             
-        }),
+        }).optional() ,
         youtube: z.string().min(1, {
             message: "Username ist zu kurz"
-        }),
+        }).optional(),
         email: z.string().min(1, {
             message: "Username ist zu kurz"
-        }),
+        }).optional(),
     })
+
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -46,11 +63,6 @@ const UserSocialDialog = () => {
         }
     })
 
-    const [instaEnabled, setInstaEnabled] = useState(false);
-    const [twitterEnabled, setTwitterEnabled] = useState(false);
-    const [youtubeEnabled, setYoutubeEnabled] = useState(false);
-    const [emailEnabled, setEmailEnabled] = useState(false);
-
     const { isSubmitting, isValid } = form.formState;
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
@@ -59,7 +71,7 @@ const UserSocialDialog = () => {
     }
 
     const onInstaChange = () => {
-        setInstaEnabled(instaEnabled);
+        setInstaEnabled(instaEnabled ? false : true);
         console.log("Insta : " , instaEnabled);
     }
 
@@ -97,7 +109,7 @@ const UserSocialDialog = () => {
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
                             <FormField
-                                disabled={!instaEnabled}
+                                disabled={instaEnabled ? false : true}
                                 control={form.control}
                                 name="instagram"
                                 render={({ field }) => (
@@ -106,7 +118,7 @@ const UserSocialDialog = () => {
                                             <Instagram className="w-4 h-4" />
                                             <div className="flex justify-start items-center"> Instagram
                                                 <div className="ml-auto mb-2">
-                                                    <Switch className="ml-auto w-4 h-4" onCheckedChange={onInstaChange} />
+                                                    <Switch className="ml-auto w-4 h-4" onClick={onInstaChange} />
                                                 </div>
                                             </div>
                                         </FormLabel>
@@ -117,6 +129,7 @@ const UserSocialDialog = () => {
                                                         <FormControl>
                                                             <Input 
                                                                 type="instagram"
+                                                                disabled={instaEnabled ? false : true}
                                                                 placeholder="zum Beispiel : @username"
                                                                 {...field}
                                                             />
@@ -150,7 +163,7 @@ const UserSocialDialog = () => {
                                                             disabled={isSubmitting || !twitterEnabled}
                                                             placeholder="zum Beispiel : @username"
                                                             {...field} 
-                                                            readOnly = {twitterEnabled}/>
+                                                            />
                                                     </FormControl>
                                                
                                             )}
