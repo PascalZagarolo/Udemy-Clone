@@ -178,15 +178,13 @@ model Likes {
 }
 
 
-
 model Links {
 
+  
   userId String @id @unique
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  LinkType Socials @unique
-
-  username String
+  socialLinks SocialLinks[]
 
   enabled Boolean @default(false)
 
@@ -194,6 +192,17 @@ model Links {
 
 }
 
+model SocialLinks {
+  id String @id @default(uuid())
+
+  linksId String
+  linkList Links @relation(fields: [linksId], references: [userId], onDelete: Cascade)
+
+  LinkType Socials @unique
+  username String
+
+  @@index([linksId])
+}
 
 enum Socials {
   FACEBOOK
