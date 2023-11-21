@@ -18,18 +18,23 @@ export async function PATCH(
 
         const values = await req.json();
         
+        
+        for (let i = 0; i < values.length; i++) {
+
+            values.LinkType = values.LinkType.toUpperCase();
+
+            const updatedLink = await db.socialLinks.update({
+                where : {
+                    LinkType : values.LinkType,
+                }, data : {
+                    username : values.username,
+                }
+            })
+
+            return NextResponse.json(updatedLink);
+        }
 
         
-
-        const updatedProfile = await db.user.update({
-            where : {
-                id : userId
-            }, data: {
-                imageUrl : values.url
-            }
-        })
-
-        return NextResponse.json(updatedProfile);
 
     } catch {
         console.log("FEHLER : /api/user/[userId]/profilepic PATCH");
