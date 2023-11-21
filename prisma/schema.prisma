@@ -181,9 +181,7 @@ model Likes {
 
 model Links {
 
-  id String @id @default(uuid())
-
-  userId String
+  userId String @id @unique
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   LinkType Socials @unique
