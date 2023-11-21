@@ -186,7 +186,7 @@ model Links {
 
   socialLinks SocialLinks[]
 
-  enabled Boolean @default(false)
+  
 
   @@index([userId])
 
@@ -199,6 +199,7 @@ model SocialLinks {
   linkList Links @relation(fields: [linksId], references: [userId], onDelete: Cascade)
 
   LinkType Socials @unique
+  enabled Boolean @default(false)
   username String
 
   @@index([linksId])
