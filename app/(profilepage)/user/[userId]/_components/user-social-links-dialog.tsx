@@ -127,23 +127,22 @@ const UserSocialDialog = () => {
 
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
-                            <FormField
-                                control={form.control}
-                                name="instagram"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>
-                                            <Instagram className="w-4 h-4" />
-                                            <div className="flex justify-start items-center"> Instagram
+
+                        <Instagram className="w-4 h-4" />
+                                            <div className="flex justify-start items-center"> <p className="text-sm font-semibold"> Instagram </p>
                                                 <div className="ml-auto mb-2">
                                                     <Switch className="ml-auto w-4 h-4" onClick={onInstaChange} />
                                                 </div>
                                             </div>
-                                        </FormLabel>
-                                       
+                        <FormField
+                                control={form.control}
+                                name="instagram"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        
+                                        {instaEnabled && (
                                             <div className="w-full">
                                                 <div className="flex justify-start items-center w-full">
-                                                    <p className="mr-2 font-semibold text-sm text-gray-800/80"> instagram.com/</p>
                                                     <FormControl>
                                                         <Input
                                                             type="instagram"
@@ -153,11 +152,14 @@ const UserSocialDialog = () => {
                                                     </FormControl>
                                                 </div>
                                             </div>
-                                       
+                                        )}
                                     </FormItem>
                                 )}
                             >
                             </FormField>
+
+
+
                             <div className="mt-4">
                                 <FormField
                                     control={form.control}
