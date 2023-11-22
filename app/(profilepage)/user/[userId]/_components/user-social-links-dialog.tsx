@@ -147,7 +147,6 @@ const UserSocialDialog = () => {
                                                     <FormControl>
                                                         <Input
                                                             type="instagram"
-                                                            disabled={instaEnabled ? false : true}
                                                             placeholder="zum Beispiel : @username"
                                                             {...field}
                                                         />
@@ -178,7 +177,7 @@ const UserSocialDialog = () => {
 
                                                 <FormControl>
                                                     <Input
-                                                        disabled={isSubmitting || !twitterEnabled}
+                                                        
                                                         placeholder="zum Beispiel : @username"
                                                         {...field}
                                                     />
@@ -210,7 +209,7 @@ const UserSocialDialog = () => {
 
                                                 <FormControl>
                                                     <Input
-                                                        disabled={!youtubeEnabled}
+                                                        
                                                         placeholder="zum Beispiel : @username"
                                                         {...field} />
                                                 </FormControl>
@@ -252,7 +251,7 @@ const UserSocialDialog = () => {
                                                     <div>
                                                         <FormControl>
                                                             <Input
-                                                                disabled={isSubmitting || !emailEnabled}
+                                                                
                                                                 placeholder="zum Beispiel : test@test.com"
                                                                 {...field} />
                                                         </FormControl>
