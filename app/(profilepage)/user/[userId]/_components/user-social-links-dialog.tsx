@@ -10,8 +10,10 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 
 import { CircleEllipsis, Globe, Globe2, Instagram, Mail, MailCheck, Settings, Share, Twitter, Youtube } from "lucide-react";
+import { useParams } from "next/navigation";
 import { on } from "node:events";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -35,7 +37,7 @@ const UserSocialDialog = () => {
     const [emailEnabled, setEmailEnabled] = useState(false);
 
 
-
+    const params = useParams();
 
     const formSchema = z.object({
         instagram:
@@ -85,7 +87,7 @@ const UserSocialDialog = () => {
     const { isSubmitting, isValid } = form.formState;
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-
+        axios.patch(`/api/user/${params.userId}/links`, values)
         console.log(values);
     }
 
@@ -109,6 +111,8 @@ const UserSocialDialog = () => {
         console.log("Email : ", emailEnabled)
     }
 
+    
+
     return (
         <div>
             <Dialog>
@@ -127,8 +131,6 @@ const UserSocialDialog = () => {
 
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
-
-
                             <div className="w-full">
                                 <Instagram className="w-4 h-4" />
                                 <div className="flex justify-start items-center"> <p className="text-sm font-semibold"> Instagram </p>
@@ -142,10 +144,12 @@ const UserSocialDialog = () => {
                                         <FormField
                                             control={form.control}
                                             name="instagram"
+                                            disabled={instaEnabled ? false : true}
                                             render={({ field }) => (
                                                 <FormItem className="w-full">
                                                     <FormControl>
                                                         <Input
+                                                            disabled={instaEnabled ? false : true}
                                                             type="instagram"
                                                             placeholder="zum Beispiel : @username"
                                                             {...field}
@@ -165,7 +169,7 @@ const UserSocialDialog = () => {
                                 <FormField
                                     control={form.control}
                                     name="twitter"
-
+                                    disabled={twitterEnabled ? false : true}
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>
@@ -180,7 +184,7 @@ const UserSocialDialog = () => {
 
                                                 <FormControl>
                                                     <Input
-
+                                                        disabled={twitterEnabled ? false : true}
                                                         placeholder="zum Beispiel : @username"
                                                         {...field}
                                                     />
@@ -195,7 +199,7 @@ const UserSocialDialog = () => {
 
                             <div className="mt-4">
                                 <FormField
-
+                                    disabled={youtubeEnabled ? false : true}
                                     control={form.control}
                                     name="youtube"
                                     render={({ field }) => (
@@ -212,7 +216,7 @@ const UserSocialDialog = () => {
 
                                                 <FormControl>
                                                     <Input
-
+                                                        disabled={youtubeEnabled ? false : true}
                                                         placeholder="zum Beispiel : @username"
                                                         {...field} />
                                                 </FormControl>
@@ -236,6 +240,7 @@ const UserSocialDialog = () => {
                                 <Separator className="bg-black w-8 mt-2 mb-2" />
                                 <div className="mt-4">
                                     <FormField
+                                        disabled={emailEnabled ? false : true}
                                         control={form.control}
                                         name="email"
                                         render={({ field }) => (
@@ -252,6 +257,7 @@ const UserSocialDialog = () => {
                                                     <div>
                                                         <FormControl>
                                                             <Input
+                                                                disabled={emailEnabled ? false : true}
                                                                 placeholder="zum Beispiel : test@test.com"
                                                                 {...field} />
                                                         </FormControl>
@@ -266,7 +272,7 @@ const UserSocialDialog = () => {
                                 <Separator className="bg-black w-8 mb-2 ml-auto mt-4" />
                             </div>
 
-                            <Button className="bg-blue-800 mt-2" type="submit" disabled={isSubmitting}>
+                            <Button className="bg-blue-800 mt-2" type="submit" disabled={isSubmitting || !isValid}>
                                 Einstellungen festlegen
                             </Button>
 
