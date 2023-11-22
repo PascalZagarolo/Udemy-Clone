@@ -128,17 +128,17 @@ const UserSocialDialog = () => {
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
 
-                            
+
                             <div className="w-full">
-                            <Instagram className="w-4 h-4" />
-                            <div className="flex justify-start items-center"> <p className="text-sm font-semibold"> Instagram </p>
-                                <div className="ml-auto mb-2">
-                                    <Switch className="ml-auto w-4 h-4" onClick={onInstaChange} />
+                                <Instagram className="w-4 h-4" />
+                                <div className="flex justify-start items-center"> <p className="text-sm font-semibold"> Instagram </p>
+                                    <div className="ml-auto mb-2">
+                                        <Switch className="ml-auto w-4 h-4" onClick={onInstaChange} />
+                                    </div>
                                 </div>
-                            </div>
-                            {instaEnabled && (
-                                <div className="flex justify-start items-center w-full">
-                                    
+                                {instaEnabled && (
+                                    <div className="flex justify-start items-center w-full">
+
                                         <FormField
                                             control={form.control}
                                             name="instagram"
@@ -149,15 +149,15 @@ const UserSocialDialog = () => {
                                                             type="instagram"
                                                             placeholder="zum Beispiel : @username"
                                                             {...field}
-                                                            
+
                                                         />
                                                     </FormControl>
                                                 </FormItem>
                                             )}
-                                        >
-                                        </FormField>
-                                    
-                                </div>
+                                        />
+
+
+                                    </div>
                                 )}
                             </div>
 
@@ -189,8 +189,8 @@ const UserSocialDialog = () => {
                                             )}
                                         </FormItem>
                                     )}
-                                >
-                                </FormField>
+                                />
+
                             </div>
 
                             <div className="mt-4">
@@ -221,8 +221,8 @@ const UserSocialDialog = () => {
 
                                         </FormItem>
                                     )}
-                                >
-                                </FormField>
+                                />
+
                             </div>
 
                             <div className="mt-4">
@@ -260,8 +260,8 @@ const UserSocialDialog = () => {
 
                                             </FormItem>
                                         )}
-                                    >
-                                    </FormField>
+                                    />
+
                                 </div>
                                 <Separator className="bg-black w-8 mb-2 ml-auto mt-4" />
                             </div>
