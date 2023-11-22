@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { DialogTrigger } from "@radix-ui/react-dialog";
 
 
 interface InitializeProfileBoxProps {
@@ -83,7 +84,7 @@ const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
                         Name
                     </Label>
                     <Separator className="bg-slate-800 w-[30px] text-bold" />
-                  
+                    <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
                             <FormField
                                 control={form.control}
@@ -121,11 +122,14 @@ const InitializeProfileBox: React.FC<InitializeProfileBoxProps> = ({
                             />
                             
                             <div className="flex items-center gap-x-2">
+                                <DialogTrigger>
                                 <Button type="submit" className="bg-blue-800 mt-4 bottom-0" aria-controls="radix-:R1mcq:" disabled={!isValid || isSubmitting}>
                                     Nutzer erstellen.
                                 </Button>
+                                </DialogTrigger>
                             </div>
                         </form>
+                        </Form>
                   
             </DialogContent>
         </Dialog>

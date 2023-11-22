@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleEllipsis, Globe, Globe2, Instagram, Mail, MailCheck, Settings, Share, Twitter, Youtube } from "lucide-react";
 import { on } from "node:events";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 
 

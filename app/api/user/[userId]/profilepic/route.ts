@@ -27,7 +27,7 @@ export async function PATCH(
                 where : {
                     LinkType : values.LinkType,
                 }, data : {
-                    username : values.username,
+                    username : values.username
                 }
             })
 
