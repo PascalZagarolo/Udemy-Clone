@@ -49,8 +49,8 @@ const UserSocialDialog = () => {
             twitterEnabled ? z.string().min(3, {
                 message: "Username ist zu kurz",
             }) : z.string().min(3, {
-                    message: "Username ist zu kurz",
-                }).optional(),
+                message: "Username ist zu kurz",
+            }).optional(),
 
 
 
@@ -128,43 +128,44 @@ const UserSocialDialog = () => {
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
 
-                        <Instagram className="w-4 h-4" />
-                                            <div className="flex justify-start items-center"> <p className="text-sm font-semibold"> Instagram </p>
-                                                <div className="ml-auto mb-2">
-                                                    <Switch className="ml-auto w-4 h-4" onClick={onInstaChange} />
-                                                </div>
-                                            </div>
-                        <FormField
-                                control={form.control}
-                                name="instagram"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        
-                                        {instaEnabled && (
-                                            <div className="w-full">
-                                                <div className="flex justify-start items-center w-full">
+                            
+                            <div className="w-full">
+                            <Instagram className="w-4 h-4" />
+                            <div className="flex justify-start items-center"> <p className="text-sm font-semibold"> Instagram </p>
+                                <div className="ml-auto mb-2">
+                                    <Switch className="ml-auto w-4 h-4" onClick={onInstaChange} />
+                                </div>
+                            </div>
+                            {instaEnabled && (
+                                <div className="flex justify-start items-center w-full">
+                                    
+                                        <FormField
+                                            control={form.control}
+                                            name="instagram"
+                                            render={({ field }) => (
+                                                <FormItem className="w-full">
                                                     <FormControl>
                                                         <Input
                                                             type="instagram"
                                                             placeholder="zum Beispiel : @username"
                                                             {...field}
+                                                            
                                                         />
                                                     </FormControl>
-                                                </div>
-                                            </div>
-                                        )}
-                                    </FormItem>
+                                                </FormItem>
+                                            )}
+                                        >
+                                        </FormField>
+                                    
+                                </div>
                                 )}
-                            >
-                            </FormField>
-
-
+                            </div>
 
                             <div className="mt-4">
                                 <FormField
                                     control={form.control}
                                     name="twitter"
-                                    
+
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>
@@ -179,7 +180,7 @@ const UserSocialDialog = () => {
 
                                                 <FormControl>
                                                     <Input
-                                                        
+
                                                         placeholder="zum Beispiel : @username"
                                                         {...field}
                                                     />
@@ -194,7 +195,7 @@ const UserSocialDialog = () => {
 
                             <div className="mt-4">
                                 <FormField
-                                    
+
                                     control={form.control}
                                     name="youtube"
                                     render={({ field }) => (
@@ -211,7 +212,7 @@ const UserSocialDialog = () => {
 
                                                 <FormControl>
                                                     <Input
-                                                        
+
                                                         placeholder="zum Beispiel : @username"
                                                         {...field} />
                                                 </FormControl>
@@ -235,8 +236,6 @@ const UserSocialDialog = () => {
                                 <Separator className="bg-black w-8 mt-2 mb-2" />
                                 <div className="mt-4">
                                     <FormField
-
-                                        
                                         control={form.control}
                                         name="email"
                                         render={({ field }) => (
@@ -253,7 +252,6 @@ const UserSocialDialog = () => {
                                                     <div>
                                                         <FormControl>
                                                             <Input
-                                                                
                                                                 placeholder="zum Beispiel : test@test.com"
                                                                 {...field} />
                                                         </FormControl>
@@ -268,7 +266,7 @@ const UserSocialDialog = () => {
                                 <Separator className="bg-black w-8 mb-2 ml-auto mt-4" />
                             </div>
 
-                            <Button className="bg-blue-800 mt-2" type="submit" disabled={isSubmitting || !isValid}>
+                            <Button className="bg-blue-800 mt-2" type="submit" disabled={isSubmitting}>
                                 Einstellungen festlegen
                             </Button>
 
