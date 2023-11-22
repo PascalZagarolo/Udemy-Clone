@@ -128,7 +128,6 @@ const UserSocialDialog = () => {
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
                             <FormField
-                                disabled={instaEnabled ? false : true}
                                 control={form.control}
                                 name="instagram"
                                 render={({ field }) => (
@@ -164,7 +163,7 @@ const UserSocialDialog = () => {
                                 <FormField
                                     control={form.control}
                                     name="twitter"
-                                    disabled={!twitterEnabled}
+                                    
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>
@@ -194,7 +193,7 @@ const UserSocialDialog = () => {
 
                             <div className="mt-4">
                                 <FormField
-                                    disabled={!youtubeEnabled}
+                                    
                                     control={form.control}
                                     name="youtube"
                                     render={({ field }) => (
@@ -236,7 +235,7 @@ const UserSocialDialog = () => {
                                 <div className="mt-4">
                                     <FormField
 
-                                        disabled={!emailEnabled}
+                                        
                                         control={form.control}
                                         name="email"
                                         render={({ field }) => (
