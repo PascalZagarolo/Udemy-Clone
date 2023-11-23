@@ -87,7 +87,16 @@ const UserSocialDialog = () => {
     const { isSubmitting, isValid } = form.formState;
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        axios.patch(`/api/user/${params.userId}/links`, values)
+        axios.patch(`/api/user/${params.userId}/links`, {
+            instagram : values.instagram,
+            twitter : values.twitter,
+            youtube : values.youtube,
+            email : values.email,
+            instaEnabled : instaEnabled,
+            twitterEnabled : twitterEnabled,
+            youtubeEnabled : youtubeEnabled,
+            emailEnabled : emailEnabled,
+        })
         console.log(values);
     }
 

@@ -186,8 +186,6 @@ model Links {
 
   socialLinks SocialLinks[]
 
-  
-
   @@index([userId])
 
 }
@@ -206,11 +204,11 @@ model SocialLinks {
 }
 
 enum Socials {
-  FACEBOOK
-  INSTAGRAM
-  TWITTER
-  YOUTUBE
-  WEBSITE
-  EMAIL
+  facebook
+  instagram
+  twitter
+  youtube
+  website
+  email
 }
 
