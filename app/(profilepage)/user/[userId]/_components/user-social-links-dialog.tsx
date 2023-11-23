@@ -16,7 +16,8 @@ import { CircleEllipsis, Globe, Globe2, Instagram, Mail, MailCheck, Settings, Sh
 import { useParams } from "next/navigation";
 import { on } from "node:events";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 
 
@@ -36,6 +37,7 @@ const UserSocialDialog = () => {
     const [youtubeEnabled, setYoutubeEnabled] = useState(false);
     const [emailEnabled, setEmailEnabled] = useState(false);
 
+    const [isLoading, setIsLoading] = useState(false);
 
     const params = useParams();
 
@@ -87,16 +89,21 @@ const UserSocialDialog = () => {
     const { isSubmitting, isValid } = form.formState;
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        axios.patch(`/api/user/${params.userId}/links`, {
-            instagram : values.instagram,
-            twitter : values.twitter,
-            youtube : values.youtube,
-            email : values.email,
-            instaEnabled : instaEnabled,
-            twitterEnabled : twitterEnabled,
-            youtubeEnabled : youtubeEnabled,
-            emailEnabled : emailEnabled,
-        })
+        try {
+            setIsLoading(true);
+            axios.patch(`/api/user/${params.userId}/links`, {
+                instagram : values.instagram,
+                twitter : values.twitter,
+                youtube : values.youtube,
+                email : values.email,
+            })
+            toast.success("Einstellungen erfolgreich gespeichert");
+        } catch {
+            toast.error("Fehler beim Speichern der Einstellungen");
+        } finally {
+            setIsLoading(false);
+        }
+        
         console.log(values);
     }
 

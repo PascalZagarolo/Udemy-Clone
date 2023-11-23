@@ -34,8 +34,6 @@ export async function PATCH(
             return NextResponse.json(updatedLink);
         }
 
-        
-
     } catch {
         console.log("FEHLER : /api/user/[userId]/profilepic PATCH");
         return new NextResponse("Interner Server Error" , { status : 500});
