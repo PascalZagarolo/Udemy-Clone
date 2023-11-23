@@ -196,7 +196,7 @@ model SocialLinks {
   linksId String
   linkList Links @relation(fields: [linksId], references: [userId], onDelete: Cascade)
 
-  LinkType Socials @unique
+  linkType Socials @unique
   enabled Boolean @default(false)
   username String
 
