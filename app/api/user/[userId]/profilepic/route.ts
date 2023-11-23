@@ -25,7 +25,7 @@ export async function PATCH(
 
             const updatedLink = await db.socialLinks.update({
                 where : {
-                    LinkType : values.LinkType,
+                    linkType : values.LinkType,
                 }, data : {
                     username : values.username
                 }
