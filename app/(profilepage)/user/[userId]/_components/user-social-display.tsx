@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { Instagram, Mail, Twitter, Youtube } from "lucide-react";
+import SocialOptions from "./user-social-options";
 
 interface SocialDisplayProps {
     userId : string
@@ -16,22 +17,25 @@ const SocialDisplay: React.FC<SocialDisplayProps> = async ({
         "email" : Mail
     }
 
-    const sharedSocials = await db.links.findMany({
+    const sharedSocials = await db.socialLinks.findMany({
         where : {
-            userId,
-            socialLinks : {
-                some :{
-                    enabled : true
-                }
-            }
+            linksId : userId,
+            enabled: true
         }
     })
 
 
     return ( 
-        <div>
-            <div>
+        <div className="mt-8">
+            <div className="flex justify-start">
                 
+                {
+                    sharedSocials.map(() => (
+                        <SocialOptions 
+                        icon={socialLogo["instagram"]}
+                        />
+                    ))
+                }
             </div>
         </div>
      );
