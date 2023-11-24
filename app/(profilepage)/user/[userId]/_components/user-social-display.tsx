@@ -30,9 +30,10 @@ const SocialDisplay: React.FC<SocialDisplayProps> = async ({
             <div className="flex justify-start">
                 
                 {
-                    sharedSocials.map(() => (
-                        <SocialOptions 
-                        icon={socialLogo["instagram"]}
+                    sharedSocials.map((social, index) => (
+                        <SocialOptions
+                        key={index} 
+                        icon={socialLogo[sharedSocials[index].linkType]}
                         />
                     ))
                 }
