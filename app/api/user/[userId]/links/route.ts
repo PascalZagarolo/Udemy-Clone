@@ -43,8 +43,7 @@ export async function PATCH(
             twitter: twitterName,
             youtube: youtubeName,
             email: emailName,
-            facebook: "",
-            website: "",
+            
         }
 
         let linkList;
@@ -75,11 +74,22 @@ export async function PATCH(
                 }
             })
 
+
             if(!existingLink) {
                 const createLink = await db.socialLinks.create({
                     data : {
                         linksId : userId,
                         linkType : socialType,
+                        username : username,
+                        enabled : username == null ? false : true
+                    }
+                })
+            } else {
+                const patchedLink = await db.socialLinks.update({
+                    where : {
+                            linkType: socialType,
+                            linksId: userId               
+                    }, data : {
                         username : username,
                         enabled : username == null ? false : true
                     }
