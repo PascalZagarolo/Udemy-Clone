@@ -7,6 +7,7 @@ import UserAlert from "./user-alert";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import UserFooter from "./user-footer";
+import SocialDisplay from "./user-social-display";
 
 interface UserMainContentProps {
     user : User;
@@ -85,9 +86,11 @@ const UserMainContent: React.FC<UserMainContentProps> = async ({
             user={user}
             />
             </div>     
-            
             <UserCourses
             user = {user}
+            />
+            <SocialDisplay
+            userId = {userId || ""}
             />
             
         </div>
