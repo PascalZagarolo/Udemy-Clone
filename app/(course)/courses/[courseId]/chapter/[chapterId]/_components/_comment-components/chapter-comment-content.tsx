@@ -59,9 +59,6 @@ const CommentContent: React.FC<CommentContentProps> = ({
 
     const [pfpLoaded, pfpIsLoading] = useState(false);
     
-    
-   
-
     const [isEditing, setIsEditing] = useState(false);
 
     const onClick = () => {
@@ -72,11 +69,6 @@ const CommentContent: React.FC<CommentContentProps> = ({
             toast.error("Fehler beim Löschen deines Kommentars");
         }
     }
-
-
-    
-
-
 
     const formschema = z.object({
         content: z.string().min(1, {
@@ -125,15 +117,12 @@ const CommentContent: React.FC<CommentContentProps> = ({
         }
     }
     
-
     const { isSubmitting, isValid } = form.formState;
-
     const ownComment = comment.userId === userId;
-    
+
+
     return (
         <div key={comment.id} className="sm:mt-2">
-            
-                
                <div className="hover:bg-gray-200/50 mt-4">
                <div className="text-base text-bold text-gray-900 hover:text-gray-900/70 font-semibold flex justify-start " >
                    <div>
@@ -160,7 +149,6 @@ const CommentContent: React.FC<CommentContentProps> = ({
                            <DialogContent className="border-black">
                                <Form {...form}>
                                    <form onSubmit={form.handleSubmit(onSubmit)}>
-   
                                        <DialogHeader >
                                            <DialogTitle className="flex">
                                                <MessageCircleIcon className="w-6 h-6" />
@@ -180,28 +168,22 @@ const CommentContent: React.FC<CommentContentProps> = ({
                                                            {...field}
                                                            className="mt-8 selection:border-none"
    
-                                                       />
-   
+                                                       /> 
                                                    </FormControl>
                                                    <FormMessage />
                                                </FormItem>
                                            )}
                                        />
-   
                                        <Button type="submit" className="mt-8 bg-blue-800 hover:bg-blue-800/80" disabled={!isValid || isSubmitting}>
                                            Änderungen speichern
                                        </Button>
-   
                                    </form>
                                </Form>
                            </DialogContent>
                        </Dialog>
                    )}
                    <div className="ml-auto">
-   
-   
                        {!isEditing && ownComment && (
-                         
                            <div className="flex justify-between">
                            <EditToolTip
                                onClick={onClick}
@@ -246,21 +228,15 @@ const CommentContent: React.FC<CommentContentProps> = ({
                        )}
                    </div>
                    
-                   
                </div>
                <Separator className="w-[50px] ml-auto bg-black mt-2 mr-5"/>
                <LikeBox
                comments = {comment}
                />
-               
                </div>
            </div>
-
-            
-        
         </div>
     )
-    
     
 }
 
