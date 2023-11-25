@@ -1,6 +1,8 @@
 import { db } from "@/lib/db";
-import { Instagram, Mail, Twitter, Youtube } from "lucide-react";
+import { Instagram, Link, Link2, LinkIcon, Mail, Twitter, Youtube } from "lucide-react";
 import SocialOptions from "./user-social-options";
+import { Separator } from "@/components/ui/separator";
+
 
 interface SocialDisplayProps {
     userId : string
@@ -25,9 +27,30 @@ const SocialDisplay: React.FC<SocialDisplayProps> = async ({
     })
 
 
-    return ( 
+    return (
+
+        
+
         <div className="mt-8">
-            <div className="flex justify-start">
+            {sharedSocials.length > 0 && (
+                <div>
+                    <div>
+                <h3 className="flex justify-start items-center">
+                    <LinkIcon className="mr-2"/>
+                    <p className="font-semibold text-xl">
+                        Relevante Links
+                    </p>
+                </h3>
+                   <div className="mt-4">
+                   <Separator
+                    className="bg-black w-8"
+                    />
+                    
+                    </div> 
+                    
+                </div>
+            <div className="flex justify-start mt-4">
+                
                 {
                     sharedSocials.map((social, index) => (
                         <SocialOptions
@@ -37,7 +60,14 @@ const SocialDisplay: React.FC<SocialDisplayProps> = async ({
                         />
                     ))
                 }
+                
             </div>
+            <div>
+            
+            </div>
+                </div>
+            )}
+            
         </div>
      );
 }

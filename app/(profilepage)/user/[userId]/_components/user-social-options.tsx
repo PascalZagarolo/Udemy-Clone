@@ -22,7 +22,7 @@ const SocialOptions: React.FC<SocialOptionsProps> = ({
                         )}
 
                         {Icon === Instagram && (
-                            <Icon className="text-yellow-300" />
+                            <Icon className="text-black" />
                         )}
 
                         {Icon === Youtube && (
