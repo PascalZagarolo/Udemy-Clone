@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 
 import { CircleEllipsis, Globe, Globe2, Instagram, Mail, MailCheck, Settings, Share, Twitter, Youtube } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { on } from "node:events";
 import { useState } from "react";
 import { set, useForm } from "react-hook-form";
@@ -34,6 +34,8 @@ const UserSocialDialog = () => {
     const [emailEnabled, setEmailEnabled] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
+
+    const router = useRouter();
 
     const params = useParams();
 
@@ -98,6 +100,7 @@ const UserSocialDialog = () => {
             toast.error("Fehler beim Speichern der Einstellungen");
         } finally {
             setIsLoading(false);
+            router.refresh();
         }
 
         console.log(values);
