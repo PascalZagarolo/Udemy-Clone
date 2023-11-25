@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
+import { Instagram, Mail, Twitter, Youtube } from "lucide-react";
 
 
 interface SocialOptionsProps {
@@ -17,7 +17,21 @@ const SocialOptions: React.FC<SocialOptionsProps> = ({
             <div>
                 <div className="mr-8 items-center">
                     <Button variant="ghost" className="items-center">
-                        <Icon />
+                        {Icon === Twitter && (
+                            <Icon className="text-sky-600" />
+                        )}
+
+                        {Icon === Instagram && (
+                            <Icon className="text-yellow-300" />
+                        )}
+
+                        {Icon === Youtube && (
+                            <Icon className="text-rose-600" />
+                        )}
+
+                        {Icon === Mail && (
+                            <Icon className="text-black" />
+                        )}
                     </Button>
                     <div>
                         {Icon === Mail ? (
