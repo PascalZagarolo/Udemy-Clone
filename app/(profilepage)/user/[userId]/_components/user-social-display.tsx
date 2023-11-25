@@ -28,12 +28,12 @@ const SocialDisplay: React.FC<SocialDisplayProps> = async ({
     return ( 
         <div className="mt-8">
             <div className="flex justify-start">
-                
                 {
                     sharedSocials.map((social, index) => (
                         <SocialOptions
                         key={index} 
                         icon={socialLogo[sharedSocials[index].linkType]}
+                        username = {sharedSocials[index].username}
                         />
                     ))
                 }

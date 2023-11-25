@@ -28,10 +28,6 @@ import { z } from "zod";
 
 const UserSocialDialog = () => {
 
-
-
-
-
     const [instaEnabled, setInstaEnabled] = useState(false);
     const [twitterEnabled, setTwitterEnabled] = useState(false);
     const [youtubeEnabled, setYoutubeEnabled] = useState(false);
@@ -92,10 +88,10 @@ const UserSocialDialog = () => {
         try {
             setIsLoading(true);
             axios.patch(`/api/user/${params.userId}/links`, {
-                instagram : values.instagram,
-                twitter : values.twitter,
-                youtube : values.youtube,
-                email : values.email,
+                instagram: values.instagram,
+                twitter: values.twitter,
+                youtube: values.youtube,
+                email: values.email,
             })
             toast.success("Einstellungen erfolgreich gespeichert");
         } catch {
@@ -103,7 +99,7 @@ const UserSocialDialog = () => {
         } finally {
             setIsLoading(false);
         }
-        
+
         console.log(values);
     }
 
@@ -127,7 +123,7 @@ const UserSocialDialog = () => {
         console.log("Email : ", emailEnabled)
     }
 
-    
+
 
     return (
         <div>
@@ -165,7 +161,7 @@ const UserSocialDialog = () => {
                                                 <FormItem className="w-full">
                                                     <FormControl>
                                                         <Input
-                                                            disabled={instaEnabled ? false : true}
+                                                            disabled={!instaEnabled ? false : true}
                                                             type="instagram"
                                                             placeholder="zum Beispiel : @username"
                                                             {...field}
@@ -200,7 +196,7 @@ const UserSocialDialog = () => {
 
                                                 <FormControl>
                                                     <Input
-                                                        disabled={twitterEnabled ? false : true}
+                                                        disabled={!twitterEnabled ? false : true}
                                                         placeholder="zum Beispiel : @username"
                                                         {...field}
                                                     />
@@ -229,7 +225,6 @@ const UserSocialDialog = () => {
                                                 </div>
                                             </FormLabel>
                                             {youtubeEnabled && (
-
                                                 <FormControl>
                                                     <Input
                                                         disabled={youtubeEnabled ? false : true}
@@ -287,11 +282,11 @@ const UserSocialDialog = () => {
                                 </div>
                                 <Separator className="bg-black w-8 mb-2 ml-auto mt-4" />
                             </div>
-
-                            <Button className="bg-blue-800 mt-2" type="submit" disabled={isSubmitting || !isValid}>
-                                Einstellungen festlegen
-                            </Button>
-
+                            <DialogTrigger disabled={isSubmitting || !isValid}>
+                                <Button className="bg-blue-800 mt-2" type="submit" disabled={isSubmitting || !isValid}>
+                                    Einstellungen festlegen
+                                </Button>
+                            </DialogTrigger>
                         </form>
                     </Form>
                 </DialogContent>
