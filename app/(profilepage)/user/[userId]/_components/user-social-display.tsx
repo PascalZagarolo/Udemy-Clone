@@ -42,9 +42,7 @@ const SocialDisplay: React.FC<SocialDisplayProps> = async ({
                             <Separator
                                 className="bg-black w-8"
                             />
-
                         </div>
-
                     </div>
                     <div className="flex justify-start mt-4">
 
@@ -59,7 +57,6 @@ const SocialDisplay: React.FC<SocialDisplayProps> = async ({
                         }
 
                     </div>
-
                 </div>
             )}
 
