@@ -24,6 +24,7 @@ model Course {
   chapters Chapter[]
   attachments Attachment[]
   purchases Purchase[]
+  ratings Ratings[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -156,6 +157,7 @@ model User {
 
   comments Comments[]
   links Links[]
+  ratings Ratings[]
 
   imageUrl String? @db.Text
 
@@ -208,5 +210,20 @@ enum Socials {
   twitter
   youtube
   email
+}
+
+model Ratings {
+  userId String
+  user User @relation(fields : [userId], references: [id], onDelete: Cascade)
+
+  courseId String
+  course Course @relation(fields : [courseId], references: [id], onDelete: Cascade)
+
+  score Int
+
+  @@unique([userId, courseId])
+
+  @@index([courseId])
+  @@index([userId])
 }
 
