@@ -58,26 +58,26 @@ const UserInformation: React.FC<UserInformationProps> = async ({
 
 
             <div className="ml-8">
-            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
+            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center md:text-xl">
             <User className="mr-4" />
                 <p className="text-blue-800 mr-2 font-bold"> {customerAmount} </p> {customerAmount > 1 ? "Kunden" : "Kunde"}
             </div>
 
-            <div className="ml-8 font-semibold text-2xl justify-start flex mt-6 items-center">
+            <div className="ml-8 font-semibold text-2xl justify-start flex mt-6 items-center md:text-xl">
             <MessagesSquare className="mr-4" />
-                <p className="text-blue-800 mr-2 font-bold"> {commentAmount} </p> Kommentare erhalten
+                <p className="text-blue-800 mr-2 font-bold"> {commentAmount} </p> Kommentare
             </div>
             </div>
 
 
             <div className="ml-4">
-            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
+            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center md:text-xl">
             <Clapperboard className="mr-4" />
                 <p className="text-blue-800 mr-2 font-bold"> {courseAmount} </p> Kurs erstellt
             </div>
-            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center">
+            <div className="ml-8 font-semibold text-2xl justify-start flex mt-4 items-center md:text-xl">
             <Film className="mr-4" />
-                <p className="text-blue-800 mr-2 font-bold"> {chapterAmount} </p> Kapitel geteilt
+                <p className="text-blue-800 mr-2 font-bold"> {chapterAmount} </p> Kapitel
             </div>
             </div>
 

@@ -13,7 +13,7 @@ const SocialOptions: React.FC<SocialOptionsProps> = ({
     username
 }) => {
     return (
-        <div className="relative">
+        <div className="relative mb-4  sm:mb-4 md:mb-4">
             <div>
                 <div className="mr-8 items-center">
                     <Button variant="ghost" className="items-center">
