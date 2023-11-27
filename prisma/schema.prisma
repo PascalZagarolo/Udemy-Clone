@@ -179,7 +179,6 @@ model Likes {
   @@unique([userId, commentId])
 }
 
-
 model Links {
 
   
@@ -213,9 +212,9 @@ enum Socials {
 }
 
 model Ratings {
-  id String @id @default(uuid())
+  id String  @default(uuid())
 
-  userId String
+  userId String 
   user User @relation(fields : [userId], references: [id], onDelete: Cascade)
 
   courseId String

@@ -136,7 +136,7 @@ const ChapterIdPage = async ({
             {purchase ? (
               <div className="flex justify-between">
                 <div className="mr-16">
-                <RatingBox />
+                <RatingBox/>
                 </div>
                 
                 <CourseProgressButton
