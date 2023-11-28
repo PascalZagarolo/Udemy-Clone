@@ -11,28 +11,29 @@ import { useParams } from "next/navigation";
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { cn } from '../../../../../../../../lib/utils';
 
 interface RatingDialogProps {
-    userId : string;
+    userId: string;
 }
 
 const RatingDialog: React.FC<RatingDialogProps> = ({
     userId
 }) => {
 
-    
 
-    
+
+
 
     const [rating, setRating] = useState<number>(0);
-    const [hover, setHoverRating] = useState<number>(0); 
+    const [hoverRating, setHoverRating] = useState<number>(0);
 
     const params = useParams();
 
     const onClick = () => {
 
         try {
-            axios.patch(`/api/courses/${params.courseId}/user/${userId}/rating`, rating );
+            axios.patch(`/api/courses/${params.courseId}/user/${userId}/rating`, rating);
             toast.success("Bewertung erfolgreich abgegeben!");
         } catch {
             toast.error("Etwas ist schief gelaufen :/ ");
@@ -59,37 +60,43 @@ const RatingDialog: React.FC<RatingDialogProps> = ({
                         <div className="flex justify-start text-2xl">
                             {[...Array(5)].map((star, i) => {
                                 const ratingValue = i + 1;
-                                return(
-                                    <label>
+                                return (
+                                    <label 
+                                    onMouseEnter={() => setHoverRating(ratingValue)}
+                                            onMouseLeave={() => setHoverRating(0)}
+                                    >
                                         <input
-                                        type="radio"
-                                        name="rating"
-                                        value={ratingValue}
-                                        onClick={() => setRating(ratingValue)}
-                                        className="hidden"
-                                        onMouseEnter={() => setHoverRating(ratingValue)}
-                                        onMouseLeave={() => setHoverRating(0)}
+                                            type="radio"
+                                            name="rating"
+                                            value={ratingValue}
+                                            onClick={() => setRating(ratingValue)}
+                                            className="hidden"
+                                            
                                         />
-                                            {ratingValue <= rating ? (
-                                                <p className="hover:cursor-pointer">⭐</p>
-                                            ) : (
-                                                <p className="hover:cursor-pointer opacity-30 hover:opacity-60">⭐</p>
-                                                ) 
-                                            }
+                                        {ratingValue <= rating ? (
+                                            <p className="hover:cursor-pointer"
+                                                
+                                            >⭐</p>
+                                        ) : (
+                                            <p className={cn("hover:cursor-pointer opacity-300 hover:opacity-60", hoverRating <= ratingValue && "opacity-60")}
+                                                
+                                            >⭐</p>
+                                        )
+                                        }
                                     </label>
                                 )
                             })}
                         </div>
                         {rating ? (
-                            <p className="text-sm mt-2 flex justify-start font-semibold"> {rating}  
-                            
-                            {rating === 1 ? (
-                                <p className="ml-1 mr-1"> Stern </p>
-                            ) : (
-                                <p className="ml-1 mr-1"> Sterne </p>
-                            )}
+                            <p className="text-sm mt-2 flex justify-start font-semibold"> {rating}
 
-                             vergeben </p>
+                                {rating === 1 ? (
+                                    <p className="ml-1 mr-1"> Stern </p>
+                                ) : (
+                                    <p className="ml-1 mr-1"> Sterne </p>
+                                )}
+
+                                vergeben </p>
                         ) : (
                             <p className="text-gray-800/50 text-sm mt-2"> Noch keine Bewertung abgegeben.</p>
                         )}
