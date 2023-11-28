@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { getProgress } from "@/actions/get-progress";
 import CourseNavbar from "./_components/course-navbar";
 import CourseSidebar from "./_components/course-sidebar";
+import DisplayRating from "./chapter/[chapterId]/_components/_rating-display-components/rating-display-main";
 
 
 
@@ -60,7 +61,7 @@ const CourseLayout = async ({
         />
       </div>
       <div className="hidden md:flex h-full w-80 flex-col fixed inset-y-0 z-50">
-        <CourseSidebar
+      <CourseSidebar
           course={course}
           progressCount={progressCount}
         />

@@ -22,10 +22,10 @@ const RatingDialog: React.FC<RatingDialogProps> = ({
 
     
 
-    const starWrapper = document.querySelector(".stars");
-    const stars = document.querySelector(".stars a");
+    
 
-    const [rating, setRating] = useState<number>();
+    const [rating, setRating] = useState<number>(0);
+    const [hover, setHoverRating] = useState<number>(0); 
 
     const params = useParams();
 
@@ -56,12 +56,29 @@ const RatingDialog: React.FC<RatingDialogProps> = ({
                 </DialogHeader>
                 <div>
                     <div>
-                        <div className="stars text-2xl">
-                            <a type="star"><button type="button" onClick={() => { setRating(1) }}>⭐</button></a>
-                            <a type="star"><button type="button" onClick={() => { setRating(2) }}>⭐</button></a>
-                            <a type="star"><button type="button" onClick={() => { setRating(3) }}>⭐</button></a>
-                            <a type="star"><button type="button" onClick={() => { setRating(4) }}>⭐</button></a>
-                            <a type="star"><button type="button" onClick={() => { setRating(5)}}>⭐</button></a>
+                        <div className="flex justify-start text-2xl">
+                            {[...Array(5)].map((star, i) => {
+                                const ratingValue = i + 1;
+                                return(
+                                    <label>
+                                        <input
+                                        type="radio"
+                                        name="rating"
+                                        value={ratingValue}
+                                        onClick={() => setRating(ratingValue)}
+                                        className="hidden"
+                                        onMouseEnter={() => setHoverRating(ratingValue)}
+                                        onMouseLeave={() => setHoverRating(0)}
+                                        />
+                                            {ratingValue <= rating ? (
+                                                <p className="hover:cursor-pointer">⭐</p>
+                                            ) : (
+                                                <p className="hover:cursor-pointer opacity-30 hover:opacity-60">⭐</p>
+                                                ) 
+                                            }
+                                    </label>
+                                )
+                            })}
                         </div>
                         {rating ? (
                             <p className="text-sm mt-2 flex justify-start font-semibold"> {rating}  

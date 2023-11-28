@@ -27,6 +27,8 @@ import { getUser } from "@/actions/get-user";
 import { Button } from "@/components/ui/button";
 import ProfilePageLink from "./_components/profile-page-link";
 import RatingBox from "./_components/_rating-components/rating-course-box";
+import RatingDialog from "./_components/_rating-components/rating-course-dialog";
+import DisplayRating from "./_components/_rating-display-components/rating-display-main";
 
 
 
@@ -99,7 +101,6 @@ const ChapterIdPage = async ({
 
   return (
     <div>
-
       {userProgress?.isCompleted && (
         <div className="ml-8">
           <Banner
@@ -116,8 +117,15 @@ const ChapterIdPage = async ({
           />
         </div>
       )}
+      <div>
+        <div>
+            <DisplayRating/>
+        </div>
+      </div>
       <div className="flex flex-col max-w-4xl mx-auto pb-20">
+        
         <div className="p-4">
+          
           <VideoPlayer
             chapterId={params.chapterId}
             title={chapter.title}
@@ -127,6 +135,8 @@ const ChapterIdPage = async ({
             isLocked={isLocked}
             completeOnEnd={completeOnEnd}
           />
+          
+          
         </div>
         <div>
           <div className="mt-4 flex flex-col md:flex-row items-center justify-between">
