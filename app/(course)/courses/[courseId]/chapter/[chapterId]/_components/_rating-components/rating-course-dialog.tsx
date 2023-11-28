@@ -64,6 +64,7 @@ const RatingDialog: React.FC<RatingDialogProps> = ({
                                     <label 
                                     onMouseEnter={() => setHoverRating(ratingValue)}
                                             onMouseLeave={() => setHoverRating(0)}
+                                            key={i}
                                     >
                                         <input
                                             type="radio"
