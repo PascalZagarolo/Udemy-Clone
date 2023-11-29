@@ -1,4 +1,7 @@
+import { Separator } from "@/components/ui/separator";
 import { db } from "@/lib/db";
+
+import { StarHalf } from "lucide-react";
 
 interface DisplayRatingProps {
     courseId : string
@@ -22,13 +25,34 @@ const DisplayRating: React.FC<DisplayRatingProps> = async({
     const oneStars = ratings.filter(rating => rating.score === 1)
 
     return ( 
-        <div>
+        <div className="ml-8 w-80">
             <div>
-                <p>5 Sterne {fiveStars.length} / {ratings.length} </p>
-                <p>4 Sterne {fourStars.length} / {ratings.length} </p>
-                <p>3 Sterne {threeStars.length} / {ratings.length}  </p>
-                <p>2 Sterne {twoStars.length} / {ratings.length}  </p>
-                <p>1 Sterne {oneStars.length} / {ratings.length} </p>
+                <h3 className="font-semibold text-xl mb-4">
+                   <StarHalf className="text-yellow-400 w-8 h-8"/> Rezensionen ({ratings.length}) 
+                </h3>
+
+                <div className="text-lg font-semibold mb-1 flex justify-start items-center"> 
+                    5 Sterne
+                   
+                </div>
+
+                <div className="text-base font-semibold mb-1"> 
+                    4 Sterne
+                    
+                </div>
+
+                <div className="text-medium font-semibold mb-1"> 
+                    3 Sterne
+                </div>
+
+                <div className="text-medium font-semibold mb-1"> 
+                    2 Sterne
+                </div>
+
+                <div className="text-medium font-semibold mb-1"> 
+                    1 Stern
+                </div>
+
 
             </div>
         </div>

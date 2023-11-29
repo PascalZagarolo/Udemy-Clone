@@ -102,7 +102,7 @@ const ChapterIdPage = async ({
   return (
     <div>
       {userProgress?.isCompleted && (
-        <div className="ml-8">
+        <div className="ml-8 mb-8">
           <Banner
             variant="success"
             label="Du hast dieses Kapitel bereits abgeschlossen."
@@ -117,14 +117,18 @@ const ChapterIdPage = async ({
           />
         </div>
       )}
-      <div>
-        <div>
-            <DisplayRating
-            courseId = {params.courseId}
-            />
-        </div>
+
+
+
+        <div className="md:flex md:justify-center lg:flex lg:justify-center">
+          
+          <div className="flex-shrink-0  justify-start">
+            <div>
+              <DisplayRating courseId={params.courseId}/>
+            </div>
       </div>
-      <div className="flex flex-col max-w-4xl mx-auto pb-20">
+      
+      <div className="flex flex-col max-w-4xl mx-auto justify-center mr-auto">
         
         <div className="p-4">
           
@@ -140,9 +144,9 @@ const ChapterIdPage = async ({
           
           
         </div>
-        <div>
-          <div className="mt-4 flex flex-col md:flex-row items-center justify-between">
-            <h2 className="text-2xl font-semibold">
+        <div className="sm:ml-4">
+          <div className="mt-4 flex flex-col md:flex-row items-center justify-between sm:ml-2">
+            <h2 className="text-2xl font-semibold ">
               {chapter.title}
             </h2>
             {purchase ? (
@@ -178,7 +182,7 @@ const ChapterIdPage = async ({
             <div>
               <Preview value={chapter.description!} />
             </div>
-            <div className="mt-4">
+            <div className="mt-4 sm:ml-4">
 
               <CommentSection
                 comments={comments}
@@ -212,6 +216,13 @@ const ChapterIdPage = async ({
         </div>
       </div>
 
+          </div>
+        
+
+
+
+
+      
     </div>
   );
 }
