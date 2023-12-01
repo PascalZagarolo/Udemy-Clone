@@ -147,12 +147,12 @@ const ChapterIdPage = async ({
         </div>
         <div className="sm:ml-4">
           <div className="mt-4 flex flex-col md:flex-row items-center justify-between sm:ml-2">
-            <h2 className="text-2xl font-semibold ">
+            <h2 className="text-2xl font-semibold w-full ">
               {chapter.title}
             </h2>
             {purchase ? (
-              <div className="flex justify-between">
-                <div className="mr-16 w-full">
+              <div className="flex justify-between w-full">
+                <div className="mr-8 ml-8">
                 <RatingBox/>
                 </div>
                 
