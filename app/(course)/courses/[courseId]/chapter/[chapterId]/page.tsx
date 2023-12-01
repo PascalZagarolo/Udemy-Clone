@@ -122,10 +122,11 @@ const ChapterIdPage = async ({
 
         <div className="md:flex md:justify-center lg:flex lg:justify-center">
           
-          <div className="flex-shrink-0  justify-start">
-            <div>
+          <div className="">
+            
               <DisplayRating courseId={params.courseId}/>
-            </div>
+           
+    
       </div>
       
       <div className="flex flex-col max-w-4xl mx-auto justify-center mr-auto">
