@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { db } from "@/lib/db";
 
-import { StarHalf } from "lucide-react";
+import { StarHalf, StarOffIcon } from "lucide-react";
 import ProgressBar from "./progress-bar";
 import { on } from "events";
 
@@ -26,13 +26,21 @@ const DisplayRating: React.FC<DisplayRatingProps> = async ({
     const twoStars = ratings.filter(rating => rating.score === 2)
     const oneStars = ratings.filter(rating => rating.score === 1)
 
+    let average = 0;
+    for (let i = 0; i < ratings.length; i++) {
+        average += ratings[i].score;
+    }
+
+    average = average / ratings.length;
+
     return (
         <div className="ml-8 w-full">
+            
             <div>
                 <h3 className="font-semibold text-xl mb-4">
                     <StarHalf className="text-yellow-400 w-8 h-8" /> Rezensionen ({ratings.length})
                 </h3>
-
+                <Separator className=" bg-black w-24 mt-2 mb-4" />
                 <div className="text-lg font-semibold mb-1 flex justify-start items-center">
                     5 Sterne
                     
@@ -88,9 +96,18 @@ const DisplayRating: React.FC<DisplayRatingProps> = async ({
                     />
                     <p className="text-xs ml-2">({oneStars.length})</p>
                     </span>
+                    
                 </div>
-
-
+                
+                <div className="mt-4 justify-center flex items-center">
+                    <p className="ml-auto text-xl font-semibold flex items-center"> ~ {average.toFixed(1)} <StarOffIcon className="ml-2 text-yellow-400 mr-2"/> 
+                        {average > 1 ? (
+                            "Sterne"
+                        ) : (
+                            "Stern"
+                        )}
+                     </p>
+                </div>
             </div>
         </div>
     );
