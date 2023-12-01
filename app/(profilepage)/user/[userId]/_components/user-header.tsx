@@ -37,12 +37,11 @@ const UserHeader: React.FC<UserHeaderProps> = ({
             <div className="p-4 border-b h-full flex items-center bg-white shadow-sm">
                 <div className="w-full ml-8 opacity-100 ">
                     <div>
-                        <h3 className="text-4xl font-semibold flex justify-items-start items-center justify-center">
-                            <p className="text-blue-800 text-4xl font-bold"> {user.username.charAt(0)} </p> {user.username.substring(1, user.username.length)}
+                        <h3 className="text-4xl font-semibold flex justify-items-start items-center justify-center cursor-default" onSelect={() => {return false}}>
+                            <p className="text-blue-800 text-4xl font-bold" > {user.username.charAt(0)} </p> {user.username.substring(1, user.username.length)}
 
                             <Mail className="mt-4 ml-16 mr-2" />
-                            <AlertTriangle className="mt-4 ml-4 mr-2" />
-                            <Forward className="mt-4 ml-4 mr-2" />
+                            
                             <div className="flex gap-x-2 ml-auto items-center">
                                 <Link href="/" className="flex items-center mt-4">
                                     <Button size="sm" variant="ghost" className="items-center">
