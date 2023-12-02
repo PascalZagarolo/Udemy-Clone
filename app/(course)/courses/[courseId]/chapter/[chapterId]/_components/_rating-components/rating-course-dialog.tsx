@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 import { Star, StarHalf } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -29,6 +29,7 @@ const RatingDialog: React.FC<RatingDialogProps> = ({
     const [hoverRating, setHoverRating] = useState<number>(0);
 
     const params = useParams();
+    const router = useRouter();
 
     const onClick = () => {
 
@@ -37,6 +38,10 @@ const RatingDialog: React.FC<RatingDialogProps> = ({
             toast.success("Bewertung erfolgreich abgegeben!");
         } catch {
             toast.error("Etwas ist schief gelaufen :/ ");
+        } finally {
+            var load = setTimeout(() => {
+                router.refresh();
+            }, 5000)
         }
     }
     return (
