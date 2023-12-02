@@ -159,6 +159,9 @@ model User {
   links Links[]
   ratings Ratings[]
 
+  send Message[] @relation(name : "user1")
+  received Message[] @relation(name : "user2")
+
   imageUrl String? @db.Text
 
   description String? @db.Text
@@ -226,5 +229,18 @@ model Ratings {
 
   @@index([courseId])
   @@index([userId])
+}
+
+model Message {
+  id String @id @default(uuid())
+
+  receiverId String
+  received User @relation(name : "user1" , fields: [receiverId], references: [id], onDelete: Cascade)
+
+  senderId String
+  send User @relation(name : "user2" , fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([receiverId])
+  @@index([senderId])
 }
 
