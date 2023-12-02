@@ -8,6 +8,7 @@ import SearchInput from "@/components/search-input";
 import Categories from "./_components/categories";
 import CoursesList from "@/components/courses-list";
 import { auth } from "@clerk/nextjs/server";
+import { redirectToSignIn } from "@clerk/nextjs";
 
 
 
@@ -31,7 +32,7 @@ const SearchPage = async ({
   });
 
   if(!userId) {
-   userId = "user_2Wfz7FQAUdTyJToQl3SU4Qi7zwx"
+    return redirectToSignIn();
   }
 
   const courses = await getCourses({

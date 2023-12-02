@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import { User } from "@prisma/client";
 import { Separator } from "@radix-ui/react-separator";
-import { AlertTriangle, CoffeeIcon, Forward, LogOut, Mail, MoreVerticalIcon, Share } from "lucide-react";
+import { AlertTriangle, CoffeeIcon, Forward, LogOut, LucideAirVent, Mail, MoreVerticalIcon, Share, User2 } from "lucide-react";
 import Link from "next/link";
 import { redirect, usePathname, useRouter } from "next/navigation";
 import { Label } from "recharts";
@@ -30,6 +30,11 @@ const UserHeader: React.FC<UserHeaderProps> = ({
         return date.toLocaleDateString()
     }
 
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const chatPage = pathname?.includes('/chat')
+
 
 
     return (
@@ -39,8 +44,14 @@ const UserHeader: React.FC<UserHeaderProps> = ({
                     <div>
                         <h3 className="text-4xl font-semibold flex justify-items-start items-center justify-center cursor-default" onSelect={() => {return false}}>
                             <p className="text-blue-800 text-4xl font-bold" > {user.username.charAt(0)} </p> {user.username.substring(1, user.username.length)}
-
-                            <Mail className="mt-4 ml-16 mr-2" />
+                            {
+                                chatPage ? (
+                                    <User2 className="mt-4 ml-8 mr-2" onClick={() => {router.push(`/user/${user.id}`)}}/>
+                                ) : (
+                                    <Mail className="mt-4 ml-8 mr-2" onClick={() => {router.push(`${user.id}/chat`)}}/>
+                                )
+                            }
+                            
                             
                             <div className="flex gap-x-2 ml-auto items-center">
                                 <Link href="/" className="flex items-center mt-4">
