@@ -237,11 +237,13 @@ model Ratings {
 model Conversation {
   id String @id @default(uuid())
 
-  user1Id String @unique
+  user1Id String 
   user1Convo User @relation(name : "user1Convo" , fields: [user1Id], references: [id], onDelete: Cascade)
 
-  user2Id String @unique
+  user2Id String 
   user2Convo User @relation(name : "user2Convo" , fields: [user2Id], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
 
   @@index([user1Id])
   @@index([user2Id])
@@ -256,6 +258,9 @@ model Message {
 
   senderId String
   send User @relation(name : "user2" , fields: [senderId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   content String? @db.Text
 

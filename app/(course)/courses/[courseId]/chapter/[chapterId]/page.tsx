@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { File, MessagesSquareIcon, MinusIcon } from "lucide-react";
+import { File, MessagesSquareIcon, MinusIcon, Star } from "lucide-react";
 
 import { getChapter } from "@/actions/get-chapter";
 
@@ -131,7 +131,7 @@ const ChapterIdPage = async ({
       
       <div className="flex flex-col max-w-4xl mx-auto justify-center mr-auto">
         
-        <div className="p-4">
+        <div className="p-4 w-100">
           
           <VideoPlayer
             chapterId={params.chapterId}
@@ -165,10 +165,18 @@ const ChapterIdPage = async ({
               </div>
 
             ) : (
+              <div className="flex justify-between w-full">
+                <div className="mr-8 ml-8">
+                <Button variant="ghost" disabled >
+                    <Star className="h-4 w-4 mr-2" />
+                    <p >Kurs bewerten</p>
+                </Button>
+              </div>
               <CourseEnrollButton
                 courseId={params.courseId}
                 price={course.price!}
               />
+              </div>
             )}
           </div>
           <div className="sm:ml-8 sm:mr-4">

@@ -5,9 +5,12 @@ import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import { User } from "@prisma/client";
 import { Separator } from "@radix-ui/react-separator";
+import axios from "axios";
 import { AlertTriangle, CoffeeIcon, Forward, LogOut, LucideAirVent, Mail, MoreVerticalIcon, Share, User2 } from "lucide-react";
 import Link from "next/link";
 import { redirect, usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { Label } from "recharts";
 
 interface UserHeaderProps {
@@ -23,6 +26,8 @@ const UserHeader: React.FC<UserHeaderProps> = ({
     isOwnSite
 }) => {
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const getFirstUserLetter = () => {
         return user.username.charAt(0)
     }
@@ -30,6 +35,17 @@ const UserHeader: React.FC<UserHeaderProps> = ({
     const formattedDate = () => {
         const date = new Date(user.createdAt)
         return date.toLocaleDateString()
+    }
+
+    const onClick = () => {
+        try {
+            setIsLoading(true);
+            axios.post(`/api/user/${user.id}/chat/create`);
+        } catch {
+            toast.error("Fehler beim Erstellen der Konversation");
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     const router = useRouter();
