@@ -161,6 +161,9 @@ model User {
 
   send Message[] @relation(name : "user1")
   received Message[] @relation(name : "user2")
+ 
+  user1Convo Conversation[] @relation(name : "user1Convo")
+  user2Convo Conversation[] @relation(name : "user2Convo")
 
   imageUrl String? @db.Text
 
@@ -231,6 +234,20 @@ model Ratings {
   @@index([userId])
 }
 
+model Conversation {
+  id String @id @default(uuid())
+
+  user1Id String @unique
+  user1Convo User @relation(name : "user1Convo" , fields: [user1Id], references: [id], onDelete: Cascade)
+
+  user2Id String @unique
+  user2Convo User @relation(name : "user2Convo" , fields: [user2Id], references: [id], onDelete: Cascade)
+
+  @@index([user1Id])
+  @@index([user2Id])
+  @@unique([user1Id, user2Id])
+}
+
 model Message {
   id String @id @default(uuid())
 
@@ -239,6 +256,10 @@ model Message {
 
   senderId String
   send User @relation(name : "user2" , fields: [senderId], references: [id], onDelete: Cascade)
+
+  content String? @db.Text
+
+  imageUrl String? @db.Text
 
   @@index([receiverId])
   @@index([senderId])
