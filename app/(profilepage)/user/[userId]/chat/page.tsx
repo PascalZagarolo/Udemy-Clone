@@ -1,7 +1,7 @@
 import SideBar from "@/app/(dashboard)/_components/Sidebar";
 import UserHeader from "../_components/user-header";
 import { db } from "@/lib/db";
-import { clerkClient, redirectToSignIn } from "@clerk/nextjs";
+import { auth, clerkClient, redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 
@@ -14,6 +14,8 @@ const UserChat = async (
             id : params.userId
         }
     })
+
+    const isOwnSite = params.userId === auth().userId ? true : false;
 
     if(!user) {
         return redirect("/");
@@ -29,6 +31,7 @@ const UserChat = async (
       <UserHeader 
             user = {user}
             imageUrl = {imageUrl}
+            isOwnSite = {isOwnSite}
             />
       </div>
       <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">

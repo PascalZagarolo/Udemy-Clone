@@ -18,8 +18,11 @@ const UserMainPage = async ({
             id : params.userId
         }
     })
-
+    
+    
     const clerkUser = await clerkClient.users.getUser(user?.id || "");
+
+    const isOwnSite = params.userId === auth().userId ? true : false;
 
     const imageUrl = clerkUser.imageUrl;
 
@@ -51,6 +54,7 @@ const UserMainPage = async ({
       <UserHeader 
             user = {user}
             imageUrl = {imageUrl}
+            isOwnSite = {isOwnSite}
             />
       </div>
       <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">

@@ -12,13 +12,15 @@ import { Label } from "recharts";
 
 interface UserHeaderProps {
     user: User;
-    imageUrl: string
+    imageUrl: string;
+    isOwnSite : boolean;
 }
 
 
 const UserHeader: React.FC<UserHeaderProps> = ({
     user,
-    imageUrl
+    imageUrl,
+    isOwnSite
 }) => {
 
     const getFirstUserLetter = () => {
@@ -44,12 +46,13 @@ const UserHeader: React.FC<UserHeaderProps> = ({
                     <div>
                         <h3 className="text-4xl font-semibold flex justify-items-start items-center justify-center cursor-default" onSelect={() => {return false}}>
                             <p className="text-blue-800 text-4xl font-bold" > {user.username.charAt(0)} </p> {user.username.substring(1, user.username.length)}
-                            {
-                                chatPage ? (
+                            {!isOwnSite && (
+                                chatPage  ? (
                                     <User2 className="mt-4 ml-8 mr-2" onClick={() => {router.push(`/user/${user.id}`)}}/>
                                 ) : (
                                     <Mail className="mt-4 ml-8 mr-2" onClick={() => {router.push(`${user.id}/chat`)}}/>
                                 )
+                            )   
                             }
                             
                             
