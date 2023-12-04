@@ -1,3 +1,4 @@
+import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function POST(
@@ -5,7 +6,7 @@ export async function POST(
     { params } : { params : { userId : string }}
 ) {
     try {
-
+        const { userId } = auth();
         //!... Create a new chat...
 
     } catch(error) {
