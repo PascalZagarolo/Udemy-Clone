@@ -16,20 +16,26 @@ export async function POST(
         
         
 
-        const existingChat = await db.conversation.findMany({
+        const existingChat = await db.conversation.findUnique({
             where : {
-                OR : [
-                    {
-                        user1Id : userId,
-                        user2Id : params.userId
-                    },
-                    {
-                        user1Id : params.userId,
-                        user2Id : userId
-                    }
-                ]
+                user1Id_user2Id : {
+                    user1Id : userId,
+                    user2Id : params.userId
+                }
             }
         })
+
+        if(!existingChat){
+            const existingChat = await db.conversation.findUnique({
+                where : {
+                    user1Id_user2Id : {
+                        user2Id : userId,
+                        user1Id : params.userId
+                    }
+                }
+            })
+        }
+        
 
         if(!existingChat) {
            const existingChat = await db.conversation.create({
