@@ -14,9 +14,9 @@ export async function POST(
             return new NextResponse("Nicht autorisiert", { status : 401});
         }
         
-        let createdChat;
+        
 
-        createdChat = await db.conversation.findMany({
+        const existingChat = await db.conversation.findMany({
             where : {
                 OR : [
                     {
@@ -31,8 +31,8 @@ export async function POST(
             }
         })
 
-        if(!createdChat) {
-            createdChat = await db.conversation.create({
+        if(!existingChat) {
+           const existingChat = await db.conversation.create({
                 data : {
                     user1Id : userId,
                     user2Id : params.userId
@@ -40,7 +40,7 @@ export async function POST(
             })
         }
 
-        return NextResponse.json(createdChat);
+        return NextResponse.json(existingChat);
 
     } catch(error) {
         console.log(error);

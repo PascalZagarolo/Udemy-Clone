@@ -161,8 +161,8 @@ model User {
 
   messages Message[]
  
-  user1Convo Conversation[] @relation(name : "user1Convo")
-  user2Convo Conversation[] @relation(name : "user2Convo")
+  user1 Conversation[] @relation(name : "user1")
+  user2 Conversation[] @relation(name : "user2")
 
   imageUrl String? @db.Text
 
@@ -237,10 +237,10 @@ model Conversation {
   id String @id @default(uuid())
 
   user1Id String 
-  user1Convo User @relation(name : "user1Convo" , fields: [user1Id], references: [id], onDelete: Cascade)
+  user1 User @relation(name : "user1" , fields: [user1Id], references: [id], onDelete: Cascade)
 
   user2Id String 
-  user2Convo User @relation(name : "user2Convo" , fields: [user2Id], references: [id], onDelete: Cascade)
+  user2 User @relation(name : "user2" , fields: [user2Id], references: [id], onDelete: Cascade)
 
   messages Message[]
 

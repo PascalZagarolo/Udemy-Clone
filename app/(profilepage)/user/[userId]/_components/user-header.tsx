@@ -43,6 +43,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({
             setIsLoading(true);
             axios.post(`/api/user/${params.userId}/chat/create`);
             toast.success("Konversation erstellt");
+            router.push(`/user/${params.userId}/chat`)
         } catch {
             toast.error("Fehler beim Erstellen der Konversation");
         } finally {
@@ -68,7 +69,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({
                                 chatPage  ? (
                                     <User2 className="mt-4 ml-8 mr-2" onClick={() => {router.push(`/user/${user.id}`)}}/>
                                 ) : (
-                                    <Mail className="mt-4 ml-8 mr-2" onClick={() => {router.push(`${user.id}/chat`)}}/>
+                                    <Mail className="mt-4 ml-8 mr-2" onClick={onClick}/>
                                 )
                             )   
                             }
