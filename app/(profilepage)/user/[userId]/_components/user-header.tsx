@@ -8,7 +8,7 @@ import { Separator } from "@radix-ui/react-separator";
 import axios from "axios";
 import { AlertTriangle, CoffeeIcon, Forward, LogOut, LucideAirVent, Mail, MoreVerticalIcon, Share, User2 } from "lucide-react";
 import Link from "next/link";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { redirect, useParams, usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Label } from "recharts";
@@ -27,6 +27,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({
 }) => {
 
     const [isLoading, setIsLoading] = useState(false);
+    const params = useParams();
 
     const getFirstUserLetter = () => {
         return user.username.charAt(0)
@@ -40,7 +41,8 @@ const UserHeader: React.FC<UserHeaderProps> = ({
     const onClick = () => {
         try {
             setIsLoading(true);
-            axios.post(`/api/user/${user.id}/chat/create`);
+            axios.post(`/api/user/${params.userId}/chat/create`);
+            toast.success("Konversation erstellt");
         } catch {
             toast.error("Fehler beim Erstellen der Konversation");
         } finally {
