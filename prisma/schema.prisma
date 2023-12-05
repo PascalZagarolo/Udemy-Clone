@@ -159,8 +159,7 @@ model User {
   links Links[]
   ratings Ratings[]
 
-  send Message[] @relation(name : "user1")
-  received Message[] @relation(name : "user2")
+  messages Message[]
  
   user1Convo Conversation[] @relation(name : "user1Convo")
   user2Convo Conversation[] @relation(name : "user2Convo")
@@ -243,6 +242,8 @@ model Conversation {
   user2Id String 
   user2Convo User @relation(name : "user2Convo" , fields: [user2Id], references: [id], onDelete: Cascade)
 
+  messages Message[]
+
   createdAt DateTime @default(now())
 
   @@index([user1Id])
@@ -253,11 +254,11 @@ model Conversation {
 model Message {
   id String @id @default(uuid())
 
-  receiverId String
-  received User @relation(name : "user1" , fields: [receiverId], references: [id], onDelete: Cascade)
-
-  senderId String
-  send User @relation(name : "user2" , fields: [senderId], references: [id], onDelete: Cascade)
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  conversationId String
+  conversation Conversation @relation(fields : [conversationId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -266,7 +267,7 @@ model Message {
 
   imageUrl String? @db.Text
 
-  @@index([receiverId])
-  @@index([senderId])
+  @@index([userId])
+  @@index([conversationId])
 }
 
