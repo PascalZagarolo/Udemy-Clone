@@ -34,7 +34,7 @@ const DisplayRating: React.FC<DisplayRatingProps> = async ({
     average = average / ratings.length;
 
     return (
-        <div className="ml-8 w-full">
+        <div className="ml-8 w-full mt-4">
             
             <div>
                 <h3 className="font-semibold text-xl mb-4">
