@@ -3,6 +3,7 @@ import UserHeader from "../_components/user-header";
 import { db } from "@/lib/db";
 import { auth, clerkClient, redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import ChatInput from "./_components/chat-input";
 
 
 const UserChat = async (
@@ -26,7 +27,7 @@ const UserChat = async (
     const imageUrl = clerkUser.imageUrl;
     
     return ( 
-        <div className="h-full">
+      <div className="">
       <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50">
       <UserHeader 
             user = {user}
@@ -41,8 +42,11 @@ const UserChat = async (
       />
       </div>
       <main className="md:pl-56 pt-[80px] h-full">
-      <div>
-        Platzhalter
+      <div className="flex mt-4">
+        <div className="position: absolute bottom-4 flex items-center justify-start">
+          
+          <ChatInput/>
+        </div>
       </div>
       </main>
     </div>
