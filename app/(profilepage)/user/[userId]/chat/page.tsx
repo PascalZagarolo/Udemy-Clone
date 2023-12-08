@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { auth, clerkClient, redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import ChatInput from "./_components/chat-input";
+import ChatBox from "./_components/chat-box";
 
 
 const UserChat = async (
@@ -43,7 +44,12 @@ const UserChat = async (
       </div>
       <main className="md:pl-56 pt-[80px] h-full">
       <div className="flex mt-4">
-        <div className="position: absolute bottom-4 flex items-center justify-start">
+        <div>
+          <ChatBox 
+          otherUser = {params.userId}
+          />
+        </div>
+        <div className="position: absolute bottom-4 flex items-center">
           
           <ChatInput/>
         </div>

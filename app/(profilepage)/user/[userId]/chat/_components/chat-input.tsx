@@ -46,26 +46,28 @@ const ChatInput = () => {
 
     return (
         <div className="w-full">
-            <div className="flex justify-start">
+            <div className="flex justify-start w-full">
 
                 
 
 
                     <Form {...form}> 
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex justify-start">
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex justify-start w-full">
                             <Button variant="ghost" className="ml-4" type="submit" disabled={!isValid} onSubmit={form.handleSubmit(onSubmit)}>
                                 <Send
                                     className="text-blue-800"
                                 />
                             </Button>
                             <FormField
+                            
                                 control={form.control}
                                 name="content"
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <div className="ml-4">
+                                            <div className="ml-4 w-full">
                                             <Input
+                                            className="w-full"
                                                 placeholder="Verfasse eine Nachricht"
                                                 {...field}
                                             />
