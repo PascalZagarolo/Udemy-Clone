@@ -48,7 +48,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         />
                     </div>
                 ) : (
-                    <div className="mr-4 ml-auto bg-blue-800/30 rounded-md">
+                    <div className="mr-4  rounded-md mb-2">
                         <ChatMessages 
                         content={message.content!}
                         

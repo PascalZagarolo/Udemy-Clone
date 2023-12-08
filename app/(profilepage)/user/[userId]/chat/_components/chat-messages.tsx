@@ -14,12 +14,15 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
     
 
     return ( 
-        <div className="mb-2 ml-4 mr-4 mt-2 w-full">
-            <div>
-            <div className="text-base font-semibold">
+        <div className=" w-full flex ">
+            <div className="justify-start items-center bg-blue-800/30 rounded-md">
+            <div className="text-base font-semibold mb-2 ml-4 mr-4 mt-2">
                 {content}
+                <div>
+                <p className="text-xs text-gray-500/50"> 12:13 Uhr</p>
+                </div>
             </div>
-            
+                
             </div>
             
         </div>
