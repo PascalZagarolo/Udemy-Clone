@@ -38,25 +38,32 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
 
     
     return (
-        <div className="flex flex-col mb-4 ml-4">
+        <>
+        <div className="grid grid-cols-2 flex-col">
             {messages.map((message) => (
                 message.userId !== userId ? (
+                    <div className="flex flex-col mb-2 ml-4">
                     <div className="ml-4">
                         <ChatMessages 
                         content={message.content!}
                         
                         />
                     </div>
+                    </div>
                 ) : (
-                    <div className="mr-4  rounded-md mb-2">
+                    <div className="flex flex-col mb-2 ml-auto col-start-2 col-end-2">
+                    <div className="mr-4 rounded-md mb-2">
                         <ChatMessages 
                         content={message.content!}
                         
                         />
                     </div>
+                    </div>
                 )
+                
             ))}
-        </div>
+            </div>
+            </>
     )
 }
  
