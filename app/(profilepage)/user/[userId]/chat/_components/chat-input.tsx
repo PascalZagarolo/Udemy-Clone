@@ -33,7 +33,7 @@ const ChatInput = () => {
     const onSubmit = (values : z.infer<typeof formSchema>) => {
         try {
             setIsLoading(true);
-            axios.post(`/api/user/${params.userId}/message` , values);
+            axios.post(`/api/user/${params.userId}/chat/message` , values);
             toast.success("Nachricht erfolgreich gesendet");
         } catch {
             toast.error("Nachricht konnte nicht gesendet werden");
