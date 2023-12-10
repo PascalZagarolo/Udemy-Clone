@@ -92,6 +92,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({
 
                     </div>
                     <h1 className="text-medium font-semibold text-gray-800/80 text-sm">
+                        {isOwnSite ? "Du bist " : "" }
                         Mitglied seit  : {formattedDate()}
                     </h1>
 

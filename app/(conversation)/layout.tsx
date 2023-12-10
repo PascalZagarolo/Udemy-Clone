@@ -35,15 +35,12 @@ const ChatLayout = async (
             createdProfile={true}
           />
         </div>
-        <div className="sm:hidden md:flex md:pl-56 h-full w-34 flex-col fixed  ">
-            <ChatSideBar />
-            
-          </div>
-          
-
-        
-
+        <div className="sm:hidden md:flex md:pl-56 h-full w-34 flex-col flex justify-start fixed">
+          <ChatSideBar />
+        </div>
+       
       </div>
+      {children}
     </div>
   );
 }
