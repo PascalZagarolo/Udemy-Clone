@@ -37,7 +37,7 @@ const ChatSideBar = async () => {
                 <p className="text-medium font-semibold text-gray-800/80 text-sm mt-1 "> existierende Chats ansehen </p>
             </div>
             <div className="ml-4 mt-2">
-                {createdChats.map((chat) => (
+            {createdChats.map((chat) => (
                     <div className="flex justify-start items-center mt-4" key={chat.id}>
                     <div className="items-center">
                     {chat.user1Id === userId ? (

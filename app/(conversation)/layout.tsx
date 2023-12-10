@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import UserHeader from "@/app/(profilepage)/user/[userId]/_components/user-header";
 import { Children } from "react";
 import ChatSideBar from "./chat/_components/chat-sidebar";
+import { Button } from "@/components/ui/button";
 
 
 const ChatLayout = async (
@@ -27,20 +28,28 @@ const ChatLayout = async (
 
 
   return (
-    <div className="">
-
-      <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
-        <div>
+    <div>
+        <div className=" md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
+        
+        
+        <div className="sm:hidden md:flex md:pl-56 h-full flex-col fixed">
+          
+          <ChatSideBar />
+            
+            
+          </div>
+          <div>
           <SideBar
             createdProfile={true}
           />
+          
         </div>
-        <div className="sm:hidden md:flex md:pl-56 h-full w-34 flex-col flex justify-start fixed">
-          <ChatSideBar />
         </div>
-       
-      </div>
+        
+      
+          
       {children}
+        
     </div>
   );
 }
