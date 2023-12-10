@@ -1,11 +1,18 @@
 'use client';
 
-import { BarChart3, Compass, Layout, List, Settings2Icon } from "lucide-react";
+import { BarChart3, Compass, Layout, List, MailIcon, Settings2Icon } from "lucide-react";
 import Image from "next/image";
 import SideBarItem from "./SideBarItem";
 import { usePathname } from "next/navigation";
 import Settings from "./Settings";
 import { useState } from "react";
+
+interface SideBarRoutesProps {
+    name : string;
+    username : string;
+    userId : string;
+}
+
 
 
 const guestRoutes = [
@@ -21,7 +28,7 @@ const guestRoutes = [
     }
 ]
 
-const teacherRoutes = [
+const teacherRoutes  =   [
     {
         icon : List,
         label: 'Kurse',
@@ -31,17 +38,20 @@ const teacherRoutes = [
         icon: BarChart3,
         label: "Analytiken",
         href: "/teacher/analytics"
+    }, {
+        icon : MailIcon,
+        label : "Nachrichten",
+        href: `/user/chat`
     }
 ]
 
-interface SideBarRoutesProps {
-    name : string;
-    username : string;
-}
+
+
 
 const SideBarRoutes: React.FC<SideBarRoutesProps> = ({
     name,
-    username
+    username,
+    userId
 }) => {
 
     const pathname = usePathname();
@@ -62,6 +72,7 @@ const SideBarRoutes: React.FC<SideBarRoutesProps> = ({
                 />
             ))}
         </div>
+        
         <div className="position: absolute bottom-0">
         <Settings 
             icon={Settings2Icon}
