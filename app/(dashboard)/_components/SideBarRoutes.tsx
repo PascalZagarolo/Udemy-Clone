@@ -25,6 +25,10 @@ const guestRoutes = [
         icon: Compass,
         label: "Durchsuchen..",
         href: "/search"
+    }, {
+        icon : MailIcon,
+        label : "Nachrichten",
+        href: `/chat`
     }
 ]
 

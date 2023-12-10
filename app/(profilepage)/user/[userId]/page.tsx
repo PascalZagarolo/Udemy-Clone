@@ -20,11 +20,11 @@ const UserMainPage = async ({
     })
     
     
-    const clerkUser = await clerkClient.users.getUser(user?.id || "");
+
 
     const isOwnSite = params.userId === auth().userId ? true : false;
 
-    const imageUrl = clerkUser.imageUrl;
+   
 
     if(!user) {
         return redirect("/");
@@ -53,7 +53,7 @@ const UserMainPage = async ({
       <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50">
       <UserHeader 
             user = {user}
-            imageUrl = {imageUrl}
+            imageUrl = { userProfile?.imageUrl || "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg" }
             isOwnSite = {isOwnSite}
             />
       </div>
@@ -66,7 +66,7 @@ const UserMainPage = async ({
       <main className="md:pl-56 pt-[80px] h-full">
       <UserMainContent
         user={user}
-        imageUrl = {imageUrl}
+        imageUrl = { userProfile?.imageUrl || "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
         />
       </main>
     </div>

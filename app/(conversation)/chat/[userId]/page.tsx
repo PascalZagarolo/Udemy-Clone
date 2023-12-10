@@ -18,9 +18,9 @@ const ChatPage = async ( { params }: { params: { userId: string } } ) => {
     return redirect("/");
   } 
 
-  const clerkUser = await clerkClient.users.getUser(user?.id || "");
+  
 
-  const imageUrl = clerkUser.imageUrl;
+  
 
   return ( 
     <main className="md:pl-80 pt-[80px] h-full">
