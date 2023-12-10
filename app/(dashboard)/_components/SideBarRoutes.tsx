@@ -45,7 +45,7 @@ const teacherRoutes  =   [
     }, {
         icon : MailIcon,
         label : "Nachrichten",
-        href: `/user/chat`
+        href: `/chat`
     }
 ]
 
