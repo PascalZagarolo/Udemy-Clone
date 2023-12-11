@@ -30,24 +30,17 @@ const ChatLayout = async (
   return (
     <div>
         <div className=" md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
-        
-        
+
         <div className="sm:hidden md:flex md:pl-56 h-full flex-col fixed">
-          
-          <ChatSideBar />
-            
-            
+          <ChatSideBar />  
           </div>
           <div>
           <SideBar
             createdProfile={true}
           />
-          
         </div>
         </div>
-        
-      
-          
+              
       {children}
         
     </div>

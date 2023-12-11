@@ -1,5 +1,4 @@
-import SideBar from "@/app/(dashboard)/_components/Sidebar"
-import ChatSideBar from "./_components/chat-sidebar"
+
 import UserHeader from "@/app/(profilepage)/user/[userId]/_components/user-header"
 import { auth, redirectToSignIn } from "@clerk/nextjs"
 import { db } from "@/lib/db"
