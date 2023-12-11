@@ -3,7 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { User2 } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+
 
 interface ChatSideBarItemProps {
     user1Id : string;
@@ -29,11 +30,13 @@ const ChatSideBarItem: React.FC<ChatSideBarItemProps> = ({
     const router = useRouter();
 
     const onClick = () => {
-        console.log("...");
+        router.push(`/chat/${user1Id === userId ? user2Id : user1Id}`)
     }
+
+    
     return ( 
         <div className="flex justify-start items-center mt-4">
-            <Button variant="ghost">
+            <Button variant="ghost" onClick={onClick}>
                     <div className="items-center">
                     {user1Id === userId ? (
                             <Image 
