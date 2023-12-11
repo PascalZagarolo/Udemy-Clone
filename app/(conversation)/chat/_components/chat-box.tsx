@@ -33,6 +33,8 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
     const messages = await db.message.findMany({
         where : {
             conversationId : conversation[0].id
+        }, orderBy : {
+            createdAt : "asc"
         }
     })
 

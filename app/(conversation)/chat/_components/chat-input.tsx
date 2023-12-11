@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { Send } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -30,6 +30,8 @@ const ChatInput = () => {
     const [isLoading, setIsLoading] = useState(false);
     const params = useParams();
 
+    const router = useRouter();
+
     const onSubmit = (values : z.infer<typeof formSchema>) => {
         try {
             setIsLoading(true);
@@ -38,6 +40,9 @@ const ChatInput = () => {
         } catch {
             toast.error("Nachricht konnte nicht gesendet werden");
         } finally {
+            form.reset();
+            router.refresh();
+            
             setIsLoading(false)
         }
      }
