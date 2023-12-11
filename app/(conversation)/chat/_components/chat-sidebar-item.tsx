@@ -3,7 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { User2 } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { cn } from '../../../../lib/utils';
 
 
 interface ChatSideBarItemProps {
@@ -29,8 +30,17 @@ const ChatSideBarItem: React.FC<ChatSideBarItemProps> = ({
 
     const router = useRouter();
 
+    const params = useParams();
+
+    const selectedUserId = user1Id === userId ? user2Id : user1Id;
+
     const onClick = () => {
-        router.push(`/chat/${user1Id === userId ? user2Id : user1Id}`)
+        if(params.userId === selectedUserId) {
+            router.push(`/chat`)
+        } else {
+            router.push(`/chat/${selectedUserId}`);
+        }
+        
     }
 
     
@@ -51,7 +61,7 @@ const ChatSideBarItem: React.FC<ChatSideBarItemProps> = ({
                         )}
                     </div>
                     <User2
-                    className="h-4 w-4 ml-2 font-bold"
+                    className={cn("h-4 w-4 items-center ml-2", params.userId === selectedUserId && "text-blue-800 " )}
                     />
                     <p className="font-semibold ml-2">
                         {user1Id === userId ? (
