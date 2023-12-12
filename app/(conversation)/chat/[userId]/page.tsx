@@ -3,6 +3,7 @@ import ChatBox from "../_components/chat-box";
 import ChatInput from "../_components/chat-input";
 import { auth, clerkClient } from "@clerk/nextjs";
 import { db } from "@/lib/db";
+import UserHeader from "@/app/(profilepage)/user/[userId]/_components/user-header";
 
 const ChatPage = async ( { params }: { params: { userId: string } } ) => {
 
@@ -23,7 +24,13 @@ const ChatPage = async ( { params }: { params: { userId: string } } ) => {
   
 
   return ( 
-    <main className="md:pl-80 pt-[80px] h-full">
+    <div className="md:pl-52" >
+            <div className="md:pl-56 w-full h-[80px]">
+      <UserHeader
+                    user={user}
+                    imageUrl={user.imageUrl || "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
+                    isOwnSite={false}
+                />
       <div className=" mt-4">
           <ChatBox 
           otherUser = {params.userId}
@@ -33,7 +40,8 @@ const ChatPage = async ( { params }: { params: { userId: string } } ) => {
           <ChatInput/>
         </div>
       </div>
-      </main>
+      </div>
+      </div>
    );
 }
  
