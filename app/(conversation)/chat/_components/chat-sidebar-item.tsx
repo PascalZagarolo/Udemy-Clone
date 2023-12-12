@@ -45,7 +45,7 @@ const ChatSideBarItem: React.FC<ChatSideBarItemProps> = ({
 
     
     return ( 
-        <div className="flex justify-start items-center mt-4">
+        <div className="flex justify-start items-center mt-4 sm:hidden md:flex">
             <Button variant="ghost" onClick={onClick}>
                     <div className="items-center">
                     {user1Id === userId ? (

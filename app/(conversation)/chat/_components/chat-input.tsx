@@ -50,7 +50,7 @@ const ChatInput = () => {
     const { isSubmitting, isValid } = form.formState
 
     return (
-        <div className="w-full">
+        <div className="">
             <div className="flex justify-start w-full">
 
                 
@@ -72,7 +72,7 @@ const ChatInput = () => {
                                         <FormControl>
                                             <div className="ml-4 w-full">
                                             <Input
-                                            className="w-full"
+                                            className="md:w-[800px]"
                                                 placeholder="Verfasse eine Nachricht"
                                                 {...field}
                                             />

@@ -31,8 +31,8 @@ const NavBarRoutes: React.FC<NavBarRoutesProps> = ({
         {!isTeacherPage && !isPlayerPage && !isSearchPage && (
             <h2>
                 <div>
-                <h1 className="flex items-center font-semibold text-xl ml-4">
-                    🎉Willkommen zurück <p className="ml-2  text-blue-800 "> {username || ""} </p> ! 🎉
+                <h1 className="sm:flex items-start font-semibold text-base  ml-4 sm:text-base md:text-xl lg:text-xl">
+                    🎉Willkommen zurück <p className="sm:ml-2  text-blue-800 "> {username || ""} </p> ! 🎉
                 </h1>
             </div>
             </h2>
