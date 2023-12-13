@@ -63,7 +63,7 @@ const ChatSideBarItem: React.FC<ChatSideBarItemProps> = ({
                     <User2
                     className={cn("h-4 w-4 items-center ml-2", params.userId === selectedUserId && "text-blue-800 " )}
                     />
-                    <p className="font-semibold ml-2">
+                    <p className={cn("font-semibold ml-2", params.userId === selectedUserId && "font-bold")}>
                         {user1Id === userId ? (
                             user2_username
                         ) : (
