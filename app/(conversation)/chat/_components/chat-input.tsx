@@ -33,20 +33,23 @@ const ChatInput = () => {
 
     const router = useRouter();
 
-    const onSubmit = (values : z.infer<typeof formSchema>) => {
+    const onSubmit = (values: z.infer<typeof formSchema>) => {
         try {
             setIsLoading(true);
-            axios.post(`/api/user/${params.userId}/chat/message` , values);
+            axios.post(`/api/user/${params.userId}/chat/message`, values);
             toast.success("Nachricht erfolgreich gesendet");
         } catch {
             toast.error("Nachricht konnte nicht gesendet werden");
         } finally {
             form.reset();
-            router.refresh();
-            
-            setIsLoading(false)
+
+            setTimeout(() => {
+                router.refresh();
+                setIsLoading(false);
+                
+            }, 2000)
         }
-     }
+    }
 
     const { isSubmitting, isValid } = form.formState
 
@@ -54,45 +57,45 @@ const ChatInput = () => {
         <div className="">
             <div className="flex justify-start w-full">
 
-                
 
 
-                    <Form {...form}> 
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex justify-start w-full">
-                            <Button variant="ghost" className="ml-4" type="submit" disabled={!isValid} onSubmit={form.handleSubmit(onSubmit)}>
-                                <Send
-                                    className="text-blue-800"
-                                />
-                            </Button>
-                            <FormField
-                            
-                                control={form.control}
-                                name="content"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormControl>
-                                            <div className="ml-4 w-full">
+
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="flex justify-start w-full">
+                        <Button variant="ghost" className="ml-4" type="submit" disabled={!isValid} onSubmit={form.handleSubmit(onSubmit)}>
+                            <Send
+                                className="text-blue-800"
+                            />
+                        </Button>
+                        <FormField
+
+                            control={form.control}
+                            name="content"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormControl>
+                                        <div className="ml-4 w-full">
                                             <Input
-                                            className="md:w-[800px]"
+                                                className="md:w-[800px]"
                                                 placeholder="Verfasse eine Nachricht"
                                                 {...field}
                                             />
-                                            </div>
-                                            
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                                        </div>
+
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
 
-                        </form>
-                    </Form>
-                    <div className="items-center ml-4 mt-2">
-                    <ChatImage/>
-                    </div>
-                    
-                
+                    </form>
+                </Form>
+                <div className="items-center ml-4 mt-2">
+                    <ChatImage />
+                </div>
+
+
             </div>
 
         </div>
