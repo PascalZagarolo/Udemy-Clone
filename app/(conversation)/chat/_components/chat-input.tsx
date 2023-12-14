@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
+import ChatImage from "./chat-image";
 
 const ChatInput = () => {
 
@@ -87,8 +88,10 @@ const ChatInput = () => {
 
                         </form>
                     </Form>
-
-
+                    <div className="items-center ml-4 mt-2">
+                    <ChatImage/>
+                    </div>
+                    
                 
             </div>
 
