@@ -49,6 +49,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         <ChatMessages 
                         content={message.content!}
                         ownMessage={false}
+                        date = {message.createdAt}
                         />
                     </div>
                     </div>
@@ -58,6 +59,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         <ChatMessages 
                         content={message.content!}
                         ownMessage={true}
+                        date = {message.createdAt}
                         />
                     </div>
                     </div>

@@ -4,15 +4,24 @@ interface ChatMessagesProps {
     content : string
     ownMessage? : boolean
     imageUrl? : string
+    date : Date
 }
 
 
 const ChatMessages: React.FC<ChatMessagesProps> = ({
     content,
     ownMessage,
-    imageUrl
+    imageUrl,
+    date
 }) => {
 
+    const convertToEuropeanTime = (date : Date) => {
+        
+        const newDate = date;
+
+        return newDate.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric', hour12: true })
+
+    };
     
 
     return ( 
@@ -21,7 +30,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
             <div className="text-base font-semibold mb-2 ml-4 mr-4 mt-4">
                 {content}
                 <div>
-                <p className="text-xs text-gray-500/50 mt-2"> 12:13 Uhr</p>
+                <p className="text-xs text-gray-500/50 mt-2">{convertToEuropeanTime(date)}</p>
                 </div>
             </div>
                 
