@@ -50,6 +50,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         content={message.content!}
                         ownMessage={false}
                         date = {message.createdAt}
+                        imageUrl={message.imageUrl ? message.imageUrl : ""}
                         />
                     </div>
                     </div>
@@ -60,6 +61,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         content={message.content!}
                         ownMessage={true}
                         date = {message.createdAt}
+                        imageUrl={message.imageUrl ? message.imageUrl : ""} 
                         />
                     </div>
                     </div>

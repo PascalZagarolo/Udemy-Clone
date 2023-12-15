@@ -40,15 +40,34 @@ export async function POST(
             })
         }
 
-        const createdMessage = await db.message.create({
-            data : {
-                conversationId : existingConversation[0].id,
-                userId : userId,
-                content : values.content
-            }
-        })
+        if(values.url) {
+            const createdMessage = await db.message.create({
+                data : {
+                    conversationId : existingConversation[0].id,
+                    userId : userId,
+                    imageUrl: values.url,
+                    content : values.url
+                }
+            })
 
-        return NextResponse.json(createdMessage);
+            return NextResponse.json(createdMessage);
+
+        } else {
+
+            const createdMessage = await db.message.create({
+                data : {
+                    conversationId : existingConversation[0].id,
+                    userId : userId,
+                    content : values.content
+                }
+            })
+
+            return NextResponse.json(createdMessage);
+        }
+
+        
+
+        
     } catch (error) {
         console.log(error)
     }
