@@ -127,4 +127,46 @@ body,
 	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 }
 
+/* Basic structure */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Additional styling */
+  /* Set a max width, margins, etc. */
+}
+
+.message-container {
+  display: flex;
+  align-items: flex-end;
+  /* Adjust padding, margin, border-radius, etc. */
+}
+
+.sent {
+  justify-content: flex-end;
+}
+
+.received {
+  justify-content: flex-start;
+}
+
+.message-content {
+  max-width: 70%;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  
+}
+
+.timestamp {
+  font-size: 0.8em;
+  color: #888;
+ 
+}
+
+
+
+
+
+
 @import "~@uploadthing/react/styles.css"

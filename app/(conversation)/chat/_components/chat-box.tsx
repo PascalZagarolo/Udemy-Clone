@@ -71,6 +71,8 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
             </div>
             </>
     )
+
+      
 }
  
 export default ChatBox;
