@@ -39,7 +39,7 @@ const ChatImage = () => {
                 <Image/>
                 </DialogTrigger>
             <DialogContent>
-                <Form>
+                <Form {...form}>
                     <form>
                 <DialogHeader>
                     <DialogTitle className="flex justify-start items-center"> <File className="mr-2 text-blue-800"/> Hänge der Konversation eine Datei an</DialogTitle>
