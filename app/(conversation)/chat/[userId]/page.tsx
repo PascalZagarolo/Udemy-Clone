@@ -5,7 +5,7 @@ import { auth, clerkClient } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 import UserHeader from "@/app/(profilepage)/user/[userId]/_components/user-header";
 
-const ChatPage = async ( { params }: { params: { userId: string } } ) => {
+const ChatPage = async ({ params }: { params: { userId: string } }) => {
 
   const user = await db.user.findUnique({
     where: {
@@ -17,32 +17,35 @@ const ChatPage = async ( { params }: { params: { userId: string } } ) => {
 
   if (!user) {
     return redirect("/");
-  } 
+  }
 
-  
 
-  
 
-  return ( 
-    <div className="md:pl-52" >
-            <div className="md:pl-56 w-full h-[80px] ">
-            <UserHeader
-                    user={user}
-                    imageUrl={user.imageUrl || "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
-                    isOwnSite={false}
-                />
-      <div className=" mt-4">
-          <ChatBox 
-          otherUser = {params.userId}
+
+
+  return (
+    <div className="md:pl-52 position: relative" >
+      <div className="md:pl-56 w-full h-[80px]">
+        <div className="position: sticky w-full mb-2">
+        <UserHeader
+            user={user}
+            imageUrl={user.imageUrl || "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
+            isOwnSite={false}
           />
-       
-        <div className="position: fixed bottom-4 flex items-center w-full mt-4">
-          <ChatInput/>
+        </div>
+
+        <div className="mt-4">
+          <ChatBox
+            otherUser={params.userId}
+          />
+
+          <div className="position: sticky bottom-4 flex items-center w-full mt-16">
+            <ChatInput />
+          </div>
         </div>
       </div>
-      </div>
-      </div>
-   );
+    </div>
+  );
 }
- 
+
 export default ChatPage;

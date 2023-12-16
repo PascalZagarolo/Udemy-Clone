@@ -60,7 +60,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({
 
     return (
         <>
-            <div className="p-4 border-b h-full flex items-center bg-white shadow-sm">
+            <div className="border-b h-full flex items-center bg-white shadow-sm">
                 <div className="w-full ml-8 opacity-100 ">
                     <div>
                         <h3 className="text-4xl font-semibold flex justify-items-start items-center justify-center cursor-default" onSelect={() => {return false}}>
