@@ -38,6 +38,20 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
         }
     })
 
+    const ownName = await db.user.findUnique({
+        where : {
+            id : userId
+        }
+    })
+
+    const otherName = await db.user.findUnique({
+        where :{
+            id : otherUser
+        }
+    })
+
+    
+
     
     return (
         <>
@@ -51,6 +65,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         ownMessage={false}
                         date = {message.createdAt}
                         imageUrl={message.imageUrl ? message.imageUrl : ""}
+                        userName = {otherName?.username!}
                         />
                     </div>
                     </div>
@@ -61,7 +76,8 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         content={message.content!}
                         ownMessage={true}
                         date = {message.createdAt}
-                        imageUrl={message.imageUrl ? message.imageUrl : ""} 
+                        imageUrl={message.imageUrl ? message.imageUrl : ""}
+                        userName = {ownName?.username!} 
                         />
                     </div>
                     </div>

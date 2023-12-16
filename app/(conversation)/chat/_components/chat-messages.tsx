@@ -6,6 +6,7 @@ interface ChatMessagesProps {
     ownMessage? : boolean
     imageUrl? : string
     date : Date
+    userName : string
 }
 
 
@@ -13,7 +14,8 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
     content,
     ownMessage,
     imageUrl,
-    date
+    date,
+    userName
 }) => {
 
     const convertToEuropeanTime = (date : Date) => {
@@ -23,6 +25,8 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
         return newDate.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric', hour12: true })
 
     };
+
+    
 
     const isImageFile = (fileName : string) => {
         const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".bmp"]; // Add more extensions if needed
@@ -38,7 +42,8 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
             {imageUrl && isImageFile(imageUrl) ? (
                 <Image src={imageUrl} width={200} height={200} alt="image"/>
             ) : (
-                <div className="text-base font-semibold mb-2 ml-4 mr-4 mt-4">
+                <div className="text-sm font-semibold mb-2 ml-4 mr-4 mt-4">
+                    <p className="text-sm mb-2 text-gray-500/80">{userName}</p>
                 {content}
                 <div>
                 <p className="text-xs text-gray-500/50 mt-2">{convertToEuropeanTime(date)}</p>
