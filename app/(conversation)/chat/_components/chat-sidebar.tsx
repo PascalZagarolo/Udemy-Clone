@@ -31,7 +31,7 @@ const ChatSideBar = async () => {
     let i = 0;
 
     return (
-        <div className="w-full">
+        <div className="w-full hidden md:block">
             <div className="ml-8">
                 <p className="text-3xl font-semibold mt-4  mr-8 flex items-center">
                     <p className="justify-center items-center mr-2"><Contact2 /></p>
