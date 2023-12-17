@@ -39,7 +39,7 @@ const ChatPage = async ({ params }: { params: { userId: string } }) => {
             otherUser={params.userId}
           />
 
-          <div className="position: sticky bottom-4 flex items-center w-full mt-16">
+          <div className="position: fixed bottom-4 flex items-center w-full mt-16">
             <ChatInput />
           </div>
         </div>

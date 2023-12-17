@@ -4,7 +4,8 @@ const nextConfig = {
         domains : [
             "utfs.io",
             "upload.wikimedia.org",
-            "logoipsum.com"
+            "logoipsum.com",
+            "t4.ftcdn.net"
         ]
     }
 }

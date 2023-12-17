@@ -47,7 +47,7 @@ const ChatSideBarItem: React.FC<ChatSideBarItemProps> = ({
     return ( 
         <div className="flex justify-start items-center mt-4 sm:hidden md:flex">
             <Button variant="ghost" onClick={onClick}>
-                    <div className="items-center">
+                    <div className="items-center mr-1">
                     {user1Id === userId ? (
                             <Image 
                             src={user2_imageUrl}
@@ -57,7 +57,13 @@ const ChatSideBarItem: React.FC<ChatSideBarItemProps> = ({
                             alt="Profile Picture"
                             />
                         ) : (
-                            user1_username
+                            <Image 
+                            src={user1_imageUrl}
+                            className="rounded-full"
+                            height={40}
+                            width={40}
+                            alt="Profile Picture"
+                            />
                         )}
                     </div>
                     <User2
