@@ -16,7 +16,7 @@ const EditMessage = () => {
         <div>
             <Dialog>
                 <DialogTrigger>
-                    <PencilIcon  className="ml-2 h-4 w-4"/>
+                    <PencilIcon  className="ml-2 h-4 w-4 hover:text-gray-900"/>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>

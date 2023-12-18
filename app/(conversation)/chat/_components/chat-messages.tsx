@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import EditMessage from "./edit-message";
+import DeleteChatMessage from "./delete-chat-message";
 
 interface ChatMessagesProps {
     content : string
@@ -46,7 +47,10 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
                 <div className="text-sm font-semibold mb-2 ml-4 mr-4 mt-4">
                     <p className="text-sm mb-2 text-gray-500/80 flex justify-start items-center">{userName}
                     {ownMessage && (
+                        <div className="text-gray-900/70 flex justify-start ml-2">
                         <EditMessage/>
+                        <DeleteChatMessage/>
+                        </div>
                     )}
                     </p>
                 {content}
