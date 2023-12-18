@@ -34,12 +34,12 @@ const ChatPage = async ({ params }: { params: { userId: string } }) => {
           />
         </div>
 
-        <div className="mt-4">
+        <div className="mt-4 overflow-hidden">
           <ChatBox
             otherUser={params.userId}
           />
 
-          <div className="position: fixed bottom-4 flex items-center w-full mt-16">
+          <div className="position: fixed bottom-4 flex items-center w-screen mt-16">
             <ChatInput />
           </div>
         </div>

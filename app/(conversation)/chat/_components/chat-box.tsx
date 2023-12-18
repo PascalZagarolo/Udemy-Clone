@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/dist/server/api-utils";
 import ChatMessages from "./chat-messages";
+import { it } from "node:test";
 
 interface ChatBoxProps {
     otherUser : string
@@ -50,12 +51,15 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
         }
     })
 
+    let iterator = 0;
+
     
 
     
     return (
-        <>
-        <div className="grid flex-col mb-4 overflow-y-auto">
+      
+        <div className="mb-16">
+            <div className="grid mb-16">
             {messages.map((message) => (
                 message.userId !== userId ? (
                     <div className="flex flex-col mb-2 ml-4" key={message.id}>
@@ -68,6 +72,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         userName = {otherName?.username!}
                         />
                     </div>
+                    
                     </div>
                 ) : (
                     <div className="flex flex-col mb-2 ml-auto" key={message.id}>
@@ -81,11 +86,15 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         />
                     </div>
                     </div>
+                    
                 )
                 
-            ))}
+            )
+            
+            ) }
             </div>
-            </>
+            </div>
+            
     )
 
       

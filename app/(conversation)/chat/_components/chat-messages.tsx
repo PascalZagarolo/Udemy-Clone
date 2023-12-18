@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import EditMessage from "./edit-message";
 
 interface ChatMessagesProps {
     content : string
@@ -43,7 +44,11 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
                 <Image src={imageUrl} width={200} height={200} alt="image"/>
             ) : (
                 <div className="text-sm font-semibold mb-2 ml-4 mr-4 mt-4">
-                    <p className="text-sm mb-2 text-gray-500/80">{userName}</p>
+                    <p className="text-sm mb-2 text-gray-500/80 flex justify-start items-center">{userName}
+                    {ownMessage && (
+                        <EditMessage/>
+                    )}
+                    </p>
                 {content}
                 <div>
                 <p className="text-xs text-gray-500/50 mt-2">{convertToEuropeanTime(date)}</p>
