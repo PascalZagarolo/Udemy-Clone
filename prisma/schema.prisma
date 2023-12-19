@@ -265,6 +265,8 @@ model Message {
 
   content String? @db.Text
 
+  isEdited Boolean @default(false)
+
   imageUrl String? @db.Text
 
   @@index([userId])
