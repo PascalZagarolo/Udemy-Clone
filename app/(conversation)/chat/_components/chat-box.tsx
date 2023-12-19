@@ -83,6 +83,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         date = {message.createdAt}
                         imageUrl={message.imageUrl ? message.imageUrl : ""}
                         userName = {ownName?.username!} 
+                        messageId={message.id}
                         />
                     </div>
                     </div>

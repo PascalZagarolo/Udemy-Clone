@@ -47,7 +47,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
                 <div className="text-sm font-semibold mb-2 ml-4 mr-4 mt-4">
                     <p className="text-sm mb-2 text-gray-500/80 flex justify-start items-center">{userName}
                     {ownMessage && (
-                        <div className="text-gray-900/70 flex justify-start ml-2">
+                        <div className="text-gray-900/70 flex justify-start ml-auto">
                         <EditMessage/>
                         <DeleteChatMessage/>
                         </div>
