@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import axios from "axios";
 
 import { Trash, Trash2, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -19,11 +20,18 @@ const DeleteChatMessage: React.FC<DeleteChatMessageProps> = ({
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const router = useRouter();
+    
     const onClick = () => {
+
+        
         try {
             setIsLoading(true);
             axios.delete(`/api/message/${messageId}`);
             toast.success("Nachricht wurde erfolgreich gelöscht");
+            setTimeout(() => {
+                router.refresh();
+            }, 1500)
         } catch {
             toast.error("Nachricht konnte nicht gelöscht werden");
         } finally {
@@ -46,7 +54,8 @@ const DeleteChatMessage: React.FC<DeleteChatMessageProps> = ({
                         </DialogHeader>
                         <DialogDescription>
                             <div>
-                                Möchtest du diese Nachricht unwideruflich löschen ?   
+                                Möchtest du diese Nachricht unwideruflich löschen ?  
+                                
                             </div>
                         </DialogDescription>
                         <DialogFooter>
@@ -55,9 +64,11 @@ const DeleteChatMessage: React.FC<DeleteChatMessageProps> = ({
                                 Abbrechen
                             </Button>
                             </DialogTrigger>
+                            <DialogTrigger>
                             <Button className="bg-rose-600 hover:bg-rose-900" onClick={onClick}>
                                 Löschen
                             </Button>
+                            </DialogTrigger>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>

@@ -9,6 +9,7 @@ interface ChatMessagesProps {
     imageUrl? : string
     date : Date
     userName : string
+    messageId? : string
 }
 
 
@@ -17,7 +18,8 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
     ownMessage,
     imageUrl,
     date,
-    userName
+    userName,
+    messageId
 }) => {
 
     const convertToEuropeanTime = (date : Date) => {
@@ -49,7 +51,9 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
                     {ownMessage && (
                         <div className="text-gray-900/70 flex justify-start ml-auto">
                         <EditMessage/>
-                        <DeleteChatMessage/>
+                        <DeleteChatMessage
+                        messageId = {messageId!}
+                        />
                         </div>
                     )}
                     </p>
