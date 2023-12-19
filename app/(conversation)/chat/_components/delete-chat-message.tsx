@@ -8,6 +8,7 @@ import { Trash, Trash2, X } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
+
 interface DeleteChatMessageProps { 
     messageId : string
 }
@@ -19,7 +20,15 @@ const DeleteChatMessage: React.FC<DeleteChatMessageProps> = ({
     const [isLoading, setIsLoading] = useState(false);
 
     const onClick = () => {
-        axios.delete(`/api/message/${messageId}/delete`)
+        try {
+            setIsLoading(true);
+            axios.delete(`/api/message/${messageId}`);
+            toast.success("Nachricht wurde erfolgreich gelöscht");
+        } catch {
+            toast.error("Nachricht konnte nicht gelöscht werden");
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     return ( 
