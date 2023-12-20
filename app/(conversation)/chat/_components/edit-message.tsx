@@ -2,21 +2,41 @@
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Form } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogDescription } from "@radix-ui/react-dialog";
 
 import { MessageSquareIcon, PencilIcon, PencilLine } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const EditMessage = () => {
 
-    const form = useForm();
+
 
 
     const onClick = () => {
         console.log("...")
     }
+
+    const formSchema = z.object({
+        content: z.string().min(1, {
+            message: "Beschreibung ist zu kurz"
+        })
+    })
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            content: ""
+        }
+    })
+
+    const { isSubmitting, isValid } = form.formState;
+
+    const [isLoading, setIsLoading] = useState(false);
 
     return (
         <div>
@@ -27,16 +47,25 @@ const EditMessage = () => {
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle className="flex justify-start">
-                            <MessageSquareIcon className="h-6 w-6 mr-2"/>
-                        <p className="text-black">Nachricht bearbeiten</p>
+                            <MessageSquareIcon className="h-6 w-6 mr-2" />
+                            <p className="text-black">Nachricht bearbeiten</p>
                         </DialogTitle>
                     </DialogHeader>
                     <DialogDescription>
                         Bearbeitete Nachrichten werden mit einem Hinweise versehen.
                         <Form {...form}>
                             <form>
-                                <Input className="mt-4 mb-2"
-                                placeholder="Nachricht..."
+                                <FormField
+                                    control={form.control}
+                                    name="content"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormControl>
+                                                <Input />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
                                 />
                             </form>
                         </Form>
