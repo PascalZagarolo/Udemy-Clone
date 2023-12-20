@@ -14,12 +14,13 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 
-const EditMessage = () => {
 
-
-
-
-    
+interface EditMessageProps {
+    messageId : string
+}
+const EditMessage: React.FC<EditMessageProps> = ({
+    messageId
+}) => {
 
     const formSchema = z.object({
         content: z.string().min(1, {
