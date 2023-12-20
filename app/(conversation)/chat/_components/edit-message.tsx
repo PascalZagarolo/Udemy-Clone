@@ -6,10 +6,12 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogDescription } from "@radix-ui/react-dialog";
+import axios from "axios";
 
 import { MessageSquareIcon, PencilIcon, PencilLine } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { z } from "zod";
 
 const EditMessage = () => {
@@ -17,9 +19,7 @@ const EditMessage = () => {
 
 
 
-    const onClick = () => {
-        console.log("...")
-    }
+    
 
     const formSchema = z.object({
         content: z.string().min(1, {
@@ -38,6 +38,15 @@ const EditMessage = () => {
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const onSubmit = (values : z.infer<typeof formSchema>) => {
+        try {
+            setIsLoading(true);
+            axios.patch(`/api/message/mId...`);
+        } catch {
+            toast.error("Etwas ist schief gelaufen :/");
+        }
+    }
+
     return (
         <div>
             <Dialog>
@@ -52,7 +61,7 @@ const EditMessage = () => {
                         </DialogTitle>
                     </DialogHeader>
                     <DialogDescription>
-                        Bearbeitete Nachrichten werden mit einem Hinweise versehen.
+                        <p className="mb-2"> Bearbeitete Nachrichten werden mit einem Hinweise versehen. </p>
                         <Form {...form}>
                             <form>
                                 <FormField
@@ -61,7 +70,13 @@ const EditMessage = () => {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input />
+                                                <Input
+                                                {...field}
+                                                className="w-full
+                                                mt-4
+                                                mb-4
+                                                "
+                                                />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
