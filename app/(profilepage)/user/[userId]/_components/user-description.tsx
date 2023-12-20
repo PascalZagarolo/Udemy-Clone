@@ -6,13 +6,13 @@ import UserInformation from "./user-information";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import { DialogTitle } from "@radix-ui/react-dialog";
+
 import toast from "react-hot-toast";
 import { useParams } from "next/navigation";
 import axios from "axios";

@@ -1,11 +1,11 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { DialogDescription } from "@radix-ui/react-dialog";
+
 import axios from "axios";
 
 import { MessageSquareIcon, PencilIcon, PencilLine } from "lucide-react";
@@ -16,7 +16,7 @@ import { z } from "zod";
 
 
 interface EditMessageProps {
-    messageId : string
+    messageId: string
 }
 const EditMessage: React.FC<EditMessageProps> = ({
     messageId
@@ -39,13 +39,20 @@ const EditMessage: React.FC<EditMessageProps> = ({
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const onSubmit = (values : z.infer<typeof formSchema>) => {
+    const onSubmit = (values: z.infer<typeof formSchema>) => {
         try {
             setIsLoading(true);
-            axios.patch(`/api/message/mId...`);
+            axios.patch(`/api/message/${messageId}`, values);
+            toast.success("Nachricht bearbeitet");
         } catch {
             toast.error("Etwas ist schief gelaufen :/");
+        } finally {
+            setIsLoading(false);
         }
+    }
+
+    const onClick = () => {
+        console.log("dejifspkmdfo")
     }
 
     return (
@@ -64,7 +71,7 @@ const EditMessage: React.FC<EditMessageProps> = ({
                     <DialogDescription>
                         <p className="mb-2"> Bearbeitete Nachrichten werden mit einem Hinweise versehen. </p>
                         <Form {...form}>
-                            <form>
+                            <form onSubmit={form.handleSubmit(onSubmit)}>
                                 <FormField
                                     control={form.control}
                                     name="content"
@@ -72,11 +79,8 @@ const EditMessage: React.FC<EditMessageProps> = ({
                                         <FormItem>
                                             <FormControl>
                                                 <Input
-                                                {...field}
-                                                className="w-full
-                                                mt-4
-                                                mb-4
-                                                "
+                                                    {...field}
+                                                    className="w-full mt-4 mb-4"
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -91,7 +95,9 @@ const EditMessage: React.FC<EditMessageProps> = ({
                             <Button variant="ghost">
                                 Abbrechen
                             </Button>
-                            <Button className="bg-blue-800">
+                        </DialogTrigger>
+                        <DialogTrigger>
+                            <Button className="bg-blue-800" disabled={isSubmitting || !isValid} type="submit" >
                                 Änderungen speichern
                             </Button>
                         </DialogTrigger>
