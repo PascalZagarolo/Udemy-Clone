@@ -39,7 +39,6 @@ const EditMessage: React.FC<EditMessageProps> = ({
     })
 
     const { isSubmitting, isValid } = form.formState;
-
     const [isLoading, setIsLoading] = useState(false);
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
@@ -74,7 +73,6 @@ const EditMessage: React.FC<EditMessageProps> = ({
                             </DialogHeader>
                             <DialogDescription>
                                 <p className="mb-2"> Bearbeitete Nachrichten werden mit einem Hinweise versehen. </p>
-
                                 <FormField
                                     control={form.control}
                                     name="content"
@@ -91,7 +89,6 @@ const EditMessage: React.FC<EditMessageProps> = ({
                                         </FormItem>
                                     )}
                                 />
-
                             </DialogDescription>
                             <DialogFooter>
                                 <DialogTrigger>
@@ -109,7 +106,6 @@ const EditMessage: React.FC<EditMessageProps> = ({
                     </Form>
                 </DialogContent>
             </Dialog>
-
         </div>
     );
 }
