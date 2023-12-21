@@ -57,10 +57,6 @@ const EditMessage: React.FC<EditMessageProps> = ({
         }
     }
 
-    const onClick = () => {
-        console.log("dejifspkmdfo")
-    }
-
     return (
         <div>
             <Dialog>
