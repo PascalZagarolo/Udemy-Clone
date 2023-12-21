@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 
 import { MessageSquareIcon, PencilIcon, PencilLine } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -21,6 +22,8 @@ interface EditMessageProps {
 const EditMessage: React.FC<EditMessageProps> = ({
     messageId
 }) => {
+
+    const router = useRouter();
 
     const formSchema = z.object({
         content: z.string().min(1, {
@@ -44,6 +47,9 @@ const EditMessage: React.FC<EditMessageProps> = ({
             setIsLoading(true);
             axios.patch(`/api/message/${messageId}`, values);
             toast.success("Nachricht bearbeitet");
+            setTimeout(() => {
+                router.refresh();
+            }, 1500)
         } catch {
             toast.error("Etwas ist schief gelaufen :/");
         } finally {
@@ -82,6 +88,7 @@ const EditMessage: React.FC<EditMessageProps> = ({
                                                 <Input
                                                     {...field}
                                                     className="w-full mt-4 mb-4"
+                                                    disabled={isLoading}
                                                 />
                                             </FormControl>
                                             <FormMessage />
