@@ -70,6 +70,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         date = {message.createdAt}
                         imageUrl={message.imageUrl ? message.imageUrl : ""}
                         userName = {otherName?.username!}
+                        isEdited={message.isEdited}
                         />
                     </div>
                     
@@ -84,6 +85,7 @@ const ChatBox: React.FC<ChatBoxProps> = async ({
                         imageUrl={message.imageUrl ? message.imageUrl : ""}
                         userName = {ownName?.username!} 
                         messageId={message.id}
+                        isEdited={message.isEdited}
                         />
                     </div>
                     </div>
