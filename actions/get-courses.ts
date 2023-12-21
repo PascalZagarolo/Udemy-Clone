@@ -24,30 +24,36 @@ export const getCourses = async ({
 
         const courses = await db.course.findMany({
             where: {
-                isPublished: true,
-                title: {
-                    contains: title
-                }, categoryId
+              isPublished: true,
+              title: {
+                contains: title,
+              },
+              category : {
+                name : categoryId
+              }
             },
             include: {
-                category: true,
-                chapters: {
-                    where: {
-                        isPublished: true
-                    },
-                    select: {
-                        id: true
-                    }
+              category: true,
+              chapters: {
+                where: {
+                  isPublished: true,
                 },
-                purchases: {
-                    where: {
-                        userId
-                    }
+                select: {
+                  id: true,
                 }
-            }, orderBy: {
-                createdAt: "desc"
+              },
+              purchases: {
+                where: {
+                  userId,
+                }
+              }
+            },
+            orderBy: {
+              createdAt: "desc",
             }
-        });
+          });
+
+          console.log(categoryId)
 
         const coursesWithProgress: CourseWithProgressWithCategory[] = await Promise.all(
             courses.map(async course => {

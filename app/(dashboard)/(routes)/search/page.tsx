@@ -37,7 +37,7 @@ const SearchPage = async ({
 
   const courses = await getCourses({
     userId,
-    categoryId: searchParams.categoryId,
+    ...searchParams
   });
 
   return (
@@ -50,6 +50,7 @@ const SearchPage = async ({
           items={categories}
         />
         <CoursesList items={courses} />
+        
       </div>
     </>
    );

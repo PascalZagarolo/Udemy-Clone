@@ -30,7 +30,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
         const url = qs.stringifyUrl({
             url: pathname,
             query: {
-                categoryName: isSelected ? undefined : value,
+                categoryId: isSelected ? undefined : value,
                 title: currentTitle,
             }
         }, { skipNull: true, skipEmptyString: true });
