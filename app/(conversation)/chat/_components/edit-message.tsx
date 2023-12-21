@@ -62,16 +62,17 @@ const EditMessage: React.FC<EditMessageProps> = ({
                     <PencilIcon className="ml-2 h-4 w-4 hover:text-gray-900" />
                 </DialogTrigger>
                 <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle className="flex justify-start">
-                            <MessageSquareIcon className="h-6 w-6 mr-2" />
-                            <p className="text-black">Nachricht bearbeiten</p>
-                        </DialogTitle>
-                    </DialogHeader>
-                    <DialogDescription>
-                        <p className="mb-2"> Bearbeitete Nachrichten werden mit einem Hinweise versehen. </p>
-                        <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <DialogHeader>
+                                <DialogTitle className="flex justify-start">
+                                    <MessageSquareIcon className="h-6 w-6 mr-2" />
+                                    <p className="text-black">Nachricht bearbeiten</p>
+                                </DialogTitle>
+                            </DialogHeader>
+                            <DialogDescription>
+                                <p className="mb-2"> Bearbeitete Nachrichten werden mit einem Hinweise versehen. </p>
+
                                 <FormField
                                     control={form.control}
                                     name="content"
@@ -87,21 +88,22 @@ const EditMessage: React.FC<EditMessageProps> = ({
                                         </FormItem>
                                     )}
                                 />
-                            </form>
-                        </Form>
-                    </DialogDescription>
-                    <DialogFooter>
-                        <DialogTrigger>
-                            <Button variant="ghost">
-                                Abbrechen
-                            </Button>
-                        </DialogTrigger>
-                        <DialogTrigger>
-                            <Button className="bg-blue-800" disabled={isSubmitting || !isValid} type="submit" >
-                                Änderungen speichern
-                            </Button>
-                        </DialogTrigger>
-                    </DialogFooter>
+
+                            </DialogDescription>
+                            <DialogFooter>
+                                <DialogTrigger>
+                                    <Button variant="ghost">
+                                        Abbrechen
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogTrigger>
+                                    <Button className="bg-blue-800" disabled={isSubmitting || !isValid} type="submit">
+                                        Änderungen speichern
+                                    </Button>
+                                </DialogTrigger>
+                            </DialogFooter>
+                        </form>
+                    </Form>
                 </DialogContent>
             </Dialog>
 

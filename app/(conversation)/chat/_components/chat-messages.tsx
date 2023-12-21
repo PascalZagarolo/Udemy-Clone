@@ -50,7 +50,9 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
                     <p className="text-sm mb-2 text-gray-500/80 flex justify-start items-center">{userName}
                     {ownMessage && (
                         <div className="text-gray-900/70 flex justify-start ml-auto">
-                        <EditMessage/>
+                        <EditMessage
+                        messageId = {messageId!}
+                        />
                         <DeleteChatMessage
                         messageId = {messageId!}
                         />
