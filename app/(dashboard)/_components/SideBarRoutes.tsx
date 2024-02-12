@@ -75,15 +75,14 @@ const SideBarRoutes: React.FC<SideBarRoutesProps> = ({
                 href={route.href}
                 />
             ))}
-        </div>
-        
-        <div className="position: absolute bottom-0">
-        <Settings 
+            <Settings 
             icon={Settings2Icon}
             label="Einstellungen"
             name = {name}
             username = {username} />
         </div>
+        
+        
         </div>
      );
 }

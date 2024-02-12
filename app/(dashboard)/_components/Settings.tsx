@@ -90,7 +90,7 @@ const Settings: React.FC<SettingsProps> = ({
 
 
     return (
-        <div className="grid grid-cols-2 gap-2">
+        <div className="">
 
             <Sheet>
                 <SheetTrigger asChild aria-controls="radix-:Rl6rcq:">
