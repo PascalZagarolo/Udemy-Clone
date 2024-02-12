@@ -42,16 +42,16 @@ const ChatSideBar = async () => {
             <div className="ml-4 mt-2">
             {createdChats.map((chat) => (
                 
-                    <ChatSideBarItem
-                    key={i++}
-                    user1Id={chat.user1Id}
-                    user2Id={chat.user2Id}
-                    userId={userId}
-                    user1_username={chat.user1.username}
-                    user2_username={chat.user2.username}
-                    user1_imageUrl= {chat.user1.imageUrl || "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
-                    user2_imageUrl= {chat.user2.imageUrl || "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
-                    />
+                <ChatSideBarItem
+                key={i++}
+                user1Id={chat.user1Id}
+                user2Id={chat.user2Id}
+                userId={userId}
+                user1_username={chat.user1.username}
+                user2_username={chat.user2.username}
+                user1_imageUrl= {chat.user1.imageUrl || "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
+                user2_imageUrl= {chat.user2.imageUrl || "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
+                />
                     
                     
                 )

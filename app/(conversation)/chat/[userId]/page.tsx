@@ -24,7 +24,7 @@ const ChatPage = async ({ params }: { params: { userId: string } }) => {
 
 
   return (
-    <div className="md:pl-52 position: relative" >
+    <div className=" " >
       <div className="md:pl-56 w-full h-[80px]">
         <div className="position: sticky w-full mb-2">
         <UserHeader

@@ -20,7 +20,7 @@ const ChatMainPage = async () => {
 
     return (
         <div className="md:pl-52" >
-            <div className="md:pl-56 w-full h-[80px]">
+            <div className=" w-full h-[80px]">
                 
                 <UserHeader
                     user={ownUser!}
