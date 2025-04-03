@@ -30,8 +30,8 @@ const SideBar: React.FC<SideBarProps> = async ({
             <div className="p-6">
                 <Logo />
             </div>
-            <div className="flex w-full">
-                <SideBarRoutes 
+            <div className="flex flex-col w-full">
+            <SideBarRoutes 
                 name = {name}
                 username={username}
                 userId = {userId}

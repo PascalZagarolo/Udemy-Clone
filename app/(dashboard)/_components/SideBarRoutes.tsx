@@ -25,11 +25,12 @@ const guestRoutes = [
         icon: Compass,
         label: "Durchsuchen..",
         href: "/search"
-    }, {
-        icon : MailIcon,
-        label : "Nachrichten",
-        href: `/chat`
-    }
+    }, 
+    // {
+    //     icon : MailIcon,
+    //     label : "Nachrichten",
+    //     href: `/chat`
+    // }
 ]
 
 const teacherRoutes  =   [
@@ -42,11 +43,12 @@ const teacherRoutes  =   [
         icon: BarChart3,
         label: "Analytiken",
         href: "/teacher/analytics"
-    }, {
-        icon : MailIcon,
-        label : "Nachrichten",
-        href: `/chat`
-    }
+     }, 
+    //{
+    //     icon : MailIcon,
+    //     label : "Nachrichten",
+    //     href: `/chat`
+    // }
 ]
 
 

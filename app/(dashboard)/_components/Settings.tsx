@@ -90,7 +90,7 @@ const Settings: React.FC<SettingsProps> = ({
 
 
     return (
-        <div className="">
+        <div className="w-full">
 
             <Sheet>
                 <SheetTrigger asChild aria-controls="radix-:Rl6rcq:">
@@ -98,7 +98,7 @@ const Settings: React.FC<SettingsProps> = ({
                         type="button"
                         onClick={onClick}
                         className={cn(`
-                        flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20`
+                        flex items-center w-full gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20`
                         )} >
                         <div className="flex items-center gap-x-2 py-4">
                             <Icon
